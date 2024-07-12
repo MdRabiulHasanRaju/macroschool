@@ -1,0 +1,15 @@
+RewriteEngine ON
+
+ErrorDocument 404 /serverit/views/error/404.php
+
+RewriteRule ^courses?$ views/pages/courses/courses.php
+RewriteRule ^course-details?$ views/pages/courses/course-details.php
+RewriteRule ^about?$ views/pages/about/about.php
+RewriteRule ^contact?$ views/pages/contact/contact.php
+
+Options All -Indexes
+# RewriteCond %{THE_REQUEST} /([^.]+)\.php [NC]
+# RewriteRule ^ /%1 [NC,L,R]
+
+# RewriteCond %{REQUEST_FILENAME}.php -f
+# RewriteRule ^ %{REQUEST_URI}.php [NC,L]
