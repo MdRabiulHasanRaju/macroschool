@@ -247,5 +247,23 @@
     .form__name{
         flex-direction: column;
     }
+    .course-details-col{
+        flex-direction: column-reverse;
+    }
+    .course-details-col-1{
+        width:100%;
+    }
+    .course-details-col-2{
+        width:100%;
+    }
+    .price-box {
+        position: fixed;
+        display: block;
+        top: 92%;
+        width: 100%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        background: white;
+    }
 }
 
