@@ -1,78 +1,49 @@
-<?php
-$title= "Macro School - Courses";
-?>
-<?php
+<?php ob_start();
+session_start();
+
+require_once $_SERVER['DOCUMENT_ROOT'] . "/macroschool/lib/Database.php";
+$title = "Macro School - Courses";
+$meta_description = "$title - macro school Call 880 1563 4668 21";
+$meta_keywords = "$title, Macro School, macroschool,macro,schoolmacro,macro";
+$header_active = "Courses";
+
 include("../../inc/header.php");
+
 ?>
+
 <style>
     .courses {
         margin-top: 1rem;
     }
 </style>
-
-
 <section class="courses">
     <div class="container course__container">
-        <article class="course">
-            <div class="course__image">
-                <img src="public/images/Hm course 2.jpg">
-            </div>
-            <div class="course__info">
-                <h4>Responsive Social Media Website UI Design</h4>
-                <p>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam debitis animi tempore deserunt! Ut, autem?
-                </p>
-                <a href="course-details" class='btn btn-primary'>Learn More</a>
-            </div>
-        </article>
+        <?php
+        $courseSql = "SELECT `id`,`image`,`course_title`,`course_details` FROM `courses` ORDER BY id DESC";
+        $courseStmt = fetch_data($connection, $courseSql);
+        if ($courseStmt) {
+            if (mysqli_stmt_num_rows($courseStmt) == 0) {
+                header("location: " . LINK . "error/404");
+                die();
+            }
+            mysqli_stmt_bind_result($courseStmt, $id, $image, $course_title, $course_details);
+            while (mysqli_stmt_fetch($courseStmt)) { ?>
 
-        <article class="course">
-            <div class="course__image">
-                <img src="public/images/HM course.jpg">
-            </div>
-            <div class="course__info">
-                <h4>Responsive Smartphone Website UI Design</h4>
-                <p>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam debitis animi tempore deserunt! Ut, autem?
-                </p>
-                <a href="course-details" class='btn btn-primary'>Learn More</a>
-            </div>
-        </article>
-
-        <article class="course">
-            <div class="course__image">
-                <img src="public/images/Hm course 2.jpg">
-            </div>
-            <div class="course__info">
-                <h4>Responsive admin dashboard website website Design</h4>
-                <p>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam debitis animi tempore deserunt! Ut, autem?
-                </p>
-                <a href="course-details" class='btn btn-primary'>Learn More</a>
-            </div>
-        </article>
-
-        <article class="course">
-            <div class="course__image">
-                <img src="public/images/HM course.jpg">
-            </div>
-            <div class="course__info">
-                <h4>Responsive admin dashboard website website Design</h4>
-                <p>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam debitis animi tempore deserunt! Ut, autem?
-                </p>
-                <a href="course-details" class='btn btn-primary'>Learn More</a>
-            </div>
-        </article>
-
- 
-
-
-
-
-
-
-
+                <article class="course">
+                    <div class="course__image">
+                        <img src="public/images/<?= $image; ?>">
+                    </div>
+                    <div class="course__info">
+                        <h4><?= $course_title; ?></h4>
+                        <p>
+                            <?= $format->short_text($course_details, 200); ?>
+                        </p>
+                        <a href="course-details/<?=$id;?>" class='my-btn'>Enroll Now</a>
+                    </div>
+                </article>
+        <?php
+            }
+        } ?>
     </div>
 </section>
 
@@ -159,7 +130,7 @@ include("../../inc/header.php");
 <?php
 include("../../inc/footer.php");
 ?>
-<script src="<?=LINK;?>main.js"></script>
+<script src="<?= LINK; ?>main.js"></script>
 </body>
 
 </html>

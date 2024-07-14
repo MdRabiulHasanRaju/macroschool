@@ -1,9 +1,9 @@
 <?php ob_start();
 session_start();
-// if (isset($_GET['id'])) {
-//     $course_id = $_GET["id"];
-// }
-$course_id = 1;
+if (isset($_GET['id'])) {
+    $course_id = $_GET["id"];
+}
+
 require_once $_SERVER['DOCUMENT_ROOT'] . "/macroschool/lib/Database.php";
 
 $title_sql = "select course_title from courses where id=$course_id";
@@ -53,6 +53,7 @@ if (mysqli_stmt_execute($stmt)) {
             $course_details,
             $faq,
             $image,
+            $video_link,
             $total_student,
             $deadline,
             $course_info,
@@ -77,10 +78,10 @@ if (mysqli_stmt_execute($stmt)) {
                                 $faculties_stmt = mysqli_prepare($connection, $faculties_sql);
                                 mysqli_stmt_execute($faculties_stmt);
                                 mysqli_stmt_store_result($faculties_stmt);
-                                mysqli_stmt_bind_result($faculties_stmt, $id, $name, $department, $image);
+                                mysqli_stmt_bind_result($faculties_stmt, $id, $name, $department, $faculties_image);
                                 mysqli_stmt_fetch($faculties_stmt); ?>
                                 <div class="faculti-member">
-                                    <img src="public/images/<?= $image; ?>" id="faculti-image">
+                                    <img src="<?= LINK; ?>public/images/<?= $faculties_image; ?>" id="faculti-image">
                                     <h5 class="teacher-name"><?= $name; ?></h5>
                                     <h5 class="teacher-department"><?= $department; ?></h5>
                                 </div>
@@ -102,7 +103,7 @@ if (mysqli_stmt_execute($stmt)) {
                                 mysqli_stmt_bind_result($faq_stmt, $id, $question, $answer);
                                 mysqli_stmt_fetch($faq_stmt); ?>
                                 <div class="course-details-faq-box">
-                                    <p class="questionClick"><img class="icon" src="public/images/icon/dropdown.png"><?= $question; ?></p>
+                                    <p class="questionClick"><img class="icon" src="<?= LINK; ?>public/images/icon/dropdown.png"><?= $question; ?></p>
                                     <div class="para" id="para">
                                         <?= $answer; ?>
                                     </div>
@@ -112,14 +113,22 @@ if (mysqli_stmt_execute($stmt)) {
                     </div>
                     <div class="course-details-col-2">
                         <div class="course-box">
-                            <img src="public/images/Hm course 2.jpg">
+                        <?php 
+                            if(!trim($video_link)){?>
+                                <img src="<?= LINK; ?>public/images/<?=$image;?>">
+                           <?php }else{?>
+                            <iframe width="100%" height="230px" src="https://www.youtube-nocookie.com/embed/<?=$video_link;?>?autoplay=1&amp;si=W1FHj9ufehV8p6jW&amp;controls=0" title="YouTube video player" frameborder="0" allow="autoplay ; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                          <?php  }
+                        ?>
+                        
+                            
                             <div class="course-box-top">
                                 <div class="total">
-                                    <img src="public/images/icon/people.png" alt="" class="icon">
+                                    <img src="<?= LINK; ?>public/images/icon/people.png" alt="" class="icon">
                                     <p>কোর্সটি করছেন <strong><?= $total_student; ?></strong></p>
                                 </div>
                                 <div class="time">
-                                    <img src="public/images/icon/time.png" alt="" class="icon">
+                                    <img src="<?= LINK; ?>public/images/icon/time.png" alt="" class="icon">
                                     <p><?= $deadline; ?></p>
                                 </div>
                             </div>
@@ -133,7 +142,7 @@ if (mysqli_stmt_execute($stmt)) {
                                     mysqli_stmt_store_result($course_info_stmt);
                                     mysqli_stmt_bind_result($course_info_stmt, $id, $title, $number);
                                     mysqli_stmt_fetch($course_info_stmt); ?>
-                                    <p><img src="public/images/icon/ok.png" alt="" class="icon"> <?= $title; ?> <?= $number; ?></p>
+                                    <p><img src="<?= LINK; ?>public/images/icon/ok.png" alt="" class="icon"> <?= $title; ?> <?= $number; ?></p>
                                 <?php } ?>
                             </div>
                             <div class="course-box-bottom">

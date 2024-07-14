@@ -2,8 +2,9 @@ RewriteEngine ON
 
 ErrorDocument 404 /serverit/views/error/404.php
 
+RewriteRule ^home?$ index.php 
 RewriteRule ^courses?$ views/pages/courses/courses.php
-RewriteRule ^course-details?$ views/pages/courses/course-details.php
+RewriteRule ^course-details/([0-9]+) views/pages/courses/course-details.php?id=$1
 RewriteRule ^about?$ views/pages/about/about.php
 RewriteRule ^contact?$ views/pages/contact/contact.php
 
