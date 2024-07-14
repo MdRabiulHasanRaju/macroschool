@@ -22,11 +22,11 @@ body {
   margin: 0 auto;
 }
 section {
-  padding: 6rem 0;
+  /* padding: 6rem 0; */
 }
 section h2 {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
 }
 h1,
 h2,
@@ -116,10 +116,7 @@ nav button {
 /* ============== HEADER ======== */
 
 header {
-  top: 5rem;
-  overflow: hidden;
   height: 70vh;
-  margin-bottom: 5rem;
   color: #1f053e;
 }
 
@@ -144,6 +141,8 @@ header {
 .categories {
   background: #edebf2;
   height: 32rem;
+  padding: 30px 0;
+  margin-bottom: 30px;
 }
 .categories h1 {
   line-height: 1;
@@ -210,7 +209,7 @@ header {
 /* ============== popular courses ======== */
 
 .courses {
-  margin-top: 10rem;
+  margin-bottom: 5rem;
 }
 .courses h2 {
   color: #223da8;
@@ -562,7 +561,6 @@ input,
 textarea {
   width: 100%;
   padding: 1rem;
-  background: gray;
   color: black;
 }
 ::placeholder {
@@ -718,6 +716,101 @@ img#faculti-image {
 .black{
   background-color:black;
 }.black:hover{
-  color:black;
+  color:black!important;
   border:1px solid black;
+}
+.mobile-dashboard{
+  display: none;
+}
+.dashboard:hover a{
+  color:#000!important;
+}
+.form-title {
+  background-color: #07294d;
+  padding-top: 35px;
+  padding-bottom: 40px;
+  text-align: center;
+}
+.form-title>h3 {
+  color: #DC555B;
+  font-size: 36px;
+}
+.form-title>span {
+  font-size: 24px;
+  color: #fff;
+  font-family: "Montserrat", sans-serif;
+}
+.main-form {
+  padding-top: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 40px;
+  background-color: #fff;
+}
+.singel-form {
+  margin-top: 20px;
+}
+.singel-form>input {
+  width: 100%;
+  height: 60px;
+  padding: 0 30px;
+  font-size: 15px;
+  color: #8a8a8a;
+  border: 1px solid #8a8a8a;
+  border-radius: 5px;
+}
+.main-btn {
+  width: 100%;
+  line-height: 60px;
+  margin-top: 20px;
+}
+.main-btn {
+  display: inline-block;
+  font-weight: 500;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid #DC555B;
+  padding: 0 35px;
+  font-size: 16px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  line-height: 50px;
+  border-radius: 5px;
+  color: #07294d;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  z-index: 5;
+  -webkit-transition: 0.4s ease-in-out;
+  transition: 0.4s ease-in-out;
+  background-color: #DC555B;
+}
+.main-btn:hover {
+  color: white;
+  border-color: #07294d;
+  background-color: #07294d;
+}
+.auth {
+  margin: 50px auto;
+  width: 50%;
+}
+.loginBtn {
+  font-weight: 700;
+  color: #07294d;
+  font-family: "Montserrat", sans-serif;
+}
+.google-btn>img {
+  width: 40px;
+}
+.google-btn {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  background: white;
 }

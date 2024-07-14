@@ -173,7 +173,7 @@
         right: 3%;
     }
     header{
-        height: 100vh;
+    margin-top: 30px;
     }
     .header__container{
         grid-template-columns: 1fr;
@@ -264,6 +264,19 @@
         left: 50%;
         transform: translate(-50%,-50%);
         background: white;
+    }
+    .dashboard{
+        display: none;
+    }
+    .mobile-dashboard{
+        display: block;
+        padding: 6px 77px;
+      }
+      .form-title>h3 {
+        font-size: 24px;
+    }
+      .form-title>span {
+        font-size: 20px;
     }
 }
 

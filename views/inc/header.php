@@ -25,11 +25,13 @@ $format = new Format;
     <nav>
         <div class="container nav__container">
             <a href="<?=LINK;?>"><img src="<?= LINK; ?>public/images/logo-removebg-preview.png" id="IMAGE" ></a>
+            <a class="my-btn black mobile-dashboard" href="<?= LINK; ?>login">Dashboard</a>
             <ul class="nav__menu" class="slidebar">
                 <li><a href="<?=LINK;?>">Home</a></li>
                 <li><a href="<?= LINK; ?>about">About</a></li>
                 <li><a href="<?= LINK; ?>courses">Courses</a></li>
                 <li><a href="<?= LINK; ?>contact">Contact</a></li>
+                <li class="my-btn black dashboard" ><a style="color:white" href="<?= LINK; ?>login">Dashboard</a></li>
             </ul>
             
             <button id='open-menu-btn'><i class="fa-solid fa-bars"></i></button>
