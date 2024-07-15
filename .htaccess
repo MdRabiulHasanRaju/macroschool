@@ -10,6 +10,7 @@ RewriteRule ^contact?$ views/pages/contact/contact.php
 
 RewriteRule ^login?$ views/pages/auth/login.php
 RewriteRule ^registration?$ views/pages/auth/registration.php
+RewriteRule ^verification/(.+) views/pages/auth/verification.php?email=$1
 
 Options All -Indexes
 # RewriteCond %{THE_REQUEST} /([^.]+)\.php [NC]

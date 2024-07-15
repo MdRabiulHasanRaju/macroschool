@@ -841,3 +841,15 @@ img#faculti-image {
 }.course-box-top p {
   font-size: 13px;
 }
+.strength {
+  display: none;
+  color: red;
+  text-align: center;
+  margin: 0 auto;
+  font-weight: bold;
+  position: relative;
+  top: 0px;
+  font-size: 13px;
+  width: 156px;
+  float: right;
+}

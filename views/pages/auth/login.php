@@ -9,6 +9,20 @@ $header_active = "Login";
 
 include("../../inc/header.php");
 
+if (isset($_SESSION['username'])) {
+    header("location: " . LINK . "dashboard");
+    exit;
+  }
+  $username_err = $password_err = $confirm_password_err = $err = "";
+  if (isset($_SESSION["username_err"])) {
+    $username_err = $_SESSION["username_err"];
+  } elseif (isset($_SESSION["password_err"])) {
+    $password_err = $_SESSION["password_err"];
+  }
+  if (isset($_SESSION["err"])) {
+    $err = $_SESSION["err"];
+  }
+
 ?>
 
 <section class="container auth">
@@ -17,9 +31,9 @@ include("../../inc/header.php");
         <span>Login now </span>
     </div>
     <div class="main-form">
-        <form action="/auth/login" method="POST">
+        <form action="<?= LINK; ?>controllers/loginController.php" method="POST">
             <div class="singel-form">
-                <input class="" type="email" name="email" id="email" value="" type="email" placeholder="Your Email">
+                <input class="" type="email" name="username" id="email" value="" type="email" placeholder="Your Email">
                 <div class="invalid-feedback">
                     
                 </div>
@@ -27,14 +41,15 @@ include("../../inc/header.php");
             <div class="singel-form">
                 <input class="" type="password" name="password" id="password" value="" type="text" placeholder="Your Password">
                 <div class="invalid-feedback">
-                    
+                <span style="color:red"><?php echo $err;
+                                            unset($_SESSION['err']); ?></span>
                 </div>
             </div>
             <div class="singel-form">
-                <button class="main-btn" type="submit">LOG IN</button>
+                <button name="submit" class="main-btn" type="submit">LOG IN</button>
             </div>
             <div class="singel-form">
-                <button class="main-btn google-btn" type="submit"><img src="<?= LINK; ?>public/images/icon/google.png" alt="">Sign in with Google</button>
+                <button name="submit" class="main-btn google-btn" type="submit"><img src="<?= LINK; ?>public/images/icon/google.png" alt="">Sign in with Google</button>
             </div>
             <a href="<?=LINK;?>registration" class="loginBtn my-3 text-center">Don't have an Account? Create One</a>
         </form>
