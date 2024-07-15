@@ -46,7 +46,7 @@ videoThumbnails.forEach((v) => {
 let questionClick = document.querySelectorAll(".questionClick");
 questionClick.forEach((e) => {
   e.addEventListener("click", () => {
-    para = e.parentNode.childNodes[3];
+    let para = e.parentNode.childNodes[3];
     para.classList.toggle("collapsed");
   });
 });

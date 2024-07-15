@@ -79,8 +79,8 @@
     }
 
     header{
-        height: 52vh;
-        margin-bottom: 5rem;
+        /* height: 52vh; */
+        /* margin-bottom: 5rem; */
     }
     .header__container{
         gap: 0;
@@ -174,11 +174,13 @@
     }
     header{
     margin-top: 30px;
+    padding: 0;
     }
     .header__container{
-        grid-template-columns: 1fr;
         margin-top: 0;
         text-align: center;
+        flex-direction: column;
+        gap: 25px;
     }
     
     .header__left p{

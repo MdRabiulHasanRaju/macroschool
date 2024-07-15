@@ -116,8 +116,8 @@ nav button {
 /* ============== HEADER ======== */
 
 header {
-  height: 70vh;
   color: #1f053e;
+  padding: 60px 0;
 }
 
 #open-menu-btn {
@@ -127,8 +127,7 @@ header {
   color: black;
 }
 .header__container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
   align-items: center;
   gap: 4rem;
   height: 100%;
@@ -211,19 +210,18 @@ header {
 .courses {
   margin-bottom: 5rem;
 }
-.courses h2 {
-  color: #223da8;
-}
+.courses h2 {color: #f75842;border-bottom: 1px solid #e1e1e1;}
 .course__container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
 }
 .course {
-  background: #98afac;
+  background: #ffffff;
   text-align: center;
   border: 1px solid transparent;
   transition: all 400ms ease;
+  box-shadow: 1px 1px 31px -20px black;
 }
 .course:hover {
   background: #f0f8ff;
@@ -596,6 +594,7 @@ textarea {
   background: #f3f3f3;
   border-bottom: 1px solid #d9d9d9;
   display: flex;
+  font-weight: bold;
 }
 .course-details-faq-box {
   padding: 10px;
@@ -635,16 +634,17 @@ img#faculti-image {
   display: flex;
   grid-gap: 35px;
 }.course-box-top img {
-  width: 100px;
+  width: 60px;
   border:2px solid white;
+  border-radius: 8px;
   background:#f2f2f2;
 }
 
 .course-box-top {
-  margin-top:12px;
   display: flex;
   justify-content: space-between;
   grid-gap: 10px;
+  margin: 20px 15px;
 }
 
 .total {display: flex;align-items: center;}
@@ -653,24 +653,26 @@ img#faculti-image {
   display: flex;
   align-items: center;
 }
-.course-box-middle p {
-  display: flex;
+.course-box-feature p {
+  display: inline-flex;
   grid-gap: 5px;
-  background: white;
+  background: #f7f7f7;
   border-radius: 15px;
   padding: 2px 5px;
   font-size: 14px;
   align-items: center;
+  margin: 5px 0;
 }
 
-.course-box-middle {
-  display: ruby-text;
+.course-box-feature {
+  /* display: ruby-text; */
   margin-top: 10px;
 }
 .my-btn {
-  padding: 20px;
+  padding: 15px;
   border-radius: 6px;
   font-size: 15px;
+  /* display: block; */
   font-weight: 600;
   background: #DC555B;
   cursor: pointer;
@@ -685,8 +687,8 @@ img#faculti-image {
   text-align: center;
   margin: 10px 0;
 }
-.course-box-middle p:hover{
-  transform: scale(1.2);
+.course-box-feature p:hover{
+  transform: scale(1.13);
 }
 .total:hover{
   transform: scale(1.2);
@@ -813,4 +815,29 @@ img#faculti-image {
   align-items: center;
   justify-content: center;
   background: white;
+}
+.course__info>h4{
+  margin-bottom:7px;
+}
+.share.my-btn a img {
+  width: 40px;
+  border: 1px solid #cfcfcf;
+  border-radius: 50%;
+}
+
+.share {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-gap: 5px;
+  background: white;
+  padding: 8px 0!important;
+  color: black;
+  margin-top: 10px;
+  border: 1px solid #DC555B;
+}
+.course__info>a {
+  display: block;
+}.course-box-top p {
+  font-size: 13px;
 }
