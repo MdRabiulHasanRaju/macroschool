@@ -1,6 +1,4 @@
-<?php ob_start();
-session_start();
-
+<?php
 require_once $_SERVER['DOCUMENT_ROOT'] . "/macroschool/lib/Database.php";
 $title = "Macro School - Dashboard";
 $meta_description = "$title - macro school Call 880 1563 4668 21";
@@ -16,7 +14,7 @@ require_once '../auth/config/config.php';
 if (isset($_GET['code'])) {
     $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
     $client->setAccessToken($token['access_token']);
-
+    
     // get profile info
     $google_oauth = new Google_Service_Oauth2($client);
     $google_account_info = $google_oauth->userinfo->get();
@@ -26,15 +24,14 @@ if (isset($_GET['code'])) {
     $image = $google_account_info->picture;
     $Token = $google_account_info->id;
 
-    $_SESSION["google-Token"] = $Token;
     $_SESSION["google-image"] = $image;
+    $_SESSION["google-name"] = $name;
 
-    $account_loggedin = "";
+    $account_loggedin = null;
 
-    if (isset($email)) {
         $sql = "select id from users where email = ?";
         $stmt = mysqli_prepare($connection, $sql);
-        mysqli_stmt_bind_param($stmt, "i", $param_login_email);
+        mysqli_stmt_bind_param($stmt, "s", $param_login_email);
         $param_login_email = $email;
         if (mysqli_stmt_execute($stmt)) {
             if (mysqli_stmt_store_result($stmt)) {
@@ -50,8 +47,8 @@ if (isset($_GET['code'])) {
 
                         $login_userInfo_sql = "select name,mobile,image from users_info where user_id = ?";
                         $login_userInfo_stmt = mysqli_prepare($connection, $login_userInfo_sql);
-                        mysqli_stmt_bind_param($login_userInfo_stmt, "i", $param_id);
-                        $param_id = $_SESSION['id'];
+                        mysqli_stmt_bind_param($login_userInfo_stmt, "i", $param_userInfo_id);
+                        $param_userInfo_id = $id;
                         if (mysqli_stmt_execute($login_userInfo_stmt)) {
                             if (mysqli_stmt_store_result($login_userInfo_stmt)) {
                                 if (mysqli_stmt_num_rows($login_userInfo_stmt) == 0) {
@@ -70,7 +67,8 @@ if (isset($_GET['code'])) {
                 }
             }
         }
-    } 
+
+
 
     if($account_loggedin==false){
         $sql = "INSERT INTO users (email, password) VALUES (?, ?)";

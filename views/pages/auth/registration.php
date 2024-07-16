@@ -8,6 +8,8 @@ $meta_keywords = "$title, Macro School, macroschool,macro,schoolmacro,macro";
 $header_active = "Registration";
 
 include("../../inc/header.php");
+require_once '../auth/vendor/autoload.php';
+require_once '../auth/config/config.php';
 
 if (isset($_SESSION['username'])) {
     header("location: " . LINK . "dashboard");
@@ -55,7 +57,7 @@ if (isset($_SESSION['username'])) {
                 <button name="submit" class="main-btn" type="submit">SIGN UP</button>
             </div>
             <div class="singel-form">
-                <button class="main-btn google-btn" type="submit"><img src="<?= LINK; ?>public/images/icon/google.png" alt="">Sign up with Google</button>
+            <a href="<?=$client->createAuthUrl();?>" name="submit" class="main-btn google-btn"><img src="<?= LINK; ?>public/images/icon/google.png" alt="">Sign up with Google</a>
             </div>
             <a href="<?= LINK; ?>login" class="loginBtn my-3 text-center">Already have an account? Login Here</a>
         </form>
