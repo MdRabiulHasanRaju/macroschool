@@ -2,10 +2,12 @@
 if (!isset($connection)) {
     include $_SERVER['DOCUMENT_ROOT'] . "/macroschool/lib/Database.php";
   }
-include $_SERVER['DOCUMENT_ROOT'] . "/macroschool/utility/Baseurl.php";
+if (!isset($baseurl)) {
+    include $_SERVER['DOCUMENT_ROOT'] . "/macroschool/utility/Baseurl.php";
+    $baseurl = new Baseurl;
+    define("LINK", "{$baseurl->url()}/macroschool/");
+  }
 include $_SERVER['DOCUMENT_ROOT'] . "/macroschool/utility/Format.php";
-$baseurl = new Baseurl;
-define("LINK", "{$baseurl->url()}/macroschool/");
 $format = new Format;
 ?>
 <!DOCTYPE html>

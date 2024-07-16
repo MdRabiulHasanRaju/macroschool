@@ -853,3 +853,18 @@ img#faculti-image {
   width: 156px;
   float: right;
 }
+.profile-box {
+  width: 50%;
+}
+.profile-page-link>h1 {
+    text-align: center;
+    border-bottom: 1px solid #e3e3e3;
+    padding: 20px 0px;
+}.form-group {
+  margin: 15px 0px;
+}.profile-btn {
+  margin-bottom: 20px;
+}
+.dashboard-page {
+  text-align: center;
+}

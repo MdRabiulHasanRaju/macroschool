@@ -9,6 +9,9 @@ $header_active = "Login";
 
 include("../../inc/header.php");
 
+require_once '../auth/vendor/autoload.php';
+require_once '../auth/config/config.php';
+
 if (isset($_SESSION['username'])) {
     header("location: " . LINK . "dashboard");
     exit;
@@ -49,7 +52,7 @@ if (isset($_SESSION['username'])) {
                 <button name="submit" class="main-btn" type="submit">LOG IN</button>
             </div>
             <div class="singel-form">
-                <button name="submit" class="main-btn google-btn" type="submit"><img src="<?= LINK; ?>public/images/icon/google.png" alt="">Sign in with Google</button>
+                <a href="<?=$client->createAuthUrl();?>" name="submit" class="main-btn google-btn"><img src="<?= LINK; ?>public/images/icon/google.png" alt="">Sign in with Google</a>
             </div>
             <a href="<?=LINK;?>registration" class="loginBtn my-3 text-center">Don't have an Account? Create One</a>
         </form>

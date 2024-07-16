@@ -153,7 +153,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                           </ul>
                           <p>To verify your account is safe, please use the following code to enable your new device —</p>
                           <h1 class="otpcode">' . $otp . '</h1>
-                          <h3>How do I know this email is from Server IT Studio?</h3>
+                          <h3>How do I know this email is from Macro School?</h3>
                           <p>The link provided in this email starts with https:// and contain macroschool.academy so you know it is from us. To contact customer service you can also simply paste the following link into your browser:</p>
                           <a href="https://www.macroschool.academy/contact" target="_blank">https://www.macroschool.academy/contact</a>
                         </div>

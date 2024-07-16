@@ -1,9 +1,9 @@
 <?php
 session_start();
-include $_SERVER['DOCUMENT_ROOT'] . "/serverit/lib/Database.php";
-include $_SERVER['DOCUMENT_ROOT'] . "/serverit/utility/Baseurl.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/macroschool/lib/Database.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/macroschool/utility/Baseurl.php";
 $baseurl = new Baseurl;
-define("LINK", "{$baseurl->url()}/serverit/");
+define("LINK", "{$baseurl->url()}/macroschool/");
 ?>
 <?php ob_start(); ?>
 <?php
@@ -28,7 +28,7 @@ if (isset($_POST["email"])) {
             mysqli_stmt_bind_result($stmt, $b_otp);
             if (mysqli_stmt_fetch($stmt)) {
                 if ($otp == $b_otp) {
-                    header("location: " . LINK . "auth?p=1");
+                    header("location: " . LINK . "login");
                     $delsql = "delete from verification where otp = $b_otp";
                     $del = $connection->query($delsql);
                 } else {

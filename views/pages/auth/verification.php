@@ -1,6 +1,10 @@
 <?php ob_start();
 session_start();
 
+include $_SERVER['DOCUMENT_ROOT'] . "/macroschool/utility/Baseurl.php";
+$baseurl = new Baseurl;
+define("LINK", "{$baseurl->url()}/macroschool/");
+
 require_once $_SERVER['DOCUMENT_ROOT'] . "/macroschool/lib/Database.php";
 $title = "Macro School - Verification";
 $meta_description = "$title - macro school Call 880 1563 4668 21";
@@ -28,7 +32,7 @@ if (isset($_GET["email"])) {
         <span>Check your mail: <b><?= $email; ?></b> for confirm your account. </span>
     </div>
     <div class="main-form">
-        <form action="<?= LINK; ?>controllers/loginController.php" method="POST">
+        <form action="<?= LINK; ?>controllers/verificationController.php" method="POST">
         <input type="hidden" name="email" value="<?= $email; ?>">
             <div class="singel-form">
                 <input class="" type="text" name="otp" placeholder="OTP" id="password" value="" type="text" required>

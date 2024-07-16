@@ -62,16 +62,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 											header("location: " . LINK . "create-profile");
 											die();
 										} else {
-											mysqli_stmt_bind_result($stmt,$id, $userID, $name, $title, $address, $mobile, $image);
+											mysqli_stmt_bind_result($stmt,$id, $userID, $name,$mobile, $image);
 											mysqli_stmt_fetch($stmt);
 											$_SESSION['name'] = $name;
-											$_SESSION['title'] = $title;
-											$_SESSION['address'] = $address;
 											$_SESSION['mobile'] = $mobile;
 											$_SESSION['image'] = $image;
-											if(empty($image)){
-												$_SESSION['image'] = 'default.png';
-											}
 											header("location: " . LINK . "dashboard");
 											die();
 										}

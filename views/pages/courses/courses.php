@@ -41,7 +41,7 @@ include("../../inc/header.php");
                             Share with
                             <a target="_blank" href="https://facebook.com/sharer/sharer.php?u=https://macroschool.academy/course-details/<?=$id;?>"><img src="<?=LINK;?>public/images/icon/facebook.png" alt=""></a>
 
-                            <a target="_blank" href="whatsapp://send?text=<?= $course_sub_title; ?>%20<?= $course_title; ?>%0Ahttps://macroschool.academy/course-details/<?=$id;?>"><img src="<?=LINK;?>public/images/icon/whatsapp.png" alt=""></a>
+                            <a target="" href="https://api.whatsapp.com/send?text=<?= $course_sub_title; ?>%20<?= $course_title; ?>%0Ahttps://macroschool.academy/course-details/<?=$id;?>"><img src="<?=LINK;?>public/images/icon/whatsapp.png" alt=""></a>
                         </div>
                     </div>
                 </article>
