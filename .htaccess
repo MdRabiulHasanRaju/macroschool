@@ -9,6 +9,7 @@ RewriteRule ^about?$ views/pages/about/about.php
 RewriteRule ^contact?$ views/pages/contact/contact.php
 
 RewriteRule ^login?$ views/pages/auth/login.php
+RewriteRule ^logout?$ controllers/logoutController.php
 RewriteRule ^registration?$ views/pages/auth/registration.php
 RewriteRule ^verification/(.+) views/pages/auth/verification.php?email=$1
 
@@ -17,6 +18,8 @@ RewriteRule ^dashboard/([0-9]+) views/pages/dashboard/dashboard.php?page=$1
 RewriteRule ^create-profile?$ views/pages/dashboard/create-profile.php
 RewriteRule ^edit-profile?$ views/pages/dashboard/edit-profile.php
 RewriteRule ^change-password?$ views/pages/dashboard/change-password.php
+
+RewriteRule ^order/([0-9]+) controllers/orderController.php?id=$1
 
 Options All -Indexes
 # RewriteCond %{THE_REQUEST} /([^.]+)\.php [NC]

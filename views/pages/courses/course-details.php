@@ -63,7 +63,9 @@ if (mysqli_stmt_execute($stmt)) {
             $course_feature,
             $routine,
             $regular_price,
-            $offer_price
+            $offer_price,
+            $materials_link,
+            $facebook_link
         );
         if (mysqli_stmt_fetch($stmt)) { ?>
             <section class="container course-details">
@@ -215,9 +217,9 @@ if (mysqli_stmt_execute($stmt)) {
                             <div class="course-box-bottom">
                                 <?php
                                 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) { ?>
-                                    <button class="my-btn green">কোর্সটিতে এনরোল করো</button>
+                                    <a href="<?=LINK;?>order/<?=$course_id;?>" class="my-btn green">কোর্সটিতে এনরোল করো</a>
                                 <?php } else { ?>
-                                    <a href="<?= LINK; ?>admission">
+                                    <a href="<?= LINK; ?>login">
                                         <button class="my-btn green">কোর্স কিনতে লগইন করো</button>
                                     </a>
                                 <?php } ?>

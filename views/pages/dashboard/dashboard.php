@@ -37,13 +37,85 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 }
 ?>
 <section class="container dashboard-page">
-    <center><h1>Dashboard</h1></center>
-    <ul>
-        <li>Name: <?=$_SESSION['name'];?></li>
-        <li>email: <?=$_SESSION['username'];?></li>
-        <li>Phone: <?=$_SESSION['mobile'];?></li>
-        <li><a href="<?=LINK;?>controllers/logoutController.php">Logout</a></li>
-    </ul>
+  <div class="dashboard-head">
+    <div class="dashboard-head-left">
+      <img alt="user-profile-image" src="<?php if (isset($_SESSION['google-image'])) {
+                                            echo $_SESSION['google-image'];
+                                          } else { ?><?= LINK; ?>public/images/icon/profile.png<?php } ?>">
+      <div class="account-info">
+        <h3><?= $_SESSION['name']; ?></h3>
+        <p><?= $_SESSION['username']; ?></p>
+        <p><?= $_SESSION['mobile']; ?></p>
+      </div>
+    </div>
+    <div class="dashboard-head-right">
+      <a class="my-btn" href="<?= LINK; ?>logout">LOGOUT</a>
+    </div>
+  </div>
+  <div class="dashboard-body">
+
+    <?php
+    $order_check_sql = "select id, course_id, status from `order` where user_id=?";
+    $order_check_stmt = mysqli_prepare($connection, $order_check_sql);
+    mysqli_stmt_bind_param($order_check_stmt, "i", $param_user_id);
+    $param_user_id = $_SESSION['id'];
+    mysqli_stmt_execute($order_check_stmt);
+    mysqli_stmt_store_result($order_check_stmt);
+    mysqli_stmt_bind_result($order_check_stmt, $order_id, $course_id, $status);
+    if (mysqli_stmt_num_rows($order_check_stmt) == 0) { ?>
+
+      <div class="browse-course">
+        <a href="<?= LINK; ?>courses" class="my-btn green">কোর্স কিনুন </a>
+      </div>
+
+      <?php } else {
+
+      while (mysqli_stmt_fetch($order_check_stmt)) {
+
+        $course_sql = "select course_title, course_sub_title, image, routine,  materials_link, facebook_link from courses where id=?";
+        $course_stmt = mysqli_prepare($connection, $course_sql);
+        mysqli_stmt_bind_param($course_stmt, "i", $param_course_id);
+        $param_course_id = $course_id;
+        mysqli_stmt_execute($course_stmt);
+        mysqli_stmt_store_result($course_stmt);
+        mysqli_stmt_bind_result($course_stmt, $course_title, $course_sub_title, $image, $routine, $materials_link, $facebook_link);
+        while (mysqli_stmt_fetch($course_stmt)) { ?>
+
+          <div class="course-ordered-box">
+            <div class="course-ordered-box-body">
+              <img src="<?= LINK; ?>public/images/<?= $image; ?>" alt="">
+              <div class="course-ordered-box-body-content">
+
+                <?php
+                if ($status == 1) { ?>
+
+                  <a class="my-btn warning" href="<?= $materials_link; ?>"><i class="fa-solid fa-bangladeshi-taka-sign"></i>Pay To Unlock Materials</a>
+
+                  <a class="my-btn warning" href="<?= $facebook_link; ?>"><i class="fa-solid fa-bangladeshi-taka-sign"></i>Pay to Unlock Private Facebook Group</a>
+
+                <?php   } elseif ($status == 2) { ?>
+
+                  <a class="my-btn green" href="<?= $materials_link; ?>"><i class="fa-solid fa-box"></i>MATERIALS</a>
+
+                  <a class="my-btn blue" href="<?= $facebook_link; ?>"><i class="fa-brands fa-facebook"></i>JOIN FACEBOOK</a>
+
+                <?php  }
+                ?>
+
+                <a class="my-btn" href="<?= $routine; ?>"><i class="fa-solid fa-calendar-days"></i>ROUTINE</a>
+              </div>
+            </div>
+            <div class="course-ordered-box-title">
+              <h3><i class="fa-solid fa-book"></i> <?= $course_title; ?> - <?= $course_sub_title; ?></h3>
+            </div>
+          </div>
+
+    <?php }
+      }
+    }
+    ?>
+
+  </div>
 
 </section>
 
