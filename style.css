@@ -104,10 +104,13 @@ nav button {
   gap: 4rem;
 }
 .nav__menu a {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   transition: all 400ms ease;
   color: #2f3d7e;
   font-weight: 700;
+  display: flex;
+  align-items: center;
+  grid-gap: 5px;
 }
 .nav__menu a:hover {
   color: #DB5458;
@@ -864,7 +867,32 @@ img#faculti-image {
   margin: 15px 0px;
 }.profile-btn {
   margin-bottom: 20px;
+}.dashboard-page {
+    text-align: center;
+}.dashboard-img-pc>img {
+    width: 29px;
+    border-radius: 50%;
 }
-.dashboard-page {
-  text-align: center;
+
+.dashboard-img-pc {
+    display: flex;
+    align-items: center;
+    grid-gap: 6px;
+}
+.sticky-bar {
+  position: fixed!important;
+  z-index: 3;
+  background: white;
+  width: 100%;
+  top: 0!important;
+  transition: 500ms;
+  box-shadow: 1px -3px 16px -7px black;
+}
+.myactive {
+  background: #DC555B;
+  padding: 8px;
+}
+
+li.myactive>a {
+  color: white;
 }

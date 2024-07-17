@@ -1,15 +1,10 @@
-window.addEventListener("scroll", () => {
-  document
-    .querySelector("nav")
-    .classList.toggle("window-scroll", window.scrollY > 0);
-});
-
 const menu = document.querySelector(".nav__menu");
 const menuBtn = document.querySelector("#open-menu-btn");
 const closeBtn = document.querySelector("#close-menu-btn");
 
 menuBtn.addEventListener("click", () => {
-  menu.style.display = "flex";
+  menu.style.display = "block";
+  menu.style.left = "0";
   closeBtn.style.display = "inline-block";
   menuBtn.style.display = "none";
 });
@@ -50,3 +45,15 @@ questionClick.forEach((e) => {
     para.classList.toggle("collapsed");
   });
 });
+
+window.onscroll = function () {
+  myFunction();
+};
+var header = document.getElementsByClassName("header")[0];
+function myFunction() {
+  if (pageYOffset > 150) {
+    header.classList.add("sticky-bar");
+  } else {
+    header.classList.remove("sticky-bar");
+  }
+}

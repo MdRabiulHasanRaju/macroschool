@@ -1,5 +1,8 @@
 <?php
 $title= "Macro School - About";
+$meta_description = "$title - macro school Call 880 1563 4668 21";
+$meta_keywords = "$title, Macro School, macroschool,macro,schoolmacro,macro";
+$header_active = "About";
 ?>
 <?php
 include("../../inc/header.php");

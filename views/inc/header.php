@@ -24,16 +24,35 @@ $format = new Format;
 
 </head>
 <body>
-    <nav>
+    <nav class="header">
         <div class="container nav__container">
             <a href="<?=LINK;?>"><img src="<?= LINK; ?>public/images/logo-removebg-preview.png" id="IMAGE" ></a>
-            <a class="my-btn black mobile-dashboard" href="<?= LINK; ?>login">Dashboard</a>
+            
+            <a class="my-btn black mobile-dashboard" href="<?= LINK; ?>login"><img src="<?php if(isset($_SESSION['google-image'])){ echo $_SESSION['google-image']; }else{ ?><?=LINK;?>public/images/icon/dashboard.png<?php } ?>">Dashboard</a>
+            
             <ul class="nav__menu" class="slidebar">
-                <li><a href="<?=LINK;?>">Home</a></li>
-                <li><a href="<?= LINK; ?>about">About</a></li>
-                <li><a href="<?= LINK; ?>courses">Courses</a></li>
-                <li><a href="<?= LINK; ?>contact">Contact</a></li>
-                <li class="my-btn black dashboard" ><a style="color:white" href="<?= LINK; ?>login">Dashboard</a></li>
+
+                <li <?php
+                    if (isset($header_active) && $header_active == "Home") {
+                      echo "class='myactive'";
+                    }?>><a href="<?=LINK;?>"><i class="fa-solid fa-house"></i>Home</a></li>
+
+                <li <?php
+                    if (isset($header_active) && $header_active == "About") {
+                      echo "class='myactive'";
+                    }?>><a href="<?= LINK; ?>about"><i class="fa-solid fa-circle-info"></i>About</a></li>
+
+                <li <?php
+                    if (isset($header_active) && $header_active == "Courses") {
+                      echo "class='myactive'";
+                    }?>><a href="<?= LINK; ?>courses"><i class="fa-solid fa-book"></i>Courses</a></li>
+
+                <li <?php
+                    if (isset($header_active) && $header_active == "Contact") {
+                      echo "class='myactive'";
+                    }?>><a href="<?= LINK; ?>contact"><i class="fa-solid fa-phone"></i>Contact</a></li>
+
+                <li class="my-btn black dashboard" ><a class="dashboard-img-pc" style="color:white" href="<?= LINK; ?>login"><img src="<?php if(isset($_SESSION['google-image'])){ echo $_SESSION['google-image']; }else{ ?><?=LINK;?>public/images/icon/dashboard.png<?php } ?>">Dashboard</a></li>
             </ul>
             
             <button id='open-menu-btn'><i class="fa-solid fa-bars"></i></button>
