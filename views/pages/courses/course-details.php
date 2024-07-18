@@ -213,12 +213,36 @@ if (mysqli_stmt_execute($stmt)) {
                             </div>
                         </div>
                         <div class="price-box">
+                            <?php if($offer_price){?>
                             <h3>Price: <del style="color:red"><?= $regular_price; ?>৳</del> <span style="color:green"><?= $offer_price; ?>৳</span></h3>
+                            <?php }else{ ?>
+                                <h3>Price: <span style="color:green"><?= $regular_price; ?>৳</span></h3>
+                            <?php }?>
                             <div class="course-box-bottom">
                                 <?php
-                                if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) { ?>
+                                if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+
+                                    $double_ordered_check_sql = "select course_id from `order` where user_id=?";
+                                    $double_ordered_check_stmt = mysqli_prepare($connection,$double_ordered_check_sql);
+                                    mysqli_stmt_bind_param($double_ordered_check_stmt, "i", $param_double_ordered_check_id);
+                                    $param_double_ordered_check_id = $_SESSION['id'];
+                                    mysqli_stmt_execute($double_ordered_check_stmt);
+                                    mysqli_stmt_store_result($double_ordered_check_stmt);
+                                    mysqli_stmt_bind_result($double_ordered_check_stmt,$double_ordered_check_course_id);
+                                    if(mysqli_stmt_num_rows($double_ordered_check_stmt)>0){
+                                        while(mysqli_stmt_fetch($double_ordered_check_stmt)){
+                                            if($course_id==$double_ordered_check_course_id){
+                                                $ordered_course = "আপনি কোর্সটি অর্ডার করে ফেলেছেন।";
+                                            }
+                                        }
+                                    }
+
+                                    if(isset($ordered_course)){?>
+                                    <p><?=$ordered_course;?></p>
+                                    <a href="<?=LINK;?>dashboard" class="my-btn green">Goto Dashboard</a>
+                                    <?php }else{?>
                                     <a href="<?=LINK;?>order/<?=$course_id;?>" class="my-btn green">কোর্সটিতে এনরোল করো</a>
-                                <?php } else { ?>
+                                <?php }} else { ?>
                                     <a href="<?= LINK; ?>login">
                                         <button class="my-btn green">কোর্স কিনতে লগইন করো</button>
                                     </a>

@@ -345,5 +345,17 @@
     .dashboard-head-right > a {
       font-size: 12px;
     }
+    i.fa-solid.fa-rectangle-xmark.close-btn {
+      right: -25%;
+  }
+  
+  .payment-popup {
+      width: 100%;
+      transform: translate(0%, 30%);
+  }
+  
+  button#copyBtn {
+      padding: 8px;
+  }
   }
   

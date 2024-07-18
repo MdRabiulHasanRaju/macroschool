@@ -57,3 +57,53 @@ function myFunction() {
     header.classList.remove("sticky-bar");
   }
 }
+
+
+let materials_btn = document.querySelectorAll(".materials-pay-btn");
+let facebook_btn = document.querySelectorAll(".facebook-pay-btn");
+
+let Paymentmodalfunction = (btn) => {
+  btn.forEach((e) => {
+    e.addEventListener("click", () => {
+      payment_popup = e.parentNode.parentNode.parentNode.childNodes[5];
+      closebtn = e.parentNode.parentNode.parentNode.childNodes[5];
+      closebtn =
+        closebtn.childNodes[1].childNodes[1].childNodes[1].childNodes[1];
+      payment_popup.style.display = "block";
+      closebtn.onclick = function () {
+        payment_popup.style.display = "none";
+      };
+
+      window.onclick = function (event) {
+        if (event.target == payment_popup) {
+          payment_popup.style.display = "none";
+        }
+      };
+
+      copynumberBtn = payment_popup.childNodes[1].childNodes[3].childNodes[3].childNodes[1].childNodes[0].childNodes[5].childNodes[0];
+
+      copyIdBtn = payment_popup.childNodes[1].childNodes[3].childNodes[3].childNodes[1].childNodes[2].childNodes[5].childNodes[0];
+
+      copynumberBtn.onclick = ()=>{
+        Bkash_number = payment_popup.childNodes[1].childNodes[3].childNodes[3].childNodes[1].childNodes[0].childNodes[3].childNodes[0];
+        Bkash_number.select();
+        Bkash_number.setSelectionRange(0, 99999);
+        navigator.clipboard.writeText(Bkash_number.value);
+        copynumberBtn.innerHTML = "Copied";
+      }
+
+      copyIdBtn.onclick = ()=>{
+        ref_id_number = payment_popup.childNodes[1].childNodes[3].childNodes[3].childNodes[1].childNodes[2].childNodes[3].childNodes[0];
+        ref_id_number.select();
+        ref_id_number.setSelectionRange(0, 99999);
+        navigator.clipboard.writeText(ref_id_number.value);
+        copyIdBtn.innerHTML = "Copied";
+      }
+
+
+    });
+  });
+};
+
+Paymentmodalfunction(facebook_btn);
+Paymentmodalfunction(materials_btn);

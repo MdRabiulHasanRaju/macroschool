@@ -35,13 +35,13 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
             mysqli_stmt_store_result($double_ordered_check_stmt);
             mysqli_stmt_bind_result($double_ordered_check_stmt,$double_ordered_check_course_id);
             if(mysqli_stmt_num_rows($double_ordered_check_stmt)>0){
-                mysqli_stmt_fetch($double_ordered_check_stmt);
-                if($double_ordered_check_course_id==$course_id){
-                    header("location: " . LINK . "dashboard");
-                exit;
+                while(mysqli_stmt_fetch($double_ordered_check_stmt)){
+                    if($course_id==$double_ordered_check_course_id){
+                        header("location: " . LINK . "dashboard");
+                        exit;
+                    }
                 }
             }
-
 
         }
     }else{header("location: " . LINK . "404");exit;}
@@ -50,24 +50,26 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
             $course_id = $s_course_id;
             $mobile = $_SESSION['mobile'];
 
-            $course_sql = "select course_title, course_sub_title from courses where id=?";
+            $course_sql = "select course_title, course_sub_title,regular_price, offer_price from courses where id=?";
             $course_stmt = mysqli_prepare($connection,$course_sql);
             mysqli_stmt_bind_param($course_stmt, "i", $param_course_id);
             $param_course_id = $course_id;
             mysqli_stmt_execute($course_stmt);
             mysqli_stmt_store_result($course_stmt);
-            mysqli_stmt_bind_result($course_stmt,$course_title,$course_sub_title);
+            mysqli_stmt_bind_result($course_stmt,$course_title,$course_sub_title,$regular_price, $offer_price);
             mysqli_stmt_fetch($course_stmt);
 
-            $order_sql = "insert into `order`(user_id,course_id,course_title,course_sub_title,mobile,email) values(?,?,?,?,?,?)";
+            $order_sql = "insert into `order`(user_id,course_id,course_title,course_sub_title,mobile,email,regular_price, offer_price) values(?,?,?,?,?,?,?,?)";
             $order_stmt = mysqli_prepare($connection,$order_sql);
-            mysqli_stmt_bind_param($order_stmt,"iissss",$param_user_id,$param_course_id,$param_course_title,$param_course_sub_title,$param_mobile,$param_email);
+            mysqli_stmt_bind_param($order_stmt,"iissssii",$param_user_id,$param_course_id,$param_course_title,$param_course_sub_title,$param_mobile,$param_email,$param_regular_price, $param_offer_price);
             $param_user_id = $_SESSION['id'];
             $param_course_id = htmlspecialchars(trim($course_id));
             $param_course_title = htmlspecialchars(trim($course_title));
             $param_course_sub_title = htmlspecialchars(trim($course_sub_title));
             $param_mobile = htmlspecialchars(trim($mobile));
             $param_email = $_SESSION['username'];
+            $param_regular_price = $regular_price;
+            $param_offer_price = $offer_price;
 
             if(mysqli_stmt_execute($order_stmt)){
                 header("location: " . LINK . "dashboard");
