@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . "/macroschool/lib/Database.php";
 $title = "Macro School - Dashboard";
 $meta_description = "$title - macro school Call 880 1563 4668 21";

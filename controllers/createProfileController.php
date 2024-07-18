@@ -30,6 +30,33 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 				header("location: " . LINK . "create-profile");
 				die();
 			}
+			if (strlen($_POST["mobile"]) != 11) {
+				$phone_err = "The Number Should be 11 Digits.";
+				$_SESSION["phone_err"] = $phone_err;
+				header("location: " . LINK . "create-profile");
+				die();
+			}
+			if (strlen($_POST["mobile"]) == 11) {
+				$number = $_POST["mobile"];
+				$code = substr($number, 0, 3);
+				$code_test = "";
+				$number_code = ["018", "017", "019", "013", "014", "016", "015"];
+				foreach ($number_code as $num) {
+					if ($code == $num) {
+						$code_test = true;
+						break;
+					} else {
+						$code_test = false;
+					}
+				}
+				if ($code_test == false) {
+					$phone_err = "Please Enter Valid Number.";
+					$_SESSION["phone_err"] = $phone_err;
+					header("location: " . LINK . "create-profile");
+					die();
+				}
+			}
+
 
 			$name = htmlspecialchars($_POST['name']);
 			$mobile = htmlspecialchars($_POST['mobile']);
