@@ -16,9 +16,8 @@ table.all-order-table>tbody>tr {
     border-bottom: 1px solid #f1f1f1;
 }
 .card-body.all-order {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    overflow-y: scroll;
+    height: 600px;
 }
 select#status {
     padding: 10px 23px;
