@@ -1,0 +1,47 @@
+table.all-order-table>tbody>tr>td {
+    padding: 10px;
+    background: #fbfbfb;
+    border: 1px solid #f1f1f1;
+    text-align: center;
+}
+table.all-order-table>tbody>tr>th {
+    text-align: center;
+    background: black;
+    color: white;
+}
+
+table.all-order-table {}
+
+table.all-order-table>tbody>tr {
+    border-bottom: 1px solid #f1f1f1;
+}
+.card-body.all-order {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+select#status {
+    padding: 10px 23px;
+    border: none;
+    margin-bottom: 5px;
+}
+select>option {
+    color: black;
+    background: white;
+}
+input#changeStatus {
+    border: none;
+    background: #cfcfcf;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+input#changeStatus:hover {
+    background: #6e6e6e;
+    color: white;
+}form.search-form {padding-top: 20px;}
+
+form.search-form>input {
+    padding: 10px;
+    border: 1px solid #ebebeb;
+}

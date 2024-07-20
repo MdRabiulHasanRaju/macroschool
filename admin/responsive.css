@@ -1,0 +1,9 @@
+@media screen and (max-width: 600px) {
+    .card-body.all-order {
+        display: unset;
+        overflow-y: scroll;
+    }
+    table.all-order-table {
+        border-collapse: unset;
+    }
+}
