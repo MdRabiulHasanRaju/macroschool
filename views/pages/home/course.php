@@ -2,15 +2,17 @@
     <h2>Our Popular Courses</h2>
     <div class="container course__container">
         <?php
-        $courseSql = "SELECT `id`,`image`,`course_title`,`course_sub_title`,`course_details` FROM `courses` ORDER BY id DESC";
+        $courseSql = "SELECT `id`,`image`,`course_title`,`course_sub_title`,`course_details`,`course_hide` FROM `courses` ORDER BY id DESC";
         $courseStmt = fetch_data($connection, $courseSql);
         if ($courseStmt) {
             if (mysqli_stmt_num_rows($courseStmt) == 0) {
                 header("location: " . LINK . "error/404");
                 die();
             }
-            mysqli_stmt_bind_result($courseStmt, $id, $image, $course_title,$course_sub_title, $course_details);
-            while (mysqli_stmt_fetch($courseStmt)) { ?>
+            mysqli_stmt_bind_result($courseStmt, $id, $image, $course_title,$course_sub_title, $course_details,$course_hide);
+            while (mysqli_stmt_fetch($courseStmt)) {
+                if($course_hide==1){
+                ?>
 
                 <article class="course">
                     <div class="course__image">
@@ -30,7 +32,7 @@
                     </div>
                 </article>
         <?php
-            }
+            }}
         } ?>
     </div>
 </section>

@@ -53,7 +53,7 @@ if (mysqli_stmt_execute($stmt)) {
             $course_sub_title,
             $course_details,
             $free_class_link,
-            $faq,
+            $course_hide,
             $image,
             $video_link,
             $total_student,

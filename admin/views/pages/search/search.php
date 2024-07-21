@@ -77,7 +77,7 @@ include("../../inc/header.php");
                                         while (mysqli_stmt_fetch($orderStmt)) { ?>
                                             <tr>
                                                 <td><?= $i; ?></td>
-                                                <td><?= $date; ?></td>
+                                                <td><?= $format->formatDate($date); ?></td>
                                                 <td><?= $course_title; ?></td>
                                                 <td><?= $course_sub_title; ?></td>
                                                 <td><?= $mobile; ?></td>

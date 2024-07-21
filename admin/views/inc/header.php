@@ -37,25 +37,56 @@ $format = new Format;
 
         <ul class="sidebar-nav">
           <li class="sidebar-header">
-            Pages
+            Manage Orders
           </li>
 
-          <li class="sidebar-item">
+          <li class="sidebar-item <?php
+                    if (isset($header_active) && $header_active == "Home") {
+                      echo 'myactive';
+                    }?>">
             <a class="sidebar-link" href="<?=ADMIN_LINK;?>">
               <i class="align-middle" data-feather="sliders"></i>
               <span class="align-middle">All Order</span>
             </a>
           </li>
 
-          <li class="sidebar-item">
+          <li class="sidebar-item <?php
+                    if (isset($header_active) && $header_active == "Paid Order") {
+                      echo 'myactive';
+                    }?>">
             <a class="sidebar-link" href="<?=ADMIN_LINK;?>paid-order">
               <i class="align-middle" data-feather="user"></i> <span class="align-middle">Paid Order</span>
             </a>
           </li>
 
-          <li class="sidebar-item">
+          <li class="sidebar-item <?php
+                    if (isset($header_active) && $header_active == "Unpaid Order") {
+                      echo 'myactive';
+                    }?>">
             <a class="sidebar-link" href="<?=ADMIN_LINK;?>unpaid-order">
               <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Unpaid Order</span>
+            </a>
+          </li>
+
+          <li class="sidebar-header">
+            Course Management
+          </li>
+
+          <li class="sidebar-item <?php
+                    if (isset($header_active) && $header_active == "All Course") {
+                      echo 'myactive';
+                    }?>">
+            <a class="sidebar-link" href="<?=ADMIN_LINK;?>all-course">
+              <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">All Courses</span>
+            </a>
+          </li>
+
+          <li class="sidebar-item <?php
+                    if (isset($header_active) && $header_active == "Add Course") {
+                      echo 'myactive';
+                    }?>">
+            <a class="sidebar-link" href="<?=ADMIN_LINK;?>add-course">
+              <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Add Course</span>
             </a>
           </li>
 
