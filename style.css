@@ -963,7 +963,6 @@ li.myactive > a {
 }
 
 .course-ordered-box {
-  width: 45%;
   display: grid;
   gap: 10px;
   background: white;
@@ -991,8 +990,10 @@ li.myactive > a {
 }
 .dashboard-body {
   padding: 25px 0;
-  display: ruby-text;
+  display: grid;
   background: #f3f3f3;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
 }
 .browse-course {
   padding: 100px 0;

@@ -6,6 +6,7 @@ if (!isset($baseurl)) {
   include $_SERVER['DOCUMENT_ROOT'] . "/macroschool/admin/utility/Baseurl.php";
   $baseurl = new Baseurl;
   define("ADMIN_LINK", "{$baseurl->url()}/macroschool/admin/");
+  define("IMAGE_LINK", "{$baseurl->url()}/macroschool/public/images/");
 }
 include $_SERVER['DOCUMENT_ROOT'] . "/macroschool/admin/utility/Format.php";
 $format = new Format;

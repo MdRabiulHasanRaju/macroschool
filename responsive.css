@@ -164,11 +164,10 @@
   }
   .dashboard-body {
     display: grid;
-    place-items: center;
   }
 
   .course-ordered-box {
-    width: 55%;
+    /* width: 55%; */
     border: 1px solid #cdcdcd;
     margin-bottom: 30px;
   }

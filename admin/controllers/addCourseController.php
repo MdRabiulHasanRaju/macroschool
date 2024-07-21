@@ -14,7 +14,7 @@ session_start();
             isset($_POST['batch']) && 
             isset($_POST['courseDetails']) &&
             isset($_POST['freeClassLink']) &&
-            isset($_POST['image']) &&
+            isset($_FILES['image']) &&
             isset($_POST['videoLink']) &&
             isset($_POST['startDate']) &&
             isset($_POST['courseDuration']) &&
@@ -44,7 +44,7 @@ session_start();
             $batch = validate($_POST['batch']); 
             $courseDetails = validate($_POST['courseDetails']);
             $freeClassLink = validate($_POST['freeClassLink']);
-            $image = validate($_POST['image']);
+            $image = $_FILES['image'];
             $videoLink = validate($_POST['videoLink']);
             $startDate = validate($_POST['startDate']);
             $courseDuration = validate($_POST['courseDuration']);
@@ -57,7 +57,16 @@ session_start();
             $offerPrice = validate($_POST['offerPrice']); 
             $submit = validate($_POST['submit']);
 
-			
+            if (isset($_FILES['image'])) {
+				if (!file_exists($_FILES["image"]["tmp_name"])) {
+					$image_err = "Please Choose an Image";
+                    echo $image_err;
+					exit();
+				}
+			}
+            $data = $_FILES['image']["tmp_name"];
+            $imageName = "$batch-$courseName-" . rand(9999, 999999) . time() . '.jpg';
+            $destination = "../../public/images/".$imageName ;
 
 			$insert_sql = "INSERT INTO `courses`(
                                             `faculties`,
@@ -107,7 +116,7 @@ session_start();
                 $param_batch = $batch;
                 $param_courseDetails = $courseDetails;
                 $param_freeClassLink = $freeClassLink;
-                $param_image = $image;
+                $param_image = $imageName;
                 $param_videoLink = $videoLink;
                 $param_startDate = $startDate;
                 $param_courseDuration = $courseDuration;
@@ -120,6 +129,7 @@ session_start();
                 $param_facebookPrivateLink = $facebookPrivateLink;
 
 			if (mysqli_stmt_execute($insert_stmt)) {
+                move_uploaded_file($data,$destination);
 				header("location: " . ADMIN_LINK."all-course");
 			}
 		} else {

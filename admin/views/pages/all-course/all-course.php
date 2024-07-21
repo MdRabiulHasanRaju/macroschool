@@ -76,6 +76,9 @@ include("../../inc/header.php");
                                             <div class="actionBtn">
                                             
                                             <a style="padding:7px;font-size:12px;" class="my-btn green" target="_blank" href="../course-details/<?= $course_id; ?>">View</a>
+
+                                            <a style="padding:7px;font-size:12px;" class="my-btn black" href="<?=ADMIN_LINK;?>edit-course/<?= $course_id; ?>">Edit</a>
+
                                             <?php if($course_hide==0){ ?>
                                                 <form method="post" action="<?= ADMIN_LINK; ?>controllers/visibilityCourseController.php">
                                                 <input type="hidden" name="id" value="<?= $course_id; ?>">
@@ -89,11 +92,12 @@ include("../../inc/header.php");
                                                 <input name="submit" id="courseDeleteBtn" class="form-control my-btn blue" style="padding:7px;font-size:12px;" type="submit" value="Hide">
                                             </form>
                                             <?php }?>
-                                            <!-- 
+                                            
                                             <form method="post" action="<?= ADMIN_LINK; ?>controllers/deleteCourseController.php">
                                                 <input type="hidden" name="id" value="<?= $course_id; ?>">
-                                                <input name="submit" onclick="alertDel()" id="courseDeleteBtn" class="form-control my-btn" style="padding:7px;font-size:12px;" type="submit" value="Delete">
-                                            </form> -->
+                                                <input name="submit" id="courseDeleteBtn" class="form-control my-btn" style="padding:7px;font-size:12px;" type="submit" value="Delete">
+                                            </form>
+                                            
                                             </div>
                                         </td>
                                     </tr>
@@ -111,11 +115,6 @@ include("../../inc/header.php");
     </div>
 
 </div>
-<script>
-    function alertDel(){
-        alert("Are You Sure?");
-    }
-</script>
 <?php
 include("../../inc/footer.php");
 ?>

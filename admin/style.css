@@ -126,3 +126,8 @@ display:flex;
 justify-content:Center;
 align-items:center;gap:5px;
 }
+form.add-course-form>.form-group>img {
+  width: 90px;
+  border: 4px solid #efefef;
+  border-radius: 6px;
+}

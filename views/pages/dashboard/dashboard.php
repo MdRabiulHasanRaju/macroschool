@@ -81,7 +81,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
         mysqli_stmt_bind_result($course_stmt, $course_title, $course_sub_title, $image, $routine, $materials_link, $facebook_link, $regular_price, $offer_price);
         while (mysqli_stmt_fetch($course_stmt)) { ?>
 
-          <article class="course-ordered-box">
+          <div class="course-ordered-box">
             <div class="course-ordered-box-body">
               <img src="<?= LINK; ?>public/images/<?= $image; ?>" alt="">
               <div class="course-ordered-box-body-content">
@@ -144,7 +144,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 
 
 
-          </article>
+          </div>
     <?php }
       }
     }
