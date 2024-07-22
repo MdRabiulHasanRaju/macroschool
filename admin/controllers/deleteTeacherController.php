@@ -21,9 +21,10 @@ session_start();
                 return $data;
             }
             $id = validate($_POST['id']);
-			$prev_image = validate($_POST['prev_image']);
+            $prev_image = validate($_POST['prev_image']);
+
 		
-			$sql = "DELETE FROM `courses` WHERE id=?";
+			$sql = "DELETE FROM `faculties` WHERE id=?";
 			$stmt = mysqli_prepare($connection, $sql);
 			mysqli_stmt_bind_param($stmt, "i", $param_id);
 			$param_id = $id;
@@ -40,7 +41,7 @@ session_start();
 					echo "file not found! .$imageLink";
 					exit;
 				}
-				header("location: " . ADMIN_LINK."all-course");
+				header("location: " . ADMIN_LINK."all-teachers");
 			}
 		} else {
 			echo "Req data eror!";

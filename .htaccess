@@ -26,9 +26,15 @@ RewriteRule ^order/([0-9]+) controllers/orderController.php?id=$1
 RewriteRule ^admin-order-dekhbo?$ admin/index.php
 RewriteRule ^admin/paid-order?$ admin/views/pages/paid-order/paid-order.php
 RewriteRule ^admin/unpaid-order?$ admin/views/pages/unpaid-order/unpaid-order.php
+
 RewriteRule ^admin/add-course?$ admin/views/pages/add-course/add-course.php
 RewriteRule ^admin/edit-course/([0-9]+) admin/views/pages/edit-course/edit-course.php?id=$1
 RewriteRule ^admin/all-course?$ admin/views/pages/all-course/all-course.php
+
+RewriteRule ^admin/add-teacher?$ admin/views/pages/add-teacher/add-teacher.php
+RewriteRule ^admin/edit-teacher/([0-9]+) admin/views/pages/edit-teacher/edit-teacher.php?id=$1
+RewriteRule ^admin/all-teachers?$ admin/views/pages/all-teachers/all-teachers.php
+
 RewriteRule ^admin/search?$ admin/views/pages/search/search.php
 
 Options All -Indexes

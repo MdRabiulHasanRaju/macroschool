@@ -91,6 +91,28 @@ $format = new Format;
             </a>
           </li>
 
+          <li class="sidebar-header">
+            Manage Teachers
+          </li>
+
+          <li class="sidebar-item <?php
+                    if (isset($header_active) && $header_active == "All Teachers") {
+                      echo 'myactive';
+                    }?>">
+            <a class="sidebar-link" href="<?=ADMIN_LINK;?>all-teachers">
+              <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">All Teachers</span>
+            </a>
+          </li>
+
+          <li class="sidebar-item <?php
+                    if (isset($header_active) && $header_active == "Add Teacher") {
+                      echo 'myactive';
+                    }?>">
+            <a class="sidebar-link" href="<?=ADMIN_LINK;?>add-teacher">
+              <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Add Teacher</span>
+            </a>
+          </li>
+
         </ul>
 
       </div>

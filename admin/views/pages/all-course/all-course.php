@@ -30,7 +30,7 @@ include("../../inc/header.php");
                                 <th>Action</th>
                             </tr>
                             <?php
-                            $Sql = "select id, course_title, course_sub_title,faculties,regular_price,offer_price,course_hide from `courses` order by id desc";
+                            $Sql = "select id, course_title, course_sub_title,faculties,regular_price,offer_price,course_hide,image from `courses` order by id desc";
                             $Stmt = fetch_data($connection, $Sql);
                             if (mysqli_stmt_num_rows($Stmt) == 0) {
                                 $noOrder = "Empty Course";
@@ -43,7 +43,8 @@ include("../../inc/header.php");
                                     $faculties,
                                     $regular_price,
                                     $offer_price,
-                                    $course_hide
+                                    $course_hide,
+                                    $image
                                 );
                                 $i = 1;
                                 while (mysqli_stmt_fetch($Stmt)) { $course_id=$id;?>
@@ -95,6 +96,7 @@ include("../../inc/header.php");
                                             
                                             <form method="post" action="<?= ADMIN_LINK; ?>controllers/deleteCourseController.php">
                                                 <input type="hidden" name="id" value="<?= $course_id; ?>">
+                                                <input type="hidden" name="prev_image" value="<?= $image; ?>">
                                                 <input name="submit" id="courseDeleteBtn" class="form-control my-btn" style="padding:7px;font-size:12px;" type="submit" value="Delete">
                                             </form>
                                             
