@@ -615,7 +615,8 @@ textarea {
 }
 img#faculti-image {
   width: 100px;
-  border-radius: 50%;
+  border-radius: 5px;
+  border: 4px solid #f1f1f1;
 }
 .faculti-member {
   text-align: center;

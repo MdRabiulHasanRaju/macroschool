@@ -23,7 +23,9 @@ RewriteRule ^order/([0-9]+) controllers/orderController.php?id=$1
 
 
 #for admin
-RewriteRule ^admin-order-dekhbo?$ admin/index.php
+RewriteRule ^admin/login?$ admin/views/pages/auth/auth.php
+
+RewriteRule ^admin?$ admin/index.php
 RewriteRule ^admin/paid-order?$ admin/views/pages/paid-order/paid-order.php
 RewriteRule ^admin/unpaid-order?$ admin/views/pages/unpaid-order/unpaid-order.php
 

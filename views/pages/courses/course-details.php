@@ -75,7 +75,7 @@ if (mysqli_stmt_execute($stmt)) {
                 </div>
                 <div class="course-details-col">
                     <div class="course-details-col-1">
-                        <h3>Faculties</h3>
+                        <h3>Teacher - </h3>
                         <div class="course-details-faculties">
                             <?php
                             $teachers_link = array();

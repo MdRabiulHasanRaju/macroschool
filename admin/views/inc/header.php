@@ -119,7 +119,7 @@ $format = new Format;
     </nav>
 
     <div class="main">
-      <nav class="navbar navbar-expand navbar-light navbar-bg">
+      <nav id="adminTopBar" class="navbar navbar-expand navbar-light navbar-bg">
         <a class="sidebar-toggle js-sidebar-toggle">
           <i class="hamburger align-self-center"></i>
         </a>
@@ -137,13 +137,13 @@ $format = new Format;
               </a>
 
               <div class="dropdown-menu dropdown-menu-end">
-                <a class="dropdown-item" href="">
+                <!-- <a class="dropdown-item" href="">
                   <i class="align-middle me-1" data-feather="user"></i>
                   Profile
-                </a>
+                </a> -->
 
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">
+                <!-- <div class="dropdown-divider"></div> -->
+                <a class="dropdown-item" href="<?=ADMIN_LINK;?>/controllers/logoutController.php">
                   Log out
                 </a>
 

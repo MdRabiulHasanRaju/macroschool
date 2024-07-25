@@ -1,11 +1,18 @@
 <?php
-$title = "Macro School Admin - Pain Oder";
+$title = "Macro School Admin - All Course";
 $meta_description = "$title - macro school";
 $meta_keywords = "$title, Macro School, macroschool,macro,schoolmacro,macro";
 $header_active = "All Course";
 ?>
-<?php
-include("../../inc/header.php");
+<?php 
+session_start();
+include $_SERVER['DOCUMENT_ROOT'] . "/macroschool/admin/utility/Baseurl.php";
+$baseurl = new Baseurl;
+define("ADMIN_LINK", "{$baseurl->url()}/macroschool/admin/");
+define("IMAGE_LINK", "{$baseurl->url()}/macroschool/public/images/");
+
+if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin'] == true) {
+    include("../../inc/header.php");
 ?>
 
 <div class="container-fluid p-0">
@@ -119,6 +126,10 @@ include("../../inc/header.php");
 </div>
 <?php
 include("../../inc/footer.php");
+} else {
+	header("location: " . ADMIN_LINK . "login");
+	die();
+}
 ?>
 <script src="<?= ADMIN_LINK; ?>public/js/app.js"></script>
 </body>
