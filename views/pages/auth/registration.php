@@ -41,13 +41,16 @@ if (isset($_SESSION['username'])) {
                 </div>
             </div>
             <div class="singel-form">
-                <input class="" type="password" name="password" id="PassEntry" value="" type="text" placeholder="Your Password">
+                <input class="" type="password" name="password" id="password" value="" placeholder="Your Password">
+                <div id="password_view">
+                    <img id="password_view_img" src="<?=LINK;?>public/images/icon/password-view.png" alt="password-view">
+                </div>
                 <div class="invalid-feedback">
                     <span id="StrengthDisp" class="strength">Weak password</span>
                 </div>
             </div>
             <div class="singel-form">
-                <input class="" type="password" name="confirm_password" id="password" value="" type="text" placeholder="Confirm Your Password">
+                <input class="" type="password" name="confirm_password" id="confirm_password" value="" placeholder="Confirm Your Password">
                 <div class="invalid-feedback">
                     <span style="color:red"><?php echo $password_err;
                                             unset($_SESSION['password_err']) ?></span>
@@ -70,7 +73,7 @@ if (isset($_SESSION['username'])) {
 include("../../inc/footer.php");
 ?>
   <script>
-    let password = document.getElementById("PassEntry");
+    let password = document.getElementById("password");
     let strengthBadge = document.getElementById("StrengthDisp");
 
     let strongPassword = new RegExp(

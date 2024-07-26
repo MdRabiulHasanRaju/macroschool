@@ -1081,3 +1081,14 @@ i.fa-solid.fa-rectangle-xmark.close-btn:hover {
   overflow: auto; 
   background-color: rgba(0,0,0,0.5); 
 }
+#password_view>img {
+  width: 25px;
+  margin-right: 12px;
+}
+
+#password_view {
+  top: -42px;
+  position: relative;
+  float: right;
+  margin-bottom: -22px;
+}

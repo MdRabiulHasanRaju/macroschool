@@ -134,3 +134,14 @@ form.add-course-form>.form-group>img {
   border: 4px solid #efefef;
   border-radius: 6px;
 }
+#password_view>img {
+  width: 25px;
+  margin-right: 12px;
+}
+
+#password_view {
+  top: -32px;
+  position: relative;
+  float: right;
+  margin-bottom: -22px;
+}

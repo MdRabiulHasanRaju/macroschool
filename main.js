@@ -58,7 +58,6 @@ function myFunction() {
   }
 }
 
-
 let materials_btn = document.querySelectorAll(".materials-pay-btn");
 let facebook_btn = document.querySelectorAll(".facebook-pay-btn");
 
@@ -80,30 +79,45 @@ let Paymentmodalfunction = (btn) => {
         }
       };
 
-      copynumberBtn = payment_popup.childNodes[1].childNodes[3].childNodes[3].childNodes[1].childNodes[0].childNodes[5].childNodes[0];
+      copynumberBtn =
+        payment_popup.childNodes[1].childNodes[3].childNodes[3].childNodes[1]
+          .childNodes[0].childNodes[5].childNodes[0];
 
-      copyIdBtn = payment_popup.childNodes[1].childNodes[3].childNodes[3].childNodes[1].childNodes[2].childNodes[5].childNodes[0];
+      copyIdBtn =
+        payment_popup.childNodes[1].childNodes[3].childNodes[3].childNodes[1]
+          .childNodes[2].childNodes[5].childNodes[0];
 
-      copynumberBtn.onclick = ()=>{
-        Bkash_number = payment_popup.childNodes[1].childNodes[3].childNodes[3].childNodes[1].childNodes[0].childNodes[3].childNodes[0];
+      copynumberBtn.onclick = () => {
+        Bkash_number =
+          payment_popup.childNodes[1].childNodes[3].childNodes[3].childNodes[1]
+            .childNodes[0].childNodes[3].childNodes[0];
         Bkash_number.select();
         Bkash_number.setSelectionRange(0, 99999);
         navigator.clipboard.writeText(Bkash_number.value);
         copynumberBtn.innerHTML = "Copied";
-      }
+      };
 
-      copyIdBtn.onclick = ()=>{
-        ref_id_number = payment_popup.childNodes[1].childNodes[3].childNodes[3].childNodes[1].childNodes[2].childNodes[3].childNodes[0];
+      copyIdBtn.onclick = () => {
+        ref_id_number =
+          payment_popup.childNodes[1].childNodes[3].childNodes[3].childNodes[1]
+            .childNodes[2].childNodes[3].childNodes[0];
         ref_id_number.select();
         ref_id_number.setSelectionRange(0, 99999);
         navigator.clipboard.writeText(ref_id_number.value);
         copyIdBtn.innerHTML = "Copied";
-      }
-
-
+      };
     });
   });
 };
 
 Paymentmodalfunction(facebook_btn);
 Paymentmodalfunction(materials_btn);
+
+let inputPassShow = document.getElementById("password_view_img");
+let inputpass = document.getElementById("password");
+
+inputPassShow.addEventListener("click", () => {
+  const type =
+    inputpass.getAttribute("type") === "password" ? "text" : "password";
+    inputpass.setAttribute("type", type);
+});

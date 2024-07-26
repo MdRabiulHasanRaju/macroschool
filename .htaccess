@@ -19,6 +19,9 @@ RewriteRule ^create-profile?$ views/pages/dashboard/create-profile.php
 RewriteRule ^edit-profile?$ views/pages/dashboard/edit-profile.php
 RewriteRule ^change-password?$ views/pages/dashboard/change-password.php
 
+RewriteRule ^forgot-password?$ views/pages/auth/forgotpass.php
+
+
 RewriteRule ^order/([0-9]+) controllers/orderController.php?id=$1
 
 

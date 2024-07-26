@@ -2,7 +2,7 @@
 $title = "Macro School Admin - Search";
 $meta_description = "$title - macro school";
 $meta_keywords = "$title, Macro School, macroschool,macro,schoolmacro,macro";
-$header_active = "Paid Order";
+$header_active = "Search Order";
 ?>
 <?php 
 session_start();

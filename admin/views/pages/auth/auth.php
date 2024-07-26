@@ -58,7 +58,10 @@ if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin'] == true) {
 									</div>
 									<div class="mb-3">
 										<label class="form-label">Password</label>
-										<input class="form-control form-control-lg" type="password" name="password" placeholder="Enter your password" />
+										<input class="form-control form-control-lg" type="password" name="password" id="password" placeholder="Enter your password" />
+										<div id="password_view">
+											<img id="password_view_img" src="<?= IMAGE_LINK; ?>icon/password-view.png" alt="password-view">
+										</div>
 										<span style="color:red"><?php echo $err;
 																unset($_SESSION['err']); ?></span>
 									</div>
@@ -79,6 +82,7 @@ if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin'] == true) {
 }
 ?>
 <script src="<?= ADMIN_LINK; ?>public/js/app.js"></script>
+<script src="<?= ADMIN_LINK; ?>main.js"></script>
 </body>
 
 </html>

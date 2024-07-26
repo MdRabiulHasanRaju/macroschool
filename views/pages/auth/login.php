@@ -42,7 +42,10 @@ if (isset($_SESSION['username'])) {
                 </div>
             </div>
             <div class="singel-form">
-                <input class="" type="password" name="password" id="password" value="" type="text" placeholder="Your Password">
+                <input class="" type="password" name="password" id="password" value="" placeholder="Your Password">
+                <span id="password_view">
+                    <img id="password_view_img" src="<?=LINK;?>public/images/icon/password-view.png" alt="password-view">
+                </span>
                 <div class="invalid-feedback">
                 <span style="color:red"><?php echo $err;
                                             unset($_SESSION['err']); ?></span>
@@ -54,7 +57,10 @@ if (isset($_SESSION['username'])) {
             <div class="singel-form">
                 <a href="<?=$client->createAuthUrl();?>" name="submit" class="main-btn google-btn"><img src="<?= LINK; ?>public/images/icon/google.png" alt="">Sign in with Google</a>
             </div>
-            <a href="<?=LINK;?>registration" class="loginBtn my-3 text-center">Don't have an Account? Create One</a>
+            <div class="forgotpass">
+                <a href="<?=LINK;?>forgot-password" class="loginBtn my-3 text-center">Forgot Your Password?</a>
+            </div>
+            <a href="<?=LINK;?>registration" class="loginBtn my-3 text-center">Don't have an Account? Create One</a> 
         </form>
     </div>
     </div>
