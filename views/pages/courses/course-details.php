@@ -142,16 +142,35 @@ if (mysqli_stmt_execute($stmt)) {
                                 </div>
                             </div>
 
+                            <?php
+                $sql = "select * from course_utility";
+                $stmt = mysqli_prepare($connection, $sql);
+                if (mysqli_stmt_execute($stmt)) {
+                    mysqli_stmt_store_result($stmt);
+                    if (mysqli_stmt_num_rows($stmt) == 0) {
+                        header("location: " . LINK . "error/404");
+                        die();
+                    } else {
+                        mysqli_stmt_bind_result(
+                            $stmt,
+                            $id,
+                            $hlp_name,
+                            $hlp_link,
+                            $hlp_contact,
+                            $buy_course_link
+                        );
+                        if (mysqli_stmt_fetch($stmt)) {?>
+
                             <div class="course-details-faq-box">
                                 <p class="questionClick"><img class="icon" src="<?= LINK; ?>public/images/icon/dropdown.png">
                                     Helpline
                                 </p>
                                 <div class="para" id="para">
-                                    <a style="font-weight:bold;display:flex;gap: 10px;align-items: center;margin-bottom: 8px;" href="" target="_blank">
+                                    <a style="font-weight:bold;display:flex;gap: 10px;align-items: center;margin-bottom: 8px;" href="<?=$hlp_link;?>" target="_blank">
                                         <img src="<?= LINK; ?>public/images/icon/facebook.png" class="icon" alt="">
-                                        Noyon
+                                        <?=$hlp_name;?>
                                     </a>
-                                    <p><strong>Contact: </strong>01879586258</p>
+                                    <p><strong>Contact: </strong><?=$hlp_contact;?></p>
                                 </div>
                             </div>
 
@@ -161,9 +180,10 @@ if (mysqli_stmt_execute($stmt)) {
                                 </p>
                                 <div class="para" id="para">
                                     <p>বি.দ্র. কেনার পূর্বে অবশ্যই এই ভিডিওটি দেখে নাও : </p>
-                                    <a href="https://www.youtube.com/@macroschool158" target="_blank" rel="noopener noreferrer">https://www.youtube.com/@macroschool158</a>
+                                    <a href="<?=$buy_course_link;?>" target="_blank" rel="noopener noreferrer"><?=$buy_course_link;?></a>
                                 </div>
                             </div>
+                            <?php }}}?>
 
                             <div class="course-details-faq-box">
                                 <p class="questionClick"><img class="icon" src="<?= LINK; ?>public/images/icon/dropdown.png">

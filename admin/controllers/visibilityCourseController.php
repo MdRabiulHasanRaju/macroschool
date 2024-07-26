@@ -4,7 +4,7 @@ $baseurl = new Baseurl;
 define("ADMIN_LINK", "{$baseurl->url()}/macroschool/admin/");
 session_start();
 
-// if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin'] == true) {
 
 
 	if ($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -38,7 +38,7 @@ session_start();
 	} else {
 		echo "Post method not working!";
 	}
-// } else {
-// 	header("location: " . ADMIN_LINK . "login");
-// 	die();
-// }
+} else {
+	header("location: " . ADMIN_LINK . "login");
+	die();
+}

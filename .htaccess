@@ -42,6 +42,8 @@ RewriteRule ^admin/all-teachers?$ admin/views/pages/all-teachers/all-teachers.ph
 
 RewriteRule ^admin/search?$ admin/views/pages/search/search.php
 
+RewriteRule ^admin/course-utility?$ admin/views/pages/course-utility/course-utility.php
+
 Options All -Indexes
 # RewriteCond %{THE_REQUEST} /([^.]+)\.php [NC]
 # RewriteRule ^ /%1 [NC,L,R]
