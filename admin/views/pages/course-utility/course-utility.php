@@ -39,7 +39,8 @@ if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin'] == true) {
                             $hlp_name,
                             $hlp_link,
                             $hlp_contact,
-                            $buy_course_link
+                            $buy_course_link,
+                            $bkash_pay
                         );
                         if (mysqli_stmt_fetch($stmt)) {?>
                 <div class="card-body add-course">
@@ -66,6 +67,11 @@ if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin'] == true) {
                         <div class="form-group">
                             <label for="buy_course_link">How to Buy a Course Link<span style="color:red;">*</span></label>
                             <input value="<?=$buy_course_link;?>" id="buy_course_link" name="buy_course_link" type="text" class="form-control" placeholder="Ex - https://www.youtube.com/@macroschool158" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bkash_pay">Payment Number - Bkash <span style="color:red;">*</span></label>
+                            <input value="<?=$bkash_pay;?>" id="bkash_pay" name="bkash_pay" type="text" class="form-control" placeholder="Enter Bkash Number" required>
                         </div>
 
 

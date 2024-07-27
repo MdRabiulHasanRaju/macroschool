@@ -15,7 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         isset($_POST['hlp_name']) &&
         isset($_POST['hlp_contact']) &&
         isset($_POST['hlp_link']) &&
-        isset($_POST['buy_course_link'])
+        isset($_POST['buy_course_link']) &&
+        isset($_POST['bkash_pay'])
     ) {
 
         include_once $_SERVER['DOCUMENT_ROOT'] . "/macroschool/admin/lib/Database.php";
@@ -34,6 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $hlp_contact = validate($_POST['hlp_contact']);
         $hlp_link = validate($_POST['hlp_link']);
         $buy_course_link = validate($_POST['buy_course_link']); 
+        $bkash_pay = validate($_POST['bkash_pay']); 
 
 
 
@@ -41,17 +43,19 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             `hlp_Name`=?,
             `hlp_fb_link`=?,
             `hlp_contact`=?,
-            `buy_course_link`=?
+            `buy_course_link`=?,
+            `bkash_pay`=?
             WHERE id=?";
 
         $update_stmt = mysqli_prepare($connection, $update_sql);
         mysqli_stmt_bind_param(
             $update_stmt,
-            "ssssi", 
+            "sssssi", 
             $param_hlp_Name,
             $param_hlp_fb_link ,
             $param_hlp_contact,
             $param_buy_course_link,
+            $param_bkash_pay,
             $param_id
         );
 
@@ -59,6 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $param_hlp_fb_link  = $hlp_link;
         $param_hlp_contact = $hlp_contact;
         $param_buy_course_link = $buy_course_link;
+        $param_bkash_pay = $bkash_pay;
         $param_id = $utility_id;
 
         if (mysqli_stmt_execute($update_stmt)) {

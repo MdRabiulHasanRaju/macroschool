@@ -109,36 +109,53 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
               <h3><i class="fa-solid fa-book"></i> <?= $course_title; ?> - <?= $course_sub_title; ?></h3>
             </div>
 
-            
+
 
 
             <div class="payment-popup-outside">
-            <div class="payment-popup">
-              <div class="payment-head">
-                <h2>Pay Now <i class="fa-solid fa-rectangle-xmark close-btn"></i></h2>
-              </div>
-              <div class="payment-body">
-                <h3><i class="fa-solid fa-book"></i> <?= $course_title; ?> - <?= $course_sub_title; ?> - <strong><?= $offer_price ? $offer_price : $regular_price; ?>৳</strong></h3>
+              <div class="payment-popup">
+                <div class="payment-head">
+                  <h2>Pay Now <i class="fa-solid fa-rectangle-xmark close-btn"></i></h2>
+                </div>
+                <div class="payment-body">
+                  <h3><i class="fa-solid fa-book"></i> <?= $course_title; ?> - <?= $course_sub_title; ?> - <strong><?= $offer_price ? $offer_price : $regular_price; ?>৳</strong></h3>
 
-                <table class="bkash-ref">
-                  <tr>
-                    <td>Bkash Personal Number: </td>
-                    <td><input type="text" value="01878177772" id="Bkash_number" disabled></td>
-                    <td><button id="copyBtn" onclick="copyBkash()">Copy Number</button></td>
-                  </tr>
-                  <tr>
-                    <td>Reference ID: </td>
-                    <td><input type="text" value="<?= $order_id; ?>" id="ref_id" disabled></td>
-                    <td><button id="copyBtn_ref" onclick="ref_id()">Copy ID</button></td>
-                  </tr>
-                </table>
-              </div>
-              <div class="payment-footer">
-                <p>উপরে দেওয়া নাম্বারটিতে বিকাশ একাউন্টে গিয়ে সেন্ড মানি অপশন থেকে টাকা পাঠাবেন এবং রেফারেন্স এ উপরে দেওয়া রেফারেন্স ID টি দিয়ে দিবেন। </p>
-                <p>উপরে দেওয়া নাম্বারটিতে কল দিয়ে ভেরিফাই করে নিতে পারেন। </p>
+                  <table class="bkash-ref">
+                    <tr>
+                      <?php
+                      $sql = "select bkash_pay from course_utility";
+                      $stmt = mysqli_prepare($connection, $sql);
+                      if (mysqli_stmt_execute($stmt)) {
+                        mysqli_stmt_store_result($stmt);
+                        if (mysqli_stmt_num_rows($stmt) == 0) {
+                          header("location: " . LINK . "404");
+                          die();
+                        } else {
+                          mysqli_stmt_bind_result(
+                            $stmt,
+                            $bkash_pay
+                          );
+                          if (mysqli_stmt_fetch($stmt)) { ?>
+                            <td>Bkash Personal Number: </td>
+                            <td><input type="text" value="<?=$bkash_pay;?>" id="Bkash_number" disabled></td>
+                            <td><button id="copyBtn" onclick="copyBkash()">Copy Number</button></td>
+                      <?php   }
+                        }
+                      } ?>
+                    </tr>
+                    <tr>
+                      <td>Reference ID: </td>
+                      <td><input type="text" value="<?= $order_id; ?>" id="ref_id" disabled></td>
+                      <td><button id="copyBtn_ref" onclick="ref_id()">Copy ID</button></td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="payment-footer">
+                  <p>উপরে দেওয়া নাম্বারটিতে বিকাশ একাউন্টে গিয়ে সেন্ড মানি অপশন থেকে টাকা পাঠাবেন এবং রেফারেন্স এ উপরে দেওয়া রেফারেন্স ID টি দিয়ে দিবেন। </p>
+                  <p>উপরে দেওয়া নাম্বারটিতে কল দিয়ে ভেরিফাই করে নিতে পারেন। </p>
+                </div>
               </div>
             </div>
-          </div>
 
 
 

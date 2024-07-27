@@ -17,7 +17,7 @@
                         <tbody>
                             <tr>
                                 <th>SL</th>
-                                <th>Date</th>
+                                <th>Student Name</th>
                                 <th>Course Name</th>
                                 <th>Batch</th>
                                 <th>Phone</th>
@@ -51,7 +51,15 @@
                                 while (mysqli_stmt_fetch($orderStmt)) { ?>
                                     <tr>
                                         <td><?= $i; ?></td>
-                                        <td><?= $format->formatDate($date); ?></td>
+                                        <td>
+                                            <?php
+                                            $stdn_sql = "select name from users_info where user_id='$user_id'";
+                                            $stdn_stmt = fetch_data($connection,$stdn_sql);
+                                            mysqli_stmt_bind_result($stdn_stmt,$stdn_name);
+                                            mysqli_stmt_fetch($stdn_stmt);
+                                            echo $stdn_name;
+                                            ?>
+                                        </td>
                                         <td><?= $course_title; ?></td>
                                         <td><?= $course_sub_title; ?></td>
                                         <td><?= $mobile; ?></td>

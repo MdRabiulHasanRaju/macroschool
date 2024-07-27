@@ -537,11 +537,12 @@ footer ul li:hover {
   margin-top: 3rem;
 }
 .contact__socials a {
-  background: #484290;
+  background: white;
   font-size: 1rem;
   padding: 0.5rem;
-  border-radius: 50%;
+  border-radius: 5px;
   transition: all 400ms ease;
+  border: 1px solid #989898;
 }
 .contact__socials a:hover {
   background: transparent;
@@ -911,7 +912,7 @@ img#faculti-image {
 }
 .sticky-bar {
   position: fixed !important;
-  z-index: 3;
+  z-index: 10;
   background: white;
   width: 100%;
   top: 0 !important;

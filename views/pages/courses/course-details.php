@@ -28,6 +28,7 @@ include("../../inc/header.php");
     .para {
         display: none;
     }
+
     .collapsed {
         display: block;
     }
@@ -143,47 +144,50 @@ if (mysqli_stmt_execute($stmt)) {
                             </div>
 
                             <?php
-                $sql = "select * from course_utility";
-                $stmt = mysqli_prepare($connection, $sql);
-                if (mysqli_stmt_execute($stmt)) {
-                    mysqli_stmt_store_result($stmt);
-                    if (mysqli_stmt_num_rows($stmt) == 0) {
-                        header("location: " . LINK . "error/404");
-                        die();
-                    } else {
-                        mysqli_stmt_bind_result(
-                            $stmt,
-                            $id,
-                            $hlp_name,
-                            $hlp_link,
-                            $hlp_contact,
-                            $buy_course_link
-                        );
-                        if (mysqli_stmt_fetch($stmt)) {?>
+                            $sql = "select * from course_utility";
+                            $stmt = mysqli_prepare($connection, $sql);
+                            if (mysqli_stmt_execute($stmt)) {
+                                mysqli_stmt_store_result($stmt);
+                                if (mysqli_stmt_num_rows($stmt) == 0) {
+                                    header("location: " . LINK . "error/404");
+                                    die();
+                                } else {
+                                    mysqli_stmt_bind_result(
+                                        $stmt,
+                                        $id,
+                                        $hlp_name,
+                                        $hlp_link,
+                                        $hlp_contact,
+                                        $buy_course_link,
+                                        $bkash_pay
+                                    );
+                                    if (mysqli_stmt_fetch($stmt)) { ?>
 
-                            <div class="course-details-faq-box">
-                                <p class="questionClick"><img class="icon" src="<?= LINK; ?>public/images/icon/dropdown.png">
-                                    Helpline
-                                </p>
-                                <div class="para" id="para">
-                                    <a style="font-weight:bold;display:flex;gap: 10px;align-items: center;margin-bottom: 8px;" href="<?=$hlp_link;?>" target="_blank">
-                                        <img src="<?= LINK; ?>public/images/icon/facebook.png" class="icon" alt="">
-                                        <?=$hlp_name;?>
-                                    </a>
-                                    <p><strong>Contact: </strong><?=$hlp_contact;?></p>
-                                </div>
-                            </div>
+                                        <div class="course-details-faq-box">
+                                            <p class="questionClick"><img class="icon" src="<?= LINK; ?>public/images/icon/dropdown.png">
+                                                Helpline
+                                            </p>
+                                            <div class="para" id="para">
+                                                <a style="font-weight:bold;display:flex;gap: 10px;align-items: center;margin-bottom: 8px;" href="<?= $hlp_link; ?>" target="_blank">
+                                                    <img src="<?= LINK; ?>public/images/icon/facebook.png" class="icon" alt="">
+                                                    <?= $hlp_name; ?>
+                                                </a>
+                                                <p><strong>Contact: </strong><?= $hlp_contact; ?></p>
+                                            </div>
+                                        </div>
 
-                            <div class="course-details-faq-box">
-                                <p class="questionClick"><img class="icon" src="<?= LINK; ?>public/images/icon/dropdown.png">
-                                    কোর্সটি কীভাবে কিনবো?
-                                </p>
-                                <div class="para" id="para">
-                                    <p>বি.দ্র. কেনার পূর্বে অবশ্যই এই ভিডিওটি দেখে নাও : </p>
-                                    <a href="<?=$buy_course_link;?>" target="_blank" rel="noopener noreferrer"><?=$buy_course_link;?></a>
-                                </div>
-                            </div>
-                            <?php }}}?>
+                                        <div class="course-details-faq-box">
+                                            <p class="questionClick"><img class="icon" src="<?= LINK; ?>public/images/icon/dropdown.png">
+                                                কোর্সটি কীভাবে কিনবো?
+                                            </p>
+                                            <div class="para" id="para">
+                                                <p>বি.দ্র. কেনার পূর্বে অবশ্যই এই ভিডিওটি দেখে নাও : </p>
+                                                <a href="<?= $buy_course_link; ?>" target="_blank" rel="noopener noreferrer"><?= $buy_course_link; ?></a>
+                                            </div>
+                                        </div>
+                            <?php }
+                                }
+                            } ?>
 
                             <div class="course-details-faq-box">
                                 <p class="questionClick"><img class="icon" src="<?= LINK; ?>public/images/icon/dropdown.png">
@@ -209,8 +213,13 @@ if (mysqli_stmt_execute($stmt)) {
 
                             <div class="course-box-top">
                                 <div class="total">
+                                    <?php
+                                    $orderSql = "select id from `order` where status=2 and course_id='$course_id'";
+                                    $orderStmt = fetch_data($connection, $orderSql);
+                                    $total_student = mysqli_stmt_num_rows($orderStmt);
+                                    ?>
                                     <img src="<?= LINK; ?>public/images/icon/student.png" alt="" class="icon">
-                                    <p>কোর্সটিতে ভর্তি হয়েছেন <strong><?= $total_student; ?></strong> জন</p>
+                                    <p>কোর্সটিতে ভর্তি হয়েছেন <strong><?= $format->englishToBangla($total_student); ?></strong> জন</p>
                                 </div>
                                 <div class="time">
                                     <img src="<?= LINK; ?>public/images/icon/alarm.png" alt="" class="icon">
@@ -233,36 +242,37 @@ if (mysqli_stmt_execute($stmt)) {
                             </div>
                         </div>
                         <div class="price-box">
-                            <?php if($offer_price){?>
-                            <h3>Price: <del style="color:red"><?= $regular_price; ?>৳</del> <span style="color:green"><?= $offer_price; ?>৳</span></h3>
-                            <?php }else{ ?>
+                            <?php if ($offer_price) { ?>
+                                <h3>Price: <del style="color:red"><?= $regular_price; ?>৳</del> <span style="color:green"><?= $offer_price; ?>৳</span></h3>
+                            <?php } else { ?>
                                 <h3>Price: <span style="color:green"><?= $regular_price; ?>৳</span></h3>
-                            <?php }?>
+                            <?php } ?>
                             <div class="course-box-bottom">
                                 <?php
                                 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 
                                     $double_ordered_check_sql = "select course_id from `order` where user_id=?";
-                                    $double_ordered_check_stmt = mysqli_prepare($connection,$double_ordered_check_sql);
+                                    $double_ordered_check_stmt = mysqli_prepare($connection, $double_ordered_check_sql);
                                     mysqli_stmt_bind_param($double_ordered_check_stmt, "i", $param_double_ordered_check_id);
                                     $param_double_ordered_check_id = $_SESSION['id'];
                                     mysqli_stmt_execute($double_ordered_check_stmt);
                                     mysqli_stmt_store_result($double_ordered_check_stmt);
-                                    mysqli_stmt_bind_result($double_ordered_check_stmt,$double_ordered_check_course_id);
-                                    if(mysqli_stmt_num_rows($double_ordered_check_stmt)>0){
-                                        while(mysqli_stmt_fetch($double_ordered_check_stmt)){
-                                            if($course_id==$double_ordered_check_course_id){
+                                    mysqli_stmt_bind_result($double_ordered_check_stmt, $double_ordered_check_course_id);
+                                    if (mysqli_stmt_num_rows($double_ordered_check_stmt) > 0) {
+                                        while (mysqli_stmt_fetch($double_ordered_check_stmt)) {
+                                            if ($course_id == $double_ordered_check_course_id) {
                                                 $ordered_course = "আপনি কোর্সটি অর্ডার করে ফেলেছেন।";
                                             }
                                         }
                                     }
 
-                                    if(isset($ordered_course)){?>
-                                    <p><?=$ordered_course;?></p>
-                                    <a href="<?=LINK;?>dashboard" class="my-btn green">Goto Dashboard</a>
-                                    <?php }else{?>
-                                    <a href="<?=LINK;?>order/<?=$course_id;?>" class="my-btn green">কোর্সটিতে এনরোল করো</a>
-                                <?php }} else { ?>
+                                    if (isset($ordered_course)) { ?>
+                                        <p><?= $ordered_course; ?></p>
+                                        <a href="<?= LINK; ?>dashboard" class="my-btn green">Goto Dashboard</a>
+                                    <?php } else { ?>
+                                        <a href="<?= LINK; ?>order/<?= $course_id; ?>" class="my-btn green">কোর্সটিতে এনরোল করো</a>
+                                    <?php }
+                                } else { ?>
                                     <a href="<?= LINK; ?>login">
                                         <button class="my-btn green">কোর্স কিনতে লগইন করো</button>
                                     </a>
