@@ -93,7 +93,7 @@ img {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 100000;
+  border-bottom: 1px solid #ededed;
 }
 nav button {
   display: none;
@@ -101,10 +101,10 @@ nav button {
 .nav__menu {
   display: flex;
   align-items: center;
-  gap: 4rem;
+  gap: 3rem;
 }
 .nav__menu a {
-  font-size: 1.1rem;
+  font-size: 1rem;
   transition: all 400ms ease;
   color: #2f3d7e;
   font-weight: 700;
@@ -1092,4 +1092,67 @@ i.fa-solid.fa-rectangle-xmark.close-btn:hover {
   position: relative;
   float: right;
   margin-bottom: -22px;
+}
+
+.category-menu:hover .category-option{
+  display: block!important;
+}.category-option{
+  display: none;
+  padding:0;
+  position: absolute;
+  z-index: 2;
+  padding-top: 33px;
+}.category-option>a>li{
+  list-style: none;
+  background: #DC555B;
+  color: white;
+  padding: 17px 28px;
+  font-weight: bold;
+  border-bottom: 1px solid #ebbebe;
+}.category-option>a>li:hover{
+  background: black;
+  color: white;
+  animation: FadeINleft .3s;
+}.category-option>a{
+  display:block;
+}.category-menu:hover {
+  animation: FadeINleft .2s;
+}.FadeIN-Left {
+  animation: FadeINleft ease 1s;
+}
+@keyframes FadeINleft {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+.FadeIN-Right {
+  animation: FadeINright ease 1s;
+}
+@keyframes FadeINright {
+  0% {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+.FadeIN-Middle {
+  animation: FadeINmiddle ease 1s;
+}
+@keyframes FadeINmiddle {
+  0% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
