@@ -19,6 +19,8 @@ $format = new Format;
   <title><?= $title; ?></title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
   <script src="https://kit.fontawesome.com/8a0fad0de8.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="views/inc/slider/swiper.css">
+  <script src="views/inc/slider/swiper.js"></script>
   <link rel="stylesheet" href="<?= LINK; ?>style.css">
   <link rel="stylesheet" href="<?= LINK; ?>responsive.css">
   <link rel="website icon" type="png" href="<?= LINK; ?>public/images/logo.jpg">

@@ -6,7 +6,8 @@ $header_active = "Home";
 ?>
 <?php
 include "views/inc/header.php";
-include "views/inc/banner.php";
+// include "views/inc/banner.php";
+include "views/inc/slider/slider.php";
 ?>
 <?php
 include "views/pages/home/course.php";

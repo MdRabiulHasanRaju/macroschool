@@ -1186,3 +1186,6 @@ i.fa-solid.fa-rectangle-xmark.close-btn:hover {
   color:#2fb741!important;
   border:1px solid #2fb741!important;
 }
+section.courses>h2 {
+  padding: 16px 0;
+}
