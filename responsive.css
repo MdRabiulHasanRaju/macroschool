@@ -372,4 +372,7 @@
   button#copyBtn {
     padding: 8px;
   }
+  .course-category-list {
+    text-align: left;
+}
 }

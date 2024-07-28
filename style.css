@@ -748,7 +748,7 @@ img#faculti-image {
   background-color: black;
 }
 .black:hover {
-  color: black !important;
+  color: black;
   border: 1px solid black;
 }
 .mobile-dashboard {
@@ -1155,4 +1155,34 @@ i.fa-solid.fa-rectangle-xmark.close-btn:hover {
     opacity: 1;
     transform: scale(1);
   }
+}
+.course-category-list {
+  padding: 20px 0;
+  text-align: center;
+  background: white;
+  border-radius: 10px;
+  margin-bottom: 18px;
+}
+
+.course-category-list>a {
+  display: inline-flex;
+  padding: 8px 10px;
+  font-weight: bold;
+  background: black;
+  color: white;
+  border-radius: 5px;
+  margin-bottom: 8px;
+}
+.course-category-list>a:hover {
+  background: white;
+  color: black;
+  border: 1px solid black;
+}
+.course-active {
+  background: #2fb741!important;
+}
+.course-active:hover{
+  background: white!important;
+  color:#2fb741!important;
+  border:1px solid #2fb741!important;
 }
