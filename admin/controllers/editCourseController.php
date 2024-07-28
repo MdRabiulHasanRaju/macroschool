@@ -14,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         isset($_POST['course_id']) &&
         isset($_POST['teachers']) &&
         isset($_POST['courseName']) &&
+        isset($_POST['course_category']) &&
         isset($_POST['batch']) &&
         isset($_POST['courseDetails']) &&
         isset($_POST['freeClassLink']) &&
@@ -46,6 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $course_id = validate($_POST['course_id']);
         $teachers = validate($_POST['teachers']);
         $courseName = validate($_POST['courseName']);
+        $course_category = validate($_POST['course_category']);
         $batch = validate($_POST['batch']);
         $courseDetails = validate($_POST['courseDetails']);
         $freeClassLink = validate($_POST['freeClassLink']);
@@ -91,6 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 
         $update_sql = "UPDATE `courses` SET 
+            `cat_id`=?,
             `faculties`=?,
             `course_title`=?,
             `course_sub_title`=?,
@@ -112,7 +115,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $update_stmt = mysqli_prepare($connection, $update_sql);
         mysqli_stmt_bind_param(
             $update_stmt,
-            "ssssssssssssiissi",
+            "issssssssssssiissi",
+            $param_course_category,
             $param_teachers,
             $param_courseName,
             $param_batch,
@@ -133,6 +137,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
         );
 
+        $param_course_category = $course_category;
         $param_teachers = $teachers;
         $param_courseName  = $courseName;
         $param_batch = $batch;

@@ -4,7 +4,7 @@ ErrorDocument 404 /views/error/404.php
 
 RewriteRule ^home?$ index.php 
 RewriteRule ^courses?$ views/pages/courses/courses.php
-RewriteRule ^course-details/([0-9]+) views/pages/courses/course-details.php?id=$1
+RewriteRule ^course-details/([0-9]+)/([a-z0-9A-Z]+) views/pages/courses/course-details.php?id=$1&course_name=$2
 RewriteRule ^about?$ views/pages/about/about.php
 RewriteRule ^contact?$ views/pages/contact/contact.php
 
@@ -24,6 +24,8 @@ RewriteRule ^forgot-password?$ views/pages/auth/forgotpass.php
 
 RewriteRule ^order/([0-9]+) controllers/orderController.php?id=$1
 
+
+RewriteRule ^courses/([0-9]+)/([a-z0-9A-Z]+) views/pages/courses/category-courses.php?cat_id=$1&cat_name=$2
 
 #for admin
 RewriteRule ^admin/login?$ admin/views/pages/auth/auth.php

@@ -37,7 +37,7 @@ include("../../inc/header.php");
                     <div class="course__info">
                         <h4><?= $course_sub_title; ?></h4>
                         <h4><?= $course_title; ?></h4>
-                        <a href="course-details/<?=$id;?>" class='my-btn'>See Details</a>
+                        <a href="course-details/<?=$id;?>/<?=$course_title;?>" class='my-btn'>See Details</a>
                         <div class="my-btn share">
                             <img style="width:15px" src="<?=LINK;?>public/images/icon/share.png" alt="">
                             Share with

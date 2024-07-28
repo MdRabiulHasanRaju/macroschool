@@ -52,6 +52,24 @@ if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin'] == true) {
                         </div>
 
                         <div class="form-group">
+                            <label for="course_category">Course Category <span style="color:red;">*</span></label>
+                            <select class="form-control" name="course_category" id="course_category">
+                                <option selected disabled> - Choose Course Category</option>
+                                <?php
+                                $Sql = "SELECT * FROM `course_category`";
+                                $Stmt = fetch_data($connection, $Sql);
+                                mysqli_stmt_bind_result($Stmt, $id, $cat_name);
+                                while (mysqli_stmt_fetch($Stmt)) {
+                                ?>
+                                    <option value="<?= $id; ?>">
+                                        <?= $cat_name; ?>
+                                    </option>
+                                <?php } ?>
+
+                            </select>
+                        </div>
+
+                        <div class="form-group">
                             <label for="batch">Batch <span style="color:red;">*</span></label>
                             <input id="batch" name="batch" type="text" class="form-control" placeholder="Enter Batch" required>
                         </div>

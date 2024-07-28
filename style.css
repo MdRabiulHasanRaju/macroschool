@@ -1112,7 +1112,7 @@ i.fa-solid.fa-rectangle-xmark.close-btn:hover {
 }.category-option>a>li:hover{
   background: black;
   color: white;
-  animation: FadeINleft .3s;
+  animation: FadeINmiddle .3s;
 }.category-option>a{
   display:block;
 }.category-menu:hover {

@@ -39,7 +39,7 @@ $format = new Format;
         <li class="category-menu" <?php
             if (isset($header_active) && $header_active == "Category") {
               echo "class='myactive'";
-            } ?>><a onclick="return false;" href=""><i class="fa-solid fa-list"></i>Category</a>
+            } ?>><a onclick="return false;" href=""><i class="fa-solid fa-list"></i>Category <i class="fa-solid fa-caret-down"></i></a>
 
           <ul class="category-option">
             <?php
@@ -47,7 +47,7 @@ $format = new Format;
             $cat_stmt = fetch_data($connection, $cat_sql);
             mysqli_stmt_bind_result($cat_stmt, $cat_id, $cat_name);
             while (mysqli_stmt_fetch($cat_stmt)) { ?>
-              <a href="<?= LINK; ?>courses/category/<?= $cat_id; ?>">
+              <a href="<?= LINK; ?>courses/<?= $cat_id; ?>/<?= $cat_name; ?>">
                 <li><i class="fa-solid fa-arrows-turn-right"></i> <?= $cat_name; ?></li>
               </a>
             <?php }

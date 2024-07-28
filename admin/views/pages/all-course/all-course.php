@@ -83,7 +83,7 @@ if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin'] == true) {
                                         <td>
                                             <div class="actionBtn">
                                             
-                                            <a style="padding:7px;font-size:12px;" class="my-btn green" target="_blank" href="../course-details/<?= $course_id; ?>">View</a>
+                                            <a style="padding:7px;font-size:12px;" class="my-btn green" target="_blank" href="../course-details/<?= $course_id; ?>/<?= $course_title; ?>">View</a>
 
                                             <a style="padding:7px;font-size:12px;" class="my-btn black" href="<?=ADMIN_LINK;?>edit-course/<?= $course_id; ?>">Edit</a>
 

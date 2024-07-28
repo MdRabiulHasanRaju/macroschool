@@ -11,6 +11,7 @@ if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin'] == true) {
 		if (
             isset($_POST['teachers']) &&
             isset($_POST['courseName']) &&
+            isset($_POST['course_category']) &&
             isset($_POST['batch']) && 
             isset($_POST['courseDetails']) &&
             isset($_POST['freeClassLink']) &&
@@ -41,6 +42,7 @@ if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin'] == true) {
 
             $teachers = validate($_POST['teachers']);
             $courseName = validate($_POST['courseName']);
+            $course_category = validate($_POST['course_category']);
             $batch = validate($_POST['batch']); 
             $courseDetails = validate($_POST['courseDetails']);
             $freeClassLink = validate($_POST['freeClassLink']);
@@ -69,6 +71,7 @@ if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin'] == true) {
             $destination = "../../public/images/".$imageName ;
 
 			$insert_sql = "INSERT INTO `courses`(
+                                            `cat_id`,
                                             `faculties`,
                                             `course_title`,
                                             `course_sub_title`,
@@ -85,13 +88,14 @@ if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin'] == true) {
                                             `offer_price`,
                                             `materials_link`,
                                             `facebook_link`
-                                            ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                                            ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 
 			$insert_stmt = mysqli_prepare($connection, $insert_sql);
 			mysqli_stmt_bind_param(
                 $insert_stmt, 
-                "ssssssssssssiiss", 
+                "issssssssssssiiss", 
+                $param_course_category,
                 $param_teachers,
                 $param_courseName ,
                 $param_batch,
@@ -111,6 +115,7 @@ if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin'] == true) {
     
             );
 
+                $param_course_category = $course_category;
                 $param_teachers = $teachers;
                 $param_courseName  = $courseName;
                 $param_batch = $batch;

@@ -35,6 +35,7 @@
     width: 18rem;
     display: none;
     z-index: 10;
+    overflow-y: scroll;
     left: -100%;
     animation: animateNavItems 400ms linear forwards;
   }
@@ -180,7 +181,7 @@
   ul.category-option {
     padding-top: 0;
     position: relative;
-    background: #126731;
+    background: #147579;
   }
 
   .category-option > a > li {
