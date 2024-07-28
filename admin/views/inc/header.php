@@ -91,6 +91,15 @@ $format = new Format;
             </a>
           </li>
 
+          <li class="sidebar-item <?php
+                    if (isset($header_active) && $header_active == "Course Category") {
+                      echo 'myactive';
+                    }?>">
+            <a class="sidebar-link" href="<?=ADMIN_LINK;?>course-category">
+              <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Course Category</span>
+            </a>
+          </li>
+
           <li class="sidebar-header">
             Manage Teachers
           </li>
