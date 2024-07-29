@@ -8,6 +8,9 @@ RewriteRule ^course-details/([0-9]+)/([a-z0-9A-Z]+) views/pages/courses/course-d
 RewriteRule ^about?$ views/pages/about/about.php
 RewriteRule ^contact?$ views/pages/contact/contact.php
 
+RewriteRule ^sheets?$ views/pages/sheets/sheets.php
+RewriteRule ^sheet-details/([0-9]+)/([a-z0-9A-Z]+) views/pages/sheets/sheet-details.php?id=$1&sheet_name=$2
+
 RewriteRule ^login?$ views/pages/auth/login.php
 RewriteRule ^logout?$ controllers/logoutController.php
 RewriteRule ^registration?$ views/pages/auth/registration.php
@@ -46,6 +49,34 @@ RewriteRule ^admin/all-teachers?$ admin/views/pages/all-teachers/all-teachers.ph
 RewriteRule ^admin/search?$ admin/views/pages/search/search.php
 
 RewriteRule ^admin/course-utility?$ admin/views/pages/course-utility/course-utility.php
+
+
+<IfModule mod_expires.c>
+ExpiresActive On
+
+# Images
+# ExpiresByType image/jpeg "access plus 1 year"
+# ExpiresByType image/gif "access plus 1 year"
+# ExpiresByType image/png "access plus 1 year"
+# ExpiresByType image/webp "access plus 1 year"
+# ExpiresByType image/svg+xml "access plus 1 year"
+# ExpiresByType image/x-icon "access plus 1 year"
+
+# Video
+# ExpiresByType video/mp4 "access plus 1 year"
+# ExpiresByType video/mpeg "access plus 1 year"
+
+# CSS, JavaScript
+ExpiresByType text/css "access plus 1 minute"
+ExpiresByType text/javascript "access plus 1 minute"
+ExpiresByType application/javascript "access plus 1 minute"
+
+# Others
+# ExpiresByType application/pdf "access plus 1 month"
+# ExpiresByType application/x-shockwave-flash "access plus 1 month"
+
+</IfModule>
+
 
 Options All -Indexes
 # RewriteCond %{THE_REQUEST} /([^.]+)\.php [NC]

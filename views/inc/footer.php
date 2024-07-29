@@ -41,7 +41,8 @@
 
     </div>
     <div class="footer__copyright">
-        <small>Copyrights &copy; MACRO SCHOOL ONLINE PLATFORM</small>
+        <small>Copyrights &copy; MACRO SCHOOL ONLINE PLATFORM</small> <br>
+        <small>Developed By &copy;<a target="_blank" href="https://www.linkedin.com/in/mdrabiulhasanraju">Md Rabiul Hasan</a></small>
     </div>
     </div>
 </footer>

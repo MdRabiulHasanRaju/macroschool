@@ -375,4 +375,7 @@
   .course-category-list {
     text-align: left;
 }
+section.courses>h2 {
+  font-size: 23px;
+}
 }

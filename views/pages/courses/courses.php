@@ -17,7 +17,7 @@ include("../../inc/header.php");
 </style>
 <section class="courses">
     <div class="container course-category-list">
-        <a href="<?= LINK; ?>courses" class="course-active">All Category</a>
+        <a href="<?= LINK; ?>courses" class="course-active">All Courses</a>
         <?php
         $cat_sql = "select * from course_category";
         $cat_stmt = fetch_data($connection, $cat_sql);

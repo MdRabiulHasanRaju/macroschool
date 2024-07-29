@@ -53,7 +53,7 @@
     @media screen and (max-width:600px) {
         .swiper {
             width: 100%;
-            padding: 0px 40px;
+            padding: 0px 20px;
         }
 
         .swiper-slide>img {

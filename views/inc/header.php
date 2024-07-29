@@ -1,4 +1,8 @@
 <?php
+header('Expires: '.gmdate('D, d M Y H:i:s \G\M\T', time() + (60)));
+header("Cache-Control: no-cache");
+header("Pragma: no-cache");
+
 if (!isset($connection)) {
   include $_SERVER['DOCUMENT_ROOT'] . "/macroschool/lib/Database.php";
 }
@@ -16,6 +20,14 @@ $format = new Format;
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="creator" content="@Md Rabiul Hasan">
+  <meta name="description" content="<?php if (!$meta_description) {
+                                      header("location:" . LINK . "error/404?metaDataError");
+                                    } else {
+                                      echo $meta_description;
+                                    }; ?>">
+  <meta name="keywords" content="<?= $meta_keywords; ?>">
+  <meta name="title" content="<?=$title;?>">
   <title><?= $title; ?></title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
   <script src="https://kit.fontawesome.com/8a0fad0de8.js" crossorigin="anonymous"></script>
@@ -64,14 +76,19 @@ $format = new Format;
             } ?>><a href="<?= LINK; ?>"><i class="fa-solid fa-house"></i>Home</a></li>
 
         <li <?php
-            if (isset($header_active) && $header_active == "About") {
-              echo "class='myactive'";
-            } ?>><a href="<?= LINK; ?>about"><i class="fa-solid fa-circle-info"></i>About</a></li>
-
-        <li <?php
             if (isset($header_active) && $header_active == "Courses") {
               echo "class='myactive'";
             } ?>><a href="<?= LINK; ?>courses"><i class="fa-solid fa-book"></i>Courses</a></li>
+
+        <li <?php
+            if (isset($header_active) && $header_active == "Sheets") {
+              echo "class='myactive'";
+            } ?>><a href="<?= LINK; ?>sheets"><i class="fa-solid fa-sheet-plastic"></i>Sheets</a></li>
+
+        <li <?php
+            if (isset($header_active) && $header_active == "About") {
+              echo "class='myactive'";
+            } ?>><a href="<?= LINK; ?>about"><i class="fa-solid fa-circle-info"></i>About</a></li>
 
         <li <?php
             if (isset($header_active) && $header_active == "Contact") {
