@@ -48,6 +48,7 @@ if (isset($_GET['cat_name']) && isset($_GET['cat_id'])) {
             }
             mysqli_stmt_bind_result($courseStmt, $id, $image, $course_title, $course_sub_title, $course_details, $course_hide);
             while (mysqli_stmt_fetch($courseStmt)) {
+                $course_title_link = str_replace(" ","-",$course_title);
                 if ($course_hide == 1) {
         ?>
 
@@ -58,7 +59,7 @@ if (isset($_GET['cat_name']) && isset($_GET['cat_id'])) {
                         <div class="course__info">
                             <h4><?= $course_sub_title; ?></h4>
                             <h4><?= $course_title; ?></h4>
-                            <a href="<?= LINK; ?>course-details/<?= $id; ?>/<?= $course_title; ?>" class='my-btn'>See Details</a>
+                            <a href="<?= LINK; ?>course-details/<?= $id; ?>/<?= $course_title_link; ?>" class='my-btn'>See Details</a>
                             <div class="my-btn share">
                                 <img style="width:15px" src="<?= LINK; ?>public/images/icon/share.png" alt="">
                                 Share with

@@ -14,7 +14,6 @@ mysqli_stmt_store_result($title_stmt);
 mysqli_stmt_bind_result($title_stmt, $course_title);
 mysqli_stmt_fetch($title_stmt);
 
-require_once $_SERVER['DOCUMENT_ROOT'] . "/macroschool/lib/Database.php";
 $title = "$course_title - Macro School";
 $meta_description = "$title - macro school Call 880 1563 4668 21";
 $meta_keywords = "$title, Macro School, macroschool,macro,schoolmacro,macro";
@@ -80,7 +79,7 @@ include("../../inc/header.php");
     }
 
     .free-sheet-img>img {
-        width: 90px;
+        width: 70px;
         padding: 5px;
         border: 1px solid #dfdfdf;
         display: grid;
@@ -188,6 +187,14 @@ include("../../inc/header.php");
         .sheet-page-view>img {
             width: 330px;
         }
+        .sheet-free-page {
+    display: block;
+}
+        .free-sheet-img {
+    display: inline-flex;
+    margin-bottom: 10px;
+}
+
     }
 </style>
 <section class="sheets">
@@ -238,6 +245,14 @@ include("../../inc/header.php");
                 </div>
                 <div class="free-sheet-img">
                     <label for="sheet-img">3</label>
+                    <img id="sheet-img" src="<?= LINK; ?>public/images/sheet3.jpg" alt="Macro School - sheet image">
+                </div>
+                <div class="free-sheet-img">
+                    <label for="sheet-img">4</label>
+                    <img id="sheet-img" src="<?= LINK; ?>public/images/sheet3.jpg" alt="Macro School - sheet image">
+                </div>
+                <div class="free-sheet-img">
+                    <label for="sheet-img">5</label>
                     <img id="sheet-img" src="<?= LINK; ?>public/images/sheet3.jpg" alt="Macro School - sheet image">
                 </div>
             </div>

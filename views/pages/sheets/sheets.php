@@ -68,6 +68,7 @@ include("../../inc/header.php");
             }
             mysqli_stmt_bind_result($courseStmt, $id, $image, $course_title, $course_sub_title, $course_details, $course_hide,$regular_price,$offer_price);
             while (mysqli_stmt_fetch($courseStmt)) {
+                $course_title_link = str_replace(" ","-",$course_title);
                 if ($course_hide == 1) {
         ?>
 
@@ -82,7 +83,7 @@ include("../../inc/header.php");
                             <?php } else { ?>
                                 <h4>TK. <span style="color:green"><?= $regular_price; ?>৳</span></h4>
                             <?php } ?>
-                            <a href="sheet-details/<?= $id; ?>/<?= $course_title; ?>" class='my-btn green'>View Details</a>
+                            <a href="sheet-details/<?= $id; ?>/<?= $course_title_link; ?>" class='my-btn green'>View Details</a>
                             <div class="my-btn share">
                                 <img style="width:15px" src="<?= LINK; ?>public/images/icon/share.png" alt="">
                                 Share with
