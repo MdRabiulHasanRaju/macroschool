@@ -995,10 +995,13 @@ li.myactive > a {
 }
 .dashboard-body {
   padding: 25px 0;
-  display: grid;
+  display: none;
   background: #f3f3f3;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
+}
+.dashboard-active{
+  display: grid!important;
 }
 .browse-course {
   padding: 100px 0;

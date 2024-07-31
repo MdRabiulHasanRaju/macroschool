@@ -163,6 +163,9 @@
     grid-gap: 30px;
   }
   .dashboard-body {
+    display: none;
+  }
+  .dashboard-active {
     display: grid;
   }
 
@@ -332,10 +335,13 @@
     box-shadow: 1px 1px 30px -22px black;
   }
   .dashboard-head {
-    align-items: baseline;
+    align-items: center;
   }
   .dashboard-body {
-    display: block;
+    display: none;
+  }
+  .dashboard-active {
+    display: block!important;
   }
 
   .course-ordered-box {

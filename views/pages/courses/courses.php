@@ -53,11 +53,11 @@ include("../../inc/header.php");
                             <h4><?= $course_title; ?></h4>
                             <a href="course-details/<?= $id; ?>/<?= $course_title_link; ?>" class='my-btn'>See Details</a>
                             <div class="my-btn share">
-                                <img style="width:15px" src="<?= LINK; ?>public/images/icon/share.png" alt="">
+                                <img style="width:15px" src="<?= LINK; ?>public/images/icon/share.png" alt="share icon- macroschool">
                                 Share with
-                                <a target="_blank" href="https://facebook.com/sharer/sharer.php?u=https://macroschool.academy/course-details/<?= $id; ?>"><img src="<?= LINK; ?>public/images/icon/facebook.png" alt=""></a>
+                                <a target="_blank" href="https://facebook.com/sharer/sharer.php?u=https://macroschool.academy/course-details/<?= $id; ?>/<?= $course_title_link; ?>"><img src="<?= LINK; ?>public/images/icon/facebook.png" alt="facebook share- macroschool"></a>
 
-                                <a target="" href="https://api.whatsapp.com/send?text=<?= $course_sub_title; ?>%20<?= $course_title; ?>%0Ahttps://macroschool.academy/course-details/<?= $id; ?>"><img src="<?= LINK; ?>public/images/icon/whatsapp.png" alt=""></a>
+                                <a target="" href="https://api.whatsapp.com/send?text=<?= $course_sub_title; ?>%20<?= $course_title; ?>%0Ahttps://macroschool.academy/course-details/<?= $id; ?>/<?= $course_title_link; ?>"><img src="<?= LINK; ?>public/images/icon/whatsapp.png" alt="whatsapp share- macroschool"></a>
                             </div>
                         </div>
                     </article>

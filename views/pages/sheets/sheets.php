@@ -31,17 +31,20 @@ include("../../inc/header.php");
     .course__info>a {
         font-size: 12px;
     }
+
     .share {
         padding: 8px 3px !important;
         font-size: 12px;
     }
+
     .share.my-btn a img {
         width: 26px;
     }
+
     .course__image>img {
-    width: 100%;
-    border: 2px solid #ededed;
-}
+        width: 100%;
+        border: 2px solid #ededed;
+    }
 </style>
 <section class="courses">
     <div class="container course-category-list">
@@ -59,37 +62,37 @@ include("../../inc/header.php");
     </div>
     <div class="container course__container">
         <?php
-        $courseSql = "SELECT `id`,`image`,`course_title`,`course_sub_title`,`course_details`,`course_hide`,regular_price,offer_price FROM `sheets` ORDER BY id DESC";
-        $courseStmt = fetch_data($connection, $courseSql);
-        if ($courseStmt) {
-            if (mysqli_stmt_num_rows($courseStmt) == 0) {
+        $sheetSql = "SELECT `id`,`main_image`,`sheet_title`,`sheet_details`,`sheet_hide`,regular_price,offer_price FROM `sheets` ORDER BY id DESC";
+        $sheetStmt = fetch_data($connection, $sheetSql);
+        if ($sheetStmt) {
+            if (mysqli_stmt_num_rows($sheetStmt) == 0) {
                 header("location: " . LINK . "error/404");
                 die();
             }
-            mysqli_stmt_bind_result($courseStmt, $id, $image, $course_title, $course_sub_title, $course_details, $course_hide,$regular_price,$offer_price);
-            while (mysqli_stmt_fetch($courseStmt)) {
-                $course_title_link = str_replace(" ","-",$course_title);
-                if ($course_hide == 1) {
+            mysqli_stmt_bind_result($sheetStmt, $id, $main_image, $sheet_title, $sheet_details, $sheet_hide, $regular_price, $offer_price);
+            while (mysqli_stmt_fetch($sheetStmt)) {
+                $sheet_title_link = str_replace(" ", "-", $sheet_title);
+                if ($sheet_hide == 1) {
         ?>
 
                     <article class="course">
                         <div class="course__image">
-                            <img src="public/images/<?= $image; ?>">
+                            <img src="public/images/<?= $main_image; ?>">
                         </div>
                         <div class="course__info">
-                            <h4><?= $course_title; ?></h4>
+                            <h4><?= $sheet_title; ?></h4>
                             <?php if ($offer_price) { ?>
                                 <h4>TK. <del style="color:red"><?= $regular_price; ?>৳</del> <span style="color:green"><?= $offer_price; ?>৳</span></h4>
                             <?php } else { ?>
                                 <h4>TK. <span style="color:green"><?= $regular_price; ?>৳</span></h4>
                             <?php } ?>
-                            <a href="sheet-details/<?= $id; ?>/<?= $course_title_link; ?>" class='my-btn green'>View Details</a>
+                            <a href="sheet-details/<?= $id; ?>/<?= $sheet_title_link; ?>" class='my-btn green'>View Details</a>
                             <div class="my-btn share">
-                                <img style="width:15px" src="<?= LINK; ?>public/images/icon/share.png" alt="">
+                                <img style="width:15px" src="<?= LINK; ?>public/images/icon/share.png" alt="share icon- macroschool">
                                 Share with
-                                <a target="_blank" href="https://facebook.com/sharer/sharer.php?u=https://macroschool.academy/course-details/<?= $id; ?>"><img src="<?= LINK; ?>public/images/icon/facebook.png" alt=""></a>
+                                <a target="_blank" href="https://facebook.com/sharer/sharer.php?u=https://macroschool.academy/sheet-details/<?= $id; ?>/<?= $sheet_title_link; ?>"><img src="<?= LINK; ?>public/images/icon/facebook.png" alt="facebook share - marcoschool"></a>
 
-                                <a target="" href="https://api.whatsapp.com/send?text=<?= $course_sub_title; ?>%20<?= $course_title; ?>%0Ahttps://macroschool.academy/course-details/<?= $id; ?>"><img src="<?= LINK; ?>public/images/icon/whatsapp.png" alt=""></a>
+                                <a target="" href="https://api.whatsapp.com/send?text=Sheet - <?= $sheet_title; ?>%0Ahttps://macroschool.academy/sheet-details/<?= $id; ?>/<?= $sheet_title_link; ?>"><img src="<?= LINK; ?>public/images/icon/whatsapp.png" alt="whatsapp share - marcoschool"></a>
                             </div>
                         </div>
                     </article>
