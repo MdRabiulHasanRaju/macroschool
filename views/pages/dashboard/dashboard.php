@@ -234,13 +234,13 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 
       while (mysqli_stmt_fetch($sheet_order_check_stmt)) {
 
-        $sheet_sql = "SELECT `id`,`main_image`,`sheet_title`,`sheet_details`,`sheet_hide`,regular_price,offer_price FROM `sheets` where id=?";
+        $sheet_sql = "SELECT `id`,`main_image`,`sheet_title`,`sheet_details`,`sheet_hide`,regular_price,offer_price,sheet_link FROM `sheets` where id=?";
         $sheet_stmt = mysqli_prepare($connection, $sheet_sql);
         mysqli_stmt_bind_param($sheet_stmt, "i", $param_course_id);
         $param_course_id = $sheet_id;
         mysqli_stmt_execute($sheet_stmt);
         mysqli_stmt_store_result($sheet_stmt);
-        mysqli_stmt_bind_result($sheet_stmt, $id, $main_image, $sheet_title, $sheet_details, $sheet_hide, $regular_price, $offer_price);
+        mysqli_stmt_bind_result($sheet_stmt, $id, $main_image, $sheet_title, $sheet_details, $sheet_hide, $regular_price, $offer_price,$sheet_link);
         while (mysqli_stmt_fetch($sheet_stmt)) { ?>
 
           <article class="course">
@@ -259,7 +259,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
               if ($sheet_status == 1) { ?>
                 <button id="sheet-pay-btn" class="my-btn warning read_btn" href=""><i class="fa-solid fa-bangladeshi-taka-sign"></i>Pay To Unlock Read Option</button>
               <?php   } elseif ($sheet_status == 2) { ?>
-                <a target="_blank" class="my-btn green" href="<?= $materials_link; ?>"><i class="fa-solid fa-box"></i> Read</a>
+                <a target="_blank" class="my-btn green" href="<?= $sheet_link; ?>"><i class="fa-solid fa-box"></i> Read</a>
 
               <?php  }
               ?>

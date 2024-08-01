@@ -1195,3 +1195,6 @@ i.fa-solid.fa-rectangle-xmark.close-btn:hover {
 section.courses>h2 {
   padding: 16px 0;
 }
+.slider-swiper, .header {
+  background: linear-gradient(to top, #ffffff, #6ea0c3);
+}
