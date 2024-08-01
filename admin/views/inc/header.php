@@ -38,7 +38,7 @@ $format = new Format;
 
         <ul class="sidebar-nav">
           <li class="sidebar-header">
-            Manage Orders
+            Manage Orders - Courses
           </li>
 
           <li class="sidebar-item <?php
@@ -47,7 +47,7 @@ $format = new Format;
                     }?>">
             <a class="sidebar-link" href="<?=ADMIN_LINK;?>">
               <i class="align-middle" data-feather="sliders"></i>
-              <span class="align-middle">All Order</span>
+              <span class="align-middle">Order - Courses</span>
             </a>
           </li>
 
@@ -66,6 +66,20 @@ $format = new Format;
                     }?>">
             <a class="sidebar-link" href="<?=ADMIN_LINK;?>unpaid-order">
               <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Unpaid Order</span>
+            </a>
+          </li>
+
+          <li class="sidebar-header">
+            Manage Orders - Sheets
+          </li>
+
+          <li class="sidebar-item <?php
+                    if (isset($header_active) && $header_active == "All Order Sheets") {
+                      echo 'myactive';
+                    }?>">
+            <a class="sidebar-link" href="<?=ADMIN_LINK;?>all-sheet-order">
+              <i class="align-middle" data-feather="sliders"></i>
+              <span class="align-middle">Order - Sheets</span>
             </a>
           </li>
 

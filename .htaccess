@@ -38,6 +38,8 @@ RewriteRule ^admin?$ admin/index.php
 RewriteRule ^admin/paid-order?$ admin/views/pages/paid-order/paid-order.php
 RewriteRule ^admin/unpaid-order?$ admin/views/pages/unpaid-order/unpaid-order.php
 
+RewriteRule ^admin/all-sheet-order?$ admin/views/pages/all-sheet-order/all-sheet-order.php
+
 RewriteRule ^admin/add-course?$ admin/views/pages/add-course/add-course.php
 RewriteRule ^admin/course-category?$ admin/views/pages/course-category/course-category.php
 RewriteRule ^admin/edit-course/([0-9]+) admin/views/pages/edit-course/edit-course.php?id=$1

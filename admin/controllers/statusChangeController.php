@@ -22,16 +22,25 @@ if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin'] == true) {
             $status = validate($_POST['status']);
             $refid = validate($_POST['refid']);
 
-			
+			$sheet_order = "";
+			if (isset($_GET['order']) && $_GET['order'] == 'sheet') {
+				$sheet_order = true;
+				$insert_sql = "UPDATE `sheet_order` SET status=? WHERE id=?";
+			}else{
+				$insert_sql = "UPDATE `order` SET status=? WHERE id=?";
+			}
 
-			$insert_sql = "UPDATE `order` SET status=? WHERE id=?";
 			$insert_stmt = mysqli_prepare($connection, $insert_sql);
 			mysqli_stmt_bind_param($insert_stmt, "ii", $param_status, $param_id);
 			$param_status = $status;
 			$param_id = $refid;
 
 			if (mysqli_stmt_execute($insert_stmt)) {
-				header("location: " . ADMIN_LINK);
+				if($sheet_order==true){
+					header("location: " . ADMIN_LINK."all-sheet-order");
+				}else{
+					header("location: " . ADMIN_LINK);
+				}
 			}
 		} else {
 			echo "Req data eror!";
