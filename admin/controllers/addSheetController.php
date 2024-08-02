@@ -1,7 +1,4 @@
 <?php
-
-use Google\Service\CloudSearch\PushItem;
-
 include $_SERVER['DOCUMENT_ROOT'] . "/macroschool/admin/utility/Baseurl.php";
 $baseurl = new Baseurl;
 define("ADMIN_LINK", "{$baseurl->url()}/macroschool/admin/");
