@@ -226,7 +226,7 @@ include("../../inc/header.php");
                 mysqli_stmt_fetch($category_stmt);
                 //filter route link
                 $sheet_title_link = str_replace(" ", "-", $sheet_title);
-                if ($sheet_hide == 1) {
+                //if ($sheet_hide == 1) {
         ?>
                     <div class="sheet-container-left">
                         <div class="sheet-container-left-top">
@@ -286,7 +286,7 @@ include("../../inc/header.php");
                         </div>
                         <div class="sheet-container-left-bottom">
                             <div class="sheet-details">
-                                উচ্চ মাধ্যমিক (HSC) ও বিশ্ববিদ্যালয় ভর্তি পরীক্ষায় পদার্থবিজ্ঞানের প্রয়োজনীয় সকল সূত্রাবলি একত্রে।উচ্চ মাধ্যমিক (HSC) ও বিশ্ববিদ্যালয় ভর্তি পরীক্ষায় পদার্থবিজ্ঞানের প্রয়োজনীয় সকল সূত্রাবলি একত্রে।উচ্চ মাধ্যমিক (HSC) ও বিশ্ববিদ্যালয় ভর্তি পরীক্ষায় পদার্থবিজ্ঞানের প্রয়োজনীয় সকল সূত্রাবলি একত্রে।
+                                <?=$sheet_details;?>
                             </div>
                         </div>
                     </div>
@@ -307,7 +307,7 @@ include("../../inc/header.php");
                         </div>
                     </div>
         <?php
-                }
+                //}
             }
         } ?>
     </div>

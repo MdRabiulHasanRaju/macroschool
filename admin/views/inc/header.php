@@ -105,12 +105,25 @@ $format = new Format;
             </a>
           </li>
 
+          <li class="sidebar-header">
+            Sheet Management
+          </li>
+
           <li class="sidebar-item <?php
-                    if (isset($header_active) && $header_active == "Course Category") {
+                    if (isset($header_active) && $header_active == "All Sheets") {
                       echo 'myactive';
                     }?>">
-            <a class="sidebar-link" href="<?=ADMIN_LINK;?>course-category">
-              <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Course Category</span>
+            <a class="sidebar-link" href="<?=ADMIN_LINK;?>all-sheets">
+              <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">All Sheets</span>
+            </a>
+          </li>
+
+          <li class="sidebar-item <?php
+                    if (isset($header_active) && $header_active == "Add Sheet") {
+                      echo 'myactive';
+                    }?>">
+            <a class="sidebar-link" href="<?=ADMIN_LINK;?>add-sheet">
+              <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Add Sheet</span>
             </a>
           </li>
 
@@ -138,6 +151,15 @@ $format = new Format;
 
           <li class="sidebar-header">
             Utility
+          </li>
+
+          <li class="sidebar-item <?php
+                    if (isset($header_active) && $header_active == "Course Category") {
+                      echo 'myactive';
+                    }?>">
+            <a class="sidebar-link" href="<?=ADMIN_LINK;?>course-category">
+              <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Category</span>
+            </a>
           </li>
 
           <li class="sidebar-item <?php
