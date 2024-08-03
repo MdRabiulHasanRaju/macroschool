@@ -384,4 +384,16 @@
 section.courses>h2 {
   font-size: 23px;
 }
+.team__member-image img {
+  padding: 15px;
+}
+.team__member-info>h4 {
+  font-size: 15px;
+  margin: 0;
+}
+
+.team__member-info>p {
+  font-size: 12px;
+  margin: 8px 0;
+}
 }

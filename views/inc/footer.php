@@ -4,9 +4,7 @@
             <a href="http://www.youtube.com/@macroschool158" class='footer__logo'>
                 <h4>MACRO SCHOOL</h4>
             </a>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, recusandae.
-            </p>
+            <p>We believe in the implementation of Dreams.</p>
         </div>
         <div class="footer__2">
             <h4>Permalinks</h4>
@@ -29,7 +27,7 @@
             <h4>Contact Us</h4>
             <div>
                 <p>01888888880</p>
-                <p>macroschool90@gmail.com</p>
+                <p>macroschoo.bd@gmail.com</p>
             </div>
             <ul class="footer__socials">
                 <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>

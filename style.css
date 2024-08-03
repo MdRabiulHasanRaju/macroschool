@@ -411,7 +411,6 @@ header {
   border-color: #6c63ff;
 }
 .team__member-image img {
-  filter: saturate(0);
 }
 .team__member:hover img {
   filter: saturate(1);
