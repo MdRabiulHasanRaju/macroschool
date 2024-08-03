@@ -1,8 +1,8 @@
-<section class="courses">
+<section id="course-desktop" class="courses">
     <h2>Our Popular Courses</h2>
     <div class="container course__container">
         <?php
-        $courseSql = "SELECT `id`,`image`,`course_title`,`course_sub_title`,`course_details`,`course_hide` FROM `courses` ORDER BY id DESC";
+        $courseSql = "SELECT `id`,`image`,`course_title`,`course_sub_title`,`course_details`,`course_hide` FROM `courses` ORDER BY id DESC limit 3";
         $courseStmt = fetch_data($connection, $courseSql);
         if ($courseStmt) {
             if (mysqli_stmt_num_rows($courseStmt) == 0) {
@@ -35,5 +35,8 @@
         <?php
             }}
         } ?>
+    </div>
+    <div class="container" style="text-align:center;width:200px;padding-top:20px;">
+            <a style="display:block" class="my-btn green" href="<?= LINK; ?>courses">View All Courses</a>
     </div>
 </section>

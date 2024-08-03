@@ -11,6 +11,9 @@ include "views/inc/slider/slider.php";
 ?>
 <?php
 include "views/pages/home/course.php";
+include "views/pages/home/sheet.php";
+include "views/pages/home/course-slider.php";
+include "views/pages/home/sheet-slider.php";
 ?>
 <?php
 include "views/pages/home/category.php";

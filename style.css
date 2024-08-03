@@ -14,7 +14,7 @@ body {
   /* font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
   line-height: 1.7;
   /* color: #fff; */
-  background: #f8f8ff;
+  /* background: #f8f8ff; */
 }
 
 .container {
@@ -211,7 +211,7 @@ header {
 /* ============== popular courses ======== */
 
 .courses {
-  margin-bottom: 5rem;
+  margin-bottom: 3rem;
 }
 .courses h2 {
   color: #f75842;
@@ -1195,6 +1195,6 @@ i.fa-solid.fa-rectangle-xmark.close-btn:hover {
 section.courses>h2 {
   padding: 16px 0;
 }
-.slider-swiper, .header {
-  background: linear-gradient(to top, #ffffff, #6ea0c3);
+.slider-swiper {
+  background: linear-gradient(to top, #ffffff, #f5f5f5);
 }
