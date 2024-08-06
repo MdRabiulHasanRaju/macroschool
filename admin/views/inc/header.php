@@ -198,6 +198,19 @@ $format = new Format;
             </a>
           </li>
 
+          <li class="sidebar-header">
+            Student's
+          </li>
+
+          <li class="sidebar-item <?php
+                    if (isset($header_active) && $header_active == "Registered Users") {
+                      echo 'myactive';
+                    }?>">
+            <a class="sidebar-link" href="<?=ADMIN_LINK;?>registered-users">
+              <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Registered Users</span>
+            </a>
+          </li>
+
         </ul>
 
       </div>
