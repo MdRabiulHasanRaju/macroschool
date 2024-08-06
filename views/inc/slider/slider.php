@@ -66,9 +66,22 @@
     <div class="container">
         <div class="swiper">
             <div class="swiper-wrapper">
-                <div class="swiper-slide"><img src="public/images/slider1.png" alt="slide img" /></div>
-                <div class="swiper-slide"><img src="public/images/slider2.png" alt="slide img" /></div>
-                <div class="swiper-slide"><img src="public/images/slider3.png" alt="slide img" /></div>
+                <?php
+                $Sql = "select * from slider order by id desc";
+                $Stmt = fetch_data($connection, $Sql);
+                if (mysqli_stmt_num_rows($Stmt) == 0) {
+                    $noOrder = "Empty Teacher";
+                } else {
+                    mysqli_stmt_bind_result(
+                        $Stmt,
+                        $id,
+                        $image,
+                    );
+                    $i = 1;
+                    while (mysqli_stmt_fetch($Stmt)) { ?>
+                        <div class="swiper-slide"><img src="<?= LINK; ?>public/images/<?= $image; ?>" alt="slide img" /></div>
+                <?php }
+                } ?>
             </div>
             <div class="swiper-pagination"></div>
             <!-- <div class="swiper-button-prev"></div>

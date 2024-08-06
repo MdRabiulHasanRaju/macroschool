@@ -45,11 +45,12 @@ RewriteRule ^admin/add-course?$ admin/views/pages/add-course/add-course.php
 RewriteRule ^admin/course-category?$ admin/views/pages/course-category/course-category.php
 RewriteRule ^admin/edit-course/([0-9]+) admin/views/pages/edit-course/edit-course.php?id=$1
 RewriteRule ^admin/all-course?$ admin/views/pages/all-course/all-course.php
+RewriteRule ^admin/archive-course?$ admin/views/pages/archive/archive-course.php
 
 RewriteRule ^admin/add-sheet?$ admin/views/pages/add-sheet/add-sheet.php
 RewriteRule ^admin/edit-sheet/([0-9]+) admin/views/pages/edit-sheet/edit-sheet.php?id=$1
 RewriteRule ^admin/all-sheets?$ admin/views/pages/all-sheets/all-sheets.php
-
+RewriteRule ^admin/archive-sheets?$ admin/views/pages/archive/archive-sheet.php
 
 RewriteRule ^admin/add-teacher?$ admin/views/pages/add-teacher/add-teacher.php
 RewriteRule ^admin/edit-teacher/([0-9]+) admin/views/pages/edit-teacher/edit-teacher.php?id=$1
@@ -58,6 +59,7 @@ RewriteRule ^admin/all-teachers?$ admin/views/pages/all-teachers/all-teachers.ph
 RewriteRule ^admin/search?$ admin/views/pages/search/search.php
 
 RewriteRule ^admin/course-utility?$ admin/views/pages/course-utility/course-utility.php
+RewriteRule ^admin/slider?$ admin/views/pages/slider/slider.php
 
 
 <IfModule mod_expires.c>

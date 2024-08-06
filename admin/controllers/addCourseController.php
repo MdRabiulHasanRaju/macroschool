@@ -135,7 +135,7 @@ if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin'] == true) {
 
 			if (mysqli_stmt_execute($insert_stmt)) {
                 move_uploaded_file($data,$destination);
-				header("location: " . ADMIN_LINK."all-course");
+				header("location: " . ADMIN_LINK."archive-course");
 			}
 		} else {
 			echo "Req data eror!";

@@ -1,8 +1,8 @@
 <?php
-$title = "Macro School Admin - All Sheets";
+$title = "Macro School Admin - Archive Sheets";
 $meta_description = "$title - macro school";
 $meta_keywords = "$title, Macro School, macroschool,macro,schoolmacro,macro";
-$header_active = "All Sheets";
+$header_active = "Archive Sheets";
 ?>
 <?php 
 session_start();
@@ -54,7 +54,7 @@ if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin'] == true) {
                                 );
                                 $i = 1;
                                 while (mysqli_stmt_fetch($Stmt)) { $sheet_id=$id;
-                                    if ($sheet_hide == 1) {?>
+                                    if ($sheet_hide == 0) {?>
                                     <tr>
                                         <td><?= $i; ?></td>
                                         <td><?= $sheet_title; ?></td>

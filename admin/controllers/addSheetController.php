@@ -125,7 +125,7 @@ if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin'] == true) {
                     move_uploaded_file($freeImageData, $freeImagedestination);
                 }
 
-                header("location: " . ADMIN_LINK . "all-sheets");
+                header("location: " . ADMIN_LINK . "archive-sheets");
             }
         } else {
             echo "Req data eror!";

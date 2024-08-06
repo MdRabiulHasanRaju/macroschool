@@ -105,6 +105,15 @@ $format = new Format;
             </a>
           </li>
 
+          <li class="sidebar-item <?php
+                    if (isset($header_active) && $header_active == "Archive Course") {
+                      echo 'myactive';
+                    }?>">
+            <a class="sidebar-link" href="<?=ADMIN_LINK;?>archive-course">
+              <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Archive Course</span>
+            </a>
+          </li>
+
           <li class="sidebar-header">
             Sheet Management
           </li>
@@ -124,6 +133,15 @@ $format = new Format;
                     }?>">
             <a class="sidebar-link" href="<?=ADMIN_LINK;?>add-sheet">
               <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Add Sheet</span>
+            </a>
+          </li>
+
+          <li class="sidebar-item <?php
+                    if (isset($header_active) && $header_active == "Archive Sheets") {
+                      echo 'myactive';
+                    }?>">
+            <a class="sidebar-link" href="<?=ADMIN_LINK;?>archive-sheets">
+              <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Archive Sheets</span>
             </a>
           </li>
 
@@ -151,6 +169,15 @@ $format = new Format;
 
           <li class="sidebar-header">
             Utility
+          </li>
+
+          <li class="sidebar-item <?php
+                    if (isset($header_active) && $header_active == "Banner") {
+                      echo 'myactive';
+                    }?>">
+            <a class="sidebar-link" href="<?=ADMIN_LINK;?>slider">
+              <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Banner</span>
+            </a>
           </li>
 
           <li class="sidebar-item <?php

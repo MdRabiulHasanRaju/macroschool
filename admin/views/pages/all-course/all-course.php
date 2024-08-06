@@ -54,7 +54,8 @@ if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin'] == true) {
                                     $image
                                 );
                                 $i = 1;
-                                while (mysqli_stmt_fetch($Stmt)) { $course_id=$id;?>
+                                while (mysqli_stmt_fetch($Stmt)) { $course_id=$id;
+                                    if ($course_hide == 1) {?>
                                     <tr>
                                         <td><?= $i; ?></td>
                                         <td><?= $course_title; ?></td>
@@ -111,7 +112,7 @@ if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin'] == true) {
                                         </td>
                                     </tr>
                             <?php $i++;
-                                }
+                                    }}
                             }
                             ?>
 
