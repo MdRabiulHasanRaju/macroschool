@@ -53,8 +53,9 @@ include("../../inc/header.php");
         $cat_sql = "select * from course_category";
         $cat_stmt = fetch_data($connection, $cat_sql);
         mysqli_stmt_bind_result($cat_stmt, $cat_id_, $cat_name_);
-        while (mysqli_stmt_fetch($cat_stmt)) { ?>
-            <a href="<?= LINK; ?>sheets/<?= $cat_id_; ?>/<?= $cat_name_; ?>">
+        while (mysqli_stmt_fetch($cat_stmt)) { 
+            $get_cat_name = str_replace(" ", "_", $cat_name_);?>
+            <a href="<?= LINK; ?>sheets/<?= $cat_id_; ?>/<?= $get_cat_name; ?>">
                 <?= $cat_name_; ?>
             </a>
         <?php }

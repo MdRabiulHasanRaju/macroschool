@@ -9,7 +9,7 @@ $header_active = "Sheets";
 include("../../inc/header.php");
 if (isset($_GET['cat_name']) && isset($_GET['cat_id'])) {
     $cat_id = htmlspecialchars($_GET['cat_id']);
-    $cat_name = htmlspecialchars($_GET['cat_name']);
+    $cat_name = $_GET['cat_name'];
 } else {
     header("location: " . LINK . "404");
 }
@@ -58,9 +58,10 @@ if (isset($_GET['cat_name']) && isset($_GET['cat_id'])) {
         $cat_sql = "select * from course_category";
         $cat_stmt = fetch_data($connection, $cat_sql);
         mysqli_stmt_bind_result($cat_stmt, $cat_id_, $cat_name_);
-        while (mysqli_stmt_fetch($cat_stmt)) { ?>
+        while (mysqli_stmt_fetch($cat_stmt)) { 
+            $get_cat_name = str_replace(" ", "_", $cat_name_);?>
             <a <?php
-            if (isset($cat_name) && $cat_name == $cat_name_) {
+            if (isset($cat_name) && $cat_name == $get_cat_name) {
               echo "class='course-active'";
             } ?> href="<?= LINK; ?>sheets/<?= $cat_id_; ?>/<?= $cat_name_; ?>">
                 <?= $cat_name_; ?>

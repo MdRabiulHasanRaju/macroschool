@@ -29,8 +29,8 @@ RewriteRule ^order/([0-9]+) controllers/orderController.php?id=$1
 RewriteRule ^sheet-order/([0-9]+) controllers/sheetOrderController.php?id=$1
 
 
-RewriteRule ^courses/([0-9]+)/([a-z0-9A-Z]+) views/pages/courses/category-courses.php?cat_id=$1&cat_name=$2
-RewriteRule ^sheets/([0-9]+)/([a-z0-9A-Z]+) views/pages/sheets/category-sheets.php?cat_id=$1&cat_name=$2
+RewriteRule ^courses/([0-9]+)/([_a-z0-9A-Z]+) views/pages/courses/category-courses.php?cat_id=$1&cat_name=$2
+RewriteRule ^sheets/([0-9]+)/([_a-z0-9A-Z]+) views/pages/sheets/category-sheets.php?cat_id=$1&cat_name=$2
 
 #for admin
 RewriteRule ^admin/login?$ admin/views/pages/auth/auth.php
