@@ -44,7 +44,7 @@ if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin'] == true) {
             $courseName = validate($_POST['courseName']);
             $course_category = validate($_POST['course_category']);
             $batch = validate($_POST['batch']); 
-            $courseDetails = validate($_POST['courseDetails']);
+            $courseDetails = $_POST['courseDetails'];
             $freeClassLink = validate($_POST['freeClassLink']);
             $image = $_FILES['image'];
             $videoLink = validate($_POST['videoLink']);

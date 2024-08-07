@@ -46,6 +46,7 @@ RewriteRule ^admin/course-category?$ admin/views/pages/course-category/course-ca
 RewriteRule ^admin/edit-course/([0-9]+) admin/views/pages/edit-course/edit-course.php?id=$1
 RewriteRule ^admin/all-course?$ admin/views/pages/all-course/all-course.php
 RewriteRule ^admin/archive-course?$ admin/views/pages/archive/archive-course.php
+RewriteRule ^admin/free-course?$ admin/views/pages/free-course/free-course.php
 
 RewriteRule ^admin/add-sheet?$ admin/views/pages/add-sheet/add-sheet.php
 RewriteRule ^admin/edit-sheet/([0-9]+) admin/views/pages/edit-sheet/edit-sheet.php?id=$1
