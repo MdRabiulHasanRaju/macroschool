@@ -58,10 +58,14 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
             mysqli_stmt_store_result($course_stmt);
             mysqli_stmt_bind_result($course_stmt,$course_title,$course_sub_title,$regular_price, $offer_price);
             mysqli_stmt_fetch($course_stmt);
+            $status = 1;
+            if($regular_price==0 && $offer_price==0){
+                $status = 2;
+            }
 
-            $order_sql = "insert into `order`(user_id,course_id,course_title,course_sub_title,mobile,email,regular_price, offer_price) values(?,?,?,?,?,?,?,?)";
+            $order_sql = "insert into `order`(user_id,course_id,course_title,course_sub_title,mobile,email,regular_price, offer_price, status) values(?,?,?,?,?,?,?,?,?)";
             $order_stmt = mysqli_prepare($connection,$order_sql);
-            mysqli_stmt_bind_param($order_stmt,"iissssii",$param_user_id,$param_course_id,$param_course_title,$param_course_sub_title,$param_mobile,$param_email,$param_regular_price, $param_offer_price);
+            mysqli_stmt_bind_param($order_stmt,"iissssiii",$param_user_id,$param_course_id,$param_course_title,$param_course_sub_title,$param_mobile,$param_email,$param_regular_price, $param_offer_price,$param_status);
             $param_user_id = $_SESSION['id'];
             $param_course_id = htmlspecialchars(trim($course_id));
             $param_course_title = htmlspecialchars(trim($course_title));
@@ -70,6 +74,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
             $param_email = $_SESSION['username'];
             $param_regular_price = $regular_price;
             $param_offer_price = $offer_price;
+            $param_status = $status;
 
             if(mysqli_stmt_execute($order_stmt)){
                 header("location: " . LINK . "dashboard");
