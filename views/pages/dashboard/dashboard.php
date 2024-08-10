@@ -330,12 +330,16 @@ include("../../inc/footer.php");
   let viewSheets = document.getElementsByClassName("dashboard-body")[1];
 
   view_courses_btn.addEventListener("click", () => {
-    viewCourses.classList.toggle("dashboard-active");
     viewSheets.classList.remove("dashboard-active");
+    setTimeout(function() {
+      viewCourses.classList.toggle("dashboard-active");
+    }, 300)
   })
   view_sheets_btn.addEventListener("click", () => {
-    viewSheets.classList.toggle("dashboard-active");
     viewCourses.classList.remove("dashboard-active");
+    setTimeout(function() {
+      viewSheets.classList.toggle("dashboard-active");
+    }, 300)
   })
 
   let read_btn = document.querySelectorAll(".read_btn");
