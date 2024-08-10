@@ -40,6 +40,7 @@ $format = new Format;
 </head>
 
 <body>
+  <?php include "popup-notice.php";?>
   <nav class="header">
     <div class="container nav__container">
       <a href="<?= LINK; ?>"><img src="<?= LINK; ?>public/images/logo-removebg-preview.png" id="IMAGE"></a>
