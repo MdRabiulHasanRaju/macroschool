@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">
                     <h5 class="card-title mb-0">Order List</h5>
-                    <form class="search-form" action="<?=ADMIN_LINK;?>search" method="post">
+                    <form class="search-form" action="<?= ADMIN_LINK; ?>search" method="post">
                         <input type="text" name="search" placeholder="Search with Ref ID / Phone" required>
                         <input type="submit" name="submit" value="Search">
                     </form>
@@ -54,8 +54,8 @@
                                         <td>
                                             <?php
                                             $stdn_sql = "select name from users_info where user_id='$user_id'";
-                                            $stdn_stmt = fetch_data($connection,$stdn_sql);
-                                            mysqli_stmt_bind_result($stdn_stmt,$stdn_name);
+                                            $stdn_stmt = fetch_data($connection, $stdn_sql);
+                                            mysqli_stmt_bind_result($stdn_stmt, $stdn_name);
                                             mysqli_stmt_fetch($stdn_stmt);
                                             echo $stdn_name;
                                             ?>
@@ -67,36 +67,45 @@
                                         <td><?= $regular_price; ?></td>
                                         <td><?= $offer_price; ?></td>
                                         <td><?= $id; ?></td>
-                                        <td>
-                                            <form action="<?=ADMIN_LINK;?>controllers/statusChangeController.php" method="post">
-                                            <input name="refid" type="hidden" value="<?=$id;?>">
-                                            <select <?= ($status == 1) ? "style='background:red;color:white;'" : "style='background:green;color:white;'"; ?> name="status" id="status">
-                                                <option selected value="<?= ($status == 1) ? 1 : 2; ?>">
-                                                    <?php if ($status == 1) { ?>
-                                                        Unpaid
-                                                    <?php } elseif ($status == 2) { ?>
-                                                        Paid
-                                                    <?php } ?>
-                                                </option>
+                                        <?php
+                                        $admin_id = $_SESSION['admin_id'];
+                                        $account_sql = "select role from users_admin where id='$admin_id'";
+                                        $account_stmt = fetch_data($connection, $account_sql);
+                                        mysqli_stmt_bind_result($account_stmt, $role);
+                                        mysqli_stmt_fetch($account_stmt);
+                                        if ($role == "admin") {
+                                        ?>
+                                            <td>
+                                                <form action="<?= ADMIN_LINK; ?>controllers/statusChangeController.php" method="post">
+                                                    <input name="refid" type="hidden" value="<?= $id; ?>">
+                                                    <select <?= ($status == 1) ? "style='background:red;color:white;'" : "style='background:green;color:white;'"; ?> name="status" id="status">
+                                                        <option selected value="<?= ($status == 1) ? 1 : 2; ?>">
+                                                            <?php if ($status == 1) { ?>
+                                                                Unpaid
+                                                            <?php } elseif ($status == 2) { ?>
+                                                                Paid
+                                                            <?php } ?>
+                                                        </option>
 
-                                                <option value="<?= ($status == 1) ? 2 : 1; ?>">
-                                                    <?php if ($status == 1) { ?>
-                                                        Paid
-                                                    <?php } elseif ($status == 2) { ?>
-                                                        Unpaid
-                                                    <?php } ?>
-                                                </option>
+                                                        <option value="<?= ($status == 1) ? 2 : 1; ?>">
+                                                            <?php if ($status == 1) { ?>
+                                                                Paid
+                                                            <?php } elseif ($status == 2) { ?>
+                                                                Unpaid
+                                                            <?php } ?>
+                                                        </option>
 
-                                            </select>
-                                            <input type="submit" name="" id="changeStatus" value="Change Status">
-                                            </form>
-
-                                        </td>
-                                        <!-- <?php if ($status == 1) { ?>
-                                            <td style='color:white;background:red;'>Unpaid</td>
-                                        <?php } else { ?>
-                                            <td style='color:white;background:green;'>Paid</td>
-                                        <?php } ?> -->
+                                                    </select>
+                                                    <input type="submit" name="" id="changeStatus" value="Change Status">
+                                                </form>
+                                            </td>
+                                            <?php } else {
+                                            if ($status == 1) { ?>
+                                                <td style='color:white;background:red;'>Unpaid</td>
+                                            <?php } else { ?>
+                                                <td style='color:white;background:green;'>Paid</td>
+                                        <?php }
+                                        } ?>
                                     </tr>
                             <?php $i++;
                                 }

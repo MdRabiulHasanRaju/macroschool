@@ -92,7 +92,7 @@ if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin'] == true) {
                             </tbody>
                         </table>
                         <div style="padding-top:60px;padding-left: 0;" class="card-header">
-                            <h4 class="card-title mb-0">Add New Banner</h4>
+                            <h4 class="card-title mb-0">Add New Video</h4>
                         </div>
                         <form class="add-course-form" action="<?= ADMIN_LINK; ?>controllers/addFreeCourseController.php" method="post" enctype="multipart/form-data">
 

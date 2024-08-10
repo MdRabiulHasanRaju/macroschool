@@ -82,6 +82,15 @@ $format = new Format;
               <span class="align-middle">Order - Sheets</span>
             </a>
           </li>
+          
+            <?php
+            $admin_id = $_SESSION['admin_id'];
+            $account_sql = "select role from users_admin where id='$admin_id'";
+            $account_stmt = fetch_data($connection,$account_sql);
+            mysqli_stmt_bind_result($account_stmt,$role);
+            mysqli_stmt_fetch($account_stmt);
+            if($role=="admin"){
+            ?>
 
           <li class="sidebar-header">
             Course Management
@@ -219,6 +228,7 @@ $format = new Format;
               <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Registered Users</span>
             </a>
           </li>
+          <?php }?>
 
         </ul>
 

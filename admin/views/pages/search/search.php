@@ -104,6 +104,14 @@ if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin'] == true) {
                                                             <td><?= $regular_price; ?></td>
                                                             <td><?= $offer_price; ?></td>
                                                             <td><?= $id; ?></td>
+                                                            <?php
+                                        $admin_id = $_SESSION['admin_id'];
+                                        $account_sql = "select role from users_admin where id='$admin_id'";
+                                        $account_stmt = fetch_data($connection, $account_sql);
+                                        mysqli_stmt_bind_result($account_stmt, $role);
+                                        mysqli_stmt_fetch($account_stmt);
+                                        if ($role == "admin") {
+                                        ?>
                                                             <td>
                                                                 <form action="<?= ADMIN_LINK; ?>controllers/statusChangeController.php?order=sheet" method="post">
                                                                     <input name="refid" type="hidden" value="<?= $id; ?>">
@@ -129,6 +137,13 @@ if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin'] == true) {
                                                                 </form>
 
                                                             </td>
+                                                            <?php } else {
+                                            if ($status == 1) { ?>
+                                                <td style='color:white;background:red;'>Unpaid</td>
+                                            <?php } else { ?>
+                                                <td style='color:white;background:green;'>Paid</td>
+                                        <?php }
+                                        } ?>
                                                     </tr>
                                     <?php $i++;
                                                 }
@@ -216,6 +231,14 @@ if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin'] == true) {
                                                         <td><?= $regular_price; ?></td>
                                                         <td><?= $offer_price; ?></td>
                                                         <td><?= $id; ?></td>
+                                                        <?php
+                                        $admin_id = $_SESSION['admin_id'];
+                                        $account_sql = "select role from users_admin where id='$admin_id'";
+                                        $account_stmt = fetch_data($connection, $account_sql);
+                                        mysqli_stmt_bind_result($account_stmt, $role);
+                                        mysqli_stmt_fetch($account_stmt);
+                                        if ($role == "admin") {
+                                        ?>
                                                         <td>
                                                             <form action="<?= ADMIN_LINK; ?>controllers/statusChangeController.php" method="post">
                                                                 <input name="refid" type="hidden" value="<?= $id; ?>">
@@ -241,6 +264,13 @@ if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin'] == true) {
                                                             </form>
 
                                                         </td>
+                                                        <?php } else {
+                                            if ($status == 1) { ?>
+                                                <td style='color:white;background:red;'>Unpaid</td>
+                                            <?php } else { ?>
+                                                <td style='color:white;background:green;'>Paid</td>
+                                        <?php }
+                                        } ?>
                                                     </tr>
                                     <?php $i++;
                                                 }
