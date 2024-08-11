@@ -35,7 +35,7 @@ $format = new Format;
   <script src="views/inc/slider/swiper.js"></script>
   <link rel="stylesheet" href="<?= LINK; ?>style.css">
   <link rel="stylesheet" href="<?= LINK; ?>responsive.css">
-  <link rel="website icon" type="png" href="<?= LINK; ?>public/images/logo.jpg">
+  <link rel="icon" type="image/x-icon" href="<?= LINK; ?>public/images/logo.jpg">
 
 </head>
 

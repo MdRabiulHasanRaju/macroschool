@@ -6,6 +6,10 @@ $header_active = "Contact";
 ?>
 <?php
 include("../../inc/header.php");
+$contact_sql = "select phone,address,fb_link,yt_link,email from contact";
+$contact_stmt = fetch_data($connection,$contact_sql);
+mysqli_stmt_bind_result($contact_stmt,$phone,$address,$fb_link,$yt_link,$email);
+mysqli_stmt_fetch($contact_stmt);
 ?>
 
 <section class="contact">
@@ -16,32 +20,30 @@ include("../../inc/header.php");
                 </div>
                 <h2>Contact us</h2>
                 <p>
-                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, ex.
+                We believe in the implementation of Dreams.
                 </p>
                 <ul class="contact__details">
                      <li>
                         <i class="fa-solid fa-phone-volume"></i>
-                        <h5>+8801877144472</h5>
+                        <h5><?=$phone?></h5>
                      </li>
                      <li>
                         <i class="fa-solid fa-envelope"></i>
-                        <h5>macroschool90@gmail.com</h5>
+                        <h5><?=$email?></h5>
                      </li>
                      <li>
                         <i class="fa-solid fa-location-dot"></i>
-                        <h5>Fatikcharri, Nazirhat and AK khan CTG</h5>
+                        <h5><?=$address?></h5>
                      </li>
                 </ul>
                 <ul class="contact__socials">
-                <li><a href="https://facebook.com"><i class="fa-brands fa-facebook"></i></a></li>
-                <li><a href="https://facebook.com"><i class="fa-brands fa-instagram"></i></a></li>
-                <li><a href="https://facebook.com"><i class="fa-brands fa-twitter"></i></a></li>  
-                <li><a href="https://facebook.com"><i class="fa-brands fa-linkedin"></i></a></li>  
+                <li><a target="_blank" href="<?=$fb_link?>"><i class="fa-brands fa-facebook"></i></a></li>
+                <li><a target="_blank" href="<?=$yt_link?>"><i class="fa-brands fa-youtube"></i></a></li>
                 
                 </ul>
             </aside>
 
-            <form action='https://formspree.io/f/xkndogag' method='POST' class='contact__form'>
+            <form action='' method='POST' class='contact__form'>
                 <div class="form__name">
                     <input type="text" name='First Name' placeholder='First Name' required>
                     <input type="text" name='Last Name' placeholder='Last Name' required>

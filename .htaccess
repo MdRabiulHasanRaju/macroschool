@@ -62,6 +62,7 @@ RewriteRule ^admin/search?$ admin/views/pages/search/search.php
 RewriteRule ^admin/course-utility?$ admin/views/pages/course-utility/course-utility.php
 RewriteRule ^admin/slider?$ admin/views/pages/slider/slider.php
 RewriteRule ^admin/registered-users?$ admin/views/pages/registered-users/registered-users.php
+RewriteRule ^admin/contact?$ admin/views/pages/contact/contact.php
 
 
 <IfModule mod_expires.c>

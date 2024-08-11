@@ -59,12 +59,17 @@ if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin'] == true) {
                                         $user_id = $id;
                                         $info_Sql = "select name, mobile from `users_info` where user_id='$user_id'";
                                         $info_Stmt = fetch_data($connection, $info_Sql);
+                                        if (mysqli_stmt_num_rows($info_Stmt) == 0) {
+                                        $name = "<span style='color:red'>Blank!</span>";
+                                        $mobile = "<span style='color:red'>Blank!</span>";
+                                        } else {
                                         mysqli_stmt_bind_result(
                                             $info_Stmt,
                                             $name,
                                             $mobile
                                         );
-                                        mysqli_stmt_fetch($info_Stmt)
+                                        mysqli_stmt_fetch($info_Stmt);
+                                    }
                                 ?>
                                         <tr>
                                             <td><?= $i; ?></td>
