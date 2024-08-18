@@ -26,6 +26,7 @@
                                 <th>Offer Price</th>
                                 <th>Ref ID</th>
                                 <th>Status</th>
+                                <th>Drive Access</th>
                             </tr>
                             <?php
                             $orderSql = "select * from `order` order by id desc";
@@ -45,6 +46,7 @@
                                     $regular_price,
                                     $offer_price,
                                     $status,
+                                    $drive_access,
                                     $date
                                 );
                                 $i = 1;
@@ -106,6 +108,16 @@
                                                 <td style='color:white;background:green;'>Paid</td>
                                         <?php }
                                         } ?>
+
+                                        <?php 
+                                            if ($drive_access == 0) { ?>
+                                            <form action="<?= ADMIN_LINK; ?>controllers/driveAccessController.php" method="post">
+                                            <input name="refid" type="hidden" value="<?= $id; ?>">
+                                                <td><Button name="submit" class="btn my-btn" <?=$status == 1?'disabled':''?>>Give Access</Button></td>
+                                            </form>
+                                            <?php } else { ?>
+                                                <td><Button class="btn my-btn green" disabled>Access Done</Button></td>
+                                        <?php }?>
                                     </tr>
                             <?php $i++;
                                 }

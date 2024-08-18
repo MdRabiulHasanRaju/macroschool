@@ -54,8 +54,8 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
   </div>
   <div class="dashboard-menu">
     <div style="margin-bottom: 0;padding: 20px 0;text-align: center;background: white;border-radius: 10px;">
-      <p id="view-courses-btn" style="margin-bottom:10px;display:block;" class='my-btn green'><i class="fa-solid fa-book"></i> View Your Ordered Courses</p>
-      <p id="view-sheets-btn" style="margin-bottom:10px;display:block;" class='my-btn blue'><i class="fa-solid fa-sheet-plastic"></i> View Your Ordered Sheets</p>
+      <p id="view-courses-btn" style="margin-bottom:10px;display:block;" class='my-btn green'>View Your Ordered Courses <i class="fa-solid fa-circle-chevron-down"></i></p>
+      <p id="view-sheets-btn" style="margin-bottom:10px;display:block;" class='my-btn blue'>View Your Ordered Sheets <i class="fa-solid fa-circle-chevron-down"></i></p>
     </div>
   </div>
 
@@ -333,11 +333,14 @@ include("../../inc/footer.php");
     viewSheets.classList.remove("dashboard-active");
     setTimeout(function() {
       viewCourses.classList.toggle("dashboard-active");
+      //viewSheets.classList.remove("dashboard-active");
+
     }, 300)
   })
   view_sheets_btn.addEventListener("click", () => {
     viewCourses.classList.remove("dashboard-active");
     setTimeout(function() {
+      //viewCourses.classList.remove("dashboard-active");
       viewSheets.classList.toggle("dashboard-active");
     }, 300)
   })

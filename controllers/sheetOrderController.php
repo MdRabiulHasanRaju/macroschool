@@ -59,13 +59,15 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
             mysqli_stmt_bind_result($sheet_stmt,$sheet_title,$faculties,$regular_price, $offer_price);
             mysqli_stmt_fetch($sheet_stmt);
             $status = 1;
+            $drive_access = 0;
             if($regular_price==0 && $offer_price==0){
                 $status = 2;
+                $drive_access = 1;
             }
 
-            $sheet_order_sql = "insert into `sheet_order`(user_id,sheet_id,sheet_title,faculties,mobile,email,regular_price, offer_price, status) values(?,?,?,?,?,?,?,?,?)";
+            $sheet_order_sql = "insert into `sheet_order`(user_id,sheet_id,sheet_title,faculties,mobile,email,regular_price, offer_price, status,drive_access) values(?,?,?,?,?,?,?,?,?,?)";
             $sheet_order_stmt = mysqli_prepare($connection,$sheet_order_sql);
-            mysqli_stmt_bind_param($sheet_order_stmt,"iissssiii",$param_user_id,$param_sheet_id,$param_sheet_title,$param_faculties,$param_mobile,$param_email,$param_regular_price, $param_offer_price,$param_status);
+            mysqli_stmt_bind_param($sheet_order_stmt,"iissssiiii",$param_user_id,$param_sheet_id,$param_sheet_title,$param_faculties,$param_mobile,$param_email,$param_regular_price, $param_offer_price,$param_status,$param_drive_access);
             $param_user_id = $_SESSION['id'];
             $param_sheet_id = htmlspecialchars(trim($sheet_id));
             $param_sheet_title = htmlspecialchars(trim($sheet_title));
@@ -75,6 +77,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
             $param_regular_price = $regular_price;
             $param_offer_price = $offer_price;
             $param_status = $status;
+            $param_drive_access = $drive_access;
 
             if(mysqli_stmt_execute($sheet_order_stmt)){
                 header("location: " . LINK . "dashboard");
