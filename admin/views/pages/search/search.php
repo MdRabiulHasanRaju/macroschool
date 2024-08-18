@@ -23,15 +23,15 @@ if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin'] == true) {
         <div class="row">
             <div class="col-12">
                 <div class="card">
+                    <?php
+                    if (isset($_GET['order']) && $_GET['order'] == 'sheet') { ?>
                     <div class="card-header">
                         <h5 class="card-title mb-0">Order List</h5>
-                        <form class="search-form" action="<?= ADMIN_LINK; ?>search" method="post">
+                        <form class="search-form" action="<?= ADMIN_LINK; ?>search?order=sheet" method="post">
                             <input type="text" name="search" placeholder="Search with Ref ID / Phone" required>
                             <input type="submit" name="submit" value="Search">
                         </form>
                     </div>
-                    <?php
-                    if (isset($_GET['order']) && $_GET['order'] == 'sheet') { ?>
                         <div class="card-body all-order">
                             <table class="all-order-table">
                                 <tbody>
@@ -45,6 +45,7 @@ if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin'] == true) {
                                         <th>Offer Price</th>
                                         <th>Ref ID</th>
                                         <th>Status</th>
+                                        <th>Drive Access</th>
                                     </tr>
                                     <?php
 
@@ -83,6 +84,7 @@ if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin'] == true) {
                                                     $regular_price,
                                                     $offer_price,
                                                     $status,
+                                                    $drive_access,
                                                     $date
                                                 );
                                                 $i = 1;
@@ -144,6 +146,15 @@ if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin'] == true) {
                                                 <td style='color:white;background:green;'>Paid</td>
                                         <?php }
                                         } ?>
+                                        <?php 
+                                            if ($drive_access == 0) { ?>
+                                            <form action="<?= ADMIN_LINK; ?>controllers/driveAccessController.php" method="post">
+                                            <input name="refid" type="hidden" value="<?= $id; ?>">
+                                                <td><Button name="submit" class="btn my-btn" <?=$status == 1?'disabled':''?>>Give Access</Button></td>
+                                            </form>
+                                            <?php } else { ?>
+                                                <td><Button class="btn my-btn green" disabled>Access Done</Button></td>
+                                        <?php }?>
                                                     </tr>
                                     <?php $i++;
                                                 }
@@ -157,6 +168,13 @@ if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin'] == true) {
                             </table>
                         </div>
                     <?php } else { ?>
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Order List</h5>
+                        <form class="search-form" action="<?= ADMIN_LINK; ?>search" method="post">
+                            <input type="text" name="search" placeholder="Search with Ref ID / Phone" required>
+                            <input type="submit" name="submit" value="Search">
+                        </form>
+                    </div>
                         <div class="card-body all-order">
                             <table class="all-order-table">
                                 <tbody>
@@ -171,6 +189,7 @@ if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin'] == true) {
                                         <th>Offer Price</th>
                                         <th>Ref ID</th>
                                         <th>Status</th>
+                                        <th>Drive Access</th>
                                     </tr>
                                     <?php
 
@@ -209,6 +228,7 @@ if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin'] == true) {
                                                     $regular_price,
                                                     $offer_price,
                                                     $status,
+                                                    $drive_access,
                                                     $date
                                                 );
                                                 $i = 1;
@@ -271,6 +291,15 @@ if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin'] == true) {
                                                 <td style='color:white;background:green;'>Paid</td>
                                         <?php }
                                         } ?>
+                                        <?php 
+                                            if ($drive_access == 0) { ?>
+                                            <form action="<?= ADMIN_LINK; ?>controllers/driveAccessController.php" method="post">
+                                            <input name="refid" type="hidden" value="<?= $id; ?>">
+                                                <td><Button name="submit" class="btn my-btn" <?=$status == 1?'disabled':''?>>Give Access</Button></td>
+                                            </form>
+                                            <?php } else { ?>
+                                                <td><Button class="btn my-btn green" disabled>Access Done</Button></td>
+                                        <?php }?>
                                                     </tr>
                                     <?php $i++;
                                                 }
