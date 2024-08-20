@@ -60,14 +60,25 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
             mysqli_stmt_fetch($course_stmt);
             $status = 1;
             $drive_access = 0;
+            $coupon_code = '';
             if($regular_price==0 && $offer_price==0){
                 $status = 2;
                 $drive_access = 1;
             }
+            if(isset($_COOKIE['offer_price']) && isset($_COOKIE['offer_price_id']) && $_COOKIE['offer_price_id']==$course_id) {
+                $offer_price = $_COOKIE['offer_price'];
+                $coupon_code = $_COOKIE['coupon_code'];
+                unset($_COOKIE['offer_price']);
+                unset($_COOKIE['offer_price_id']);
+                unset($_COOKIE['coupon_code']);
+                setcookie('offer_price', '', -1, '/'); 
+                setcookie('offer_price_id', '', -1, '/'); 
+                setcookie('coupon_code', '', -1, '/'); 
+            }
 
-            $order_sql = "insert into `order`(user_id,course_id,course_title,course_sub_title,mobile,email,regular_price, offer_price, status,drive_access) values(?,?,?,?,?,?,?,?,?,?)";
+            $order_sql = "insert into `order`(user_id,course_id,course_title,course_sub_title,mobile,email,regular_price, offer_price, status,drive_access,coupon_code) values(?,?,?,?,?,?,?,?,?,?,?)";
             $order_stmt = mysqli_prepare($connection,$order_sql);
-            mysqli_stmt_bind_param($order_stmt,"iissssiiii",$param_user_id,$param_course_id,$param_course_title,$param_course_sub_title,$param_mobile,$param_email,$param_regular_price, $param_offer_price,$param_status,$param_drive_access);
+            mysqli_stmt_bind_param($order_stmt,"iissssiiiis",$param_user_id,$param_course_id,$param_course_title,$param_course_sub_title,$param_mobile,$param_email,$param_regular_price, $param_offer_price,$param_status,$param_drive_access,$param_coupon_code);
             $param_user_id = $_SESSION['id'];
             $param_course_id = htmlspecialchars(trim($course_id));
             $param_course_title = htmlspecialchars(trim($course_title));
@@ -78,6 +89,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
             $param_offer_price = $offer_price;
             $param_status = $status;
             $param_drive_access = $drive_access;
+            $param_coupon_code = $coupon_code;
 
             if(mysqli_stmt_execute($order_stmt)){
                 header("location: " . LINK . "dashboard");

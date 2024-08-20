@@ -64,6 +64,8 @@ RewriteRule ^admin/slider?$ admin/views/pages/slider/slider.php
 RewriteRule ^admin/registered-users?$ admin/views/pages/registered-users/registered-users.php
 RewriteRule ^admin/contact?$ admin/views/pages/contact/contact.php
 
+RewriteRule ^admin/coupon?$ admin/views/pages/coupon/coupon.php
+
 
 <IfModule mod_expires.c>
 ExpiresActive On

@@ -229,6 +229,7 @@ if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin'] == true) {
                                                     $offer_price,
                                                     $status,
                                                     $drive_access,
+                                                    $coupon_code,
                                                     $date
                                                 );
                                                 $i = 1;

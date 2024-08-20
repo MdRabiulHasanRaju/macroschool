@@ -62,13 +62,13 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
   <div id="user-ordered-courses" class="dashboard-body">
 
     <?php
-    $order_check_sql = "select id, course_id, status from `order` where user_id=? ORDER by id DESC";
+    $order_check_sql = "select id, course_id, offer_price, status from `order` where user_id=? ORDER by id DESC";
     $order_check_stmt = mysqli_prepare($connection, $order_check_sql);
     mysqli_stmt_bind_param($order_check_stmt, "i", $param_user_id);
     $param_user_id = $_SESSION['id'];
     mysqli_stmt_execute($order_check_stmt);
     mysqli_stmt_store_result($order_check_stmt);
-    mysqli_stmt_bind_result($order_check_stmt, $order_id, $course_id, $status);
+    mysqli_stmt_bind_result($order_check_stmt, $order_id, $course_id, $offer_price, $status);
     if (mysqli_stmt_num_rows($order_check_stmt) == 0) { ?>
 
       <div class="browse-course">
@@ -79,13 +79,13 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 
       while (mysqli_stmt_fetch($order_check_stmt)) {
 
-        $course_sql = "select course_title, course_sub_title, image, routine,  materials_link, facebook_link,regular_price,offer_price from courses where id=?";
+        $course_sql = "select course_title, course_sub_title, image, routine,  materials_link, facebook_link,regular_price from courses where id=?";
         $course_stmt = mysqli_prepare($connection, $course_sql);
         mysqli_stmt_bind_param($course_stmt, "i", $param_course_id);
         $param_course_id = $course_id;
         mysqli_stmt_execute($course_stmt);
         mysqli_stmt_store_result($course_stmt);
-        mysqli_stmt_bind_result($course_stmt, $course_title, $course_sub_title, $image, $routine, $materials_link, $facebook_link, $regular_price, $offer_price);
+        mysqli_stmt_bind_result($course_stmt, $course_title, $course_sub_title, $image, $routine, $materials_link, $facebook_link, $regular_price);
         while (mysqli_stmt_fetch($course_stmt)) { ?>
 
           <div class="course-ordered-box">

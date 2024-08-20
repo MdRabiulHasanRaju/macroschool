@@ -47,6 +47,7 @@
                                     $offer_price,
                                     $status,
                                     $drive_access,
+                                    $coupon_code,
                                     $date
                                 );
                                 $i = 1;
