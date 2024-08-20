@@ -35,11 +35,416 @@ $format = new Format;
   <script src="views/inc/slider/swiper.js"></script>
   <link rel="stylesheet" href="<?= LINK; ?>style.css">
   <link rel="stylesheet" href="<?= LINK; ?>responsive.css">
-  <link rel="icon" type="image/x-icon" href="<?= LINK; ?>public/images/logo.jpg">
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="<?=LINK;?>public/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="<?=LINK;?>public/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="<?=LINK;?>public/images/favicon-16x16.png">
+  <link rel="manifest" href="<?=LINK;?>public/images/site.webmanifest">
+  <link rel="mask-icon" href="<?=LINK;?>public/images/safari-pinned-tab.svg" color="#5bbad5">
 
+  <style>
+/*===== Preloader Style =====*/
+
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  z-index: 9999;
+}
+.preloader .color-1 {
+  background-color: #dc555b!important;
+}
+.rubix-cube {
+  border: 1px solid #fff;
+  width: 48px;
+  height: 48px;
+  background-color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.rubix-cube .layer {
+  width: 14px;
+  height: 14px;
+  background-color: #07294d;
+  border: 1px solid #fff;
+  position: absolute;
+}
+.rubix-cube .layer-1 {
+  left: 0px;
+  top: 0px;
+  -webkit-animation: rubixcube4 2s infinite linear;
+  animation: rubixcube4 2s infinite linear;
+}
+.rubix-cube .layer-2 {
+  left: 16px;
+  top: 0px;
+  -webkit-animation: rubixcube3 2s infinite linear;
+  animation: rubixcube3 2s infinite linear;
+}
+.rubix-cube .layer-3 {
+  left: 32px;
+  top: 0px;
+}
+.rubix-cube .layer-4 {
+  left: 0px;
+  top: 16px;
+  -webkit-animation: rubixcube5 2s infinite linear;
+  animation: rubixcube5 2s infinite linear;
+}
+.rubix-cube .layer-5 {
+  left: 16px;
+  top: 16px;
+  -webkit-animation: rubixcube2 2s infinite linear;
+  animation: rubixcube2 2s infinite linear;
+}
+.rubix-cube .layer-6 {
+  left: 32px;
+  top: 16px;
+  -webkit-animation: rubixcube1 2s infinite linear;
+  animation: rubixcube1 2s infinite linear;
+}
+.rubix-cube .layer-7 {
+  left: 0px;
+  top: 32px;
+  -webkit-animation: rubixcube6 2s infinite linear;
+  animation: rubixcube6 2s infinite linear;
+}
+.rubix-cube .layer-8 {
+  left: 16px;
+  top: 32px;
+  -webkit-animation: rubixcube7 2s infinite linear;
+  animation: rubixcube7 2s infinite linear;
+}
+@-webkit-keyframes rubixcube1 {
+  20% {
+    top: 16px;
+    left: 32px;
+  }
+  30% {
+    top: 32px;
+    left: 32px;
+  }
+  40% {
+    top: 32px;
+    left: 32px;
+  }
+  50% {
+    top: 32px;
+    left: 32px;
+  }
+  60% {
+    top: 32px;
+    left: 32px;
+  }
+  70% {
+    top: 32px;
+    left: 32px;
+  }
+  80% {
+    top: 32px;
+    left: 32px;
+  }
+  90% {
+    top: 32px;
+    left: 32px;
+  }
+  100% {
+    top: 32px;
+    left: 16px;
+  }
+}
+@keyframes rubixcube1 {
+  20% {
+    top: 16px;
+    left: 32px;
+  }
+  30% {
+    top: 32px;
+    left: 32px;
+  }
+  40% {
+    top: 32px;
+    left: 32px;
+  }
+  50% {
+    top: 32px;
+    left: 32px;
+  }
+  60% {
+    top: 32px;
+    left: 32px;
+  }
+  70% {
+    top: 32px;
+    left: 32px;
+  }
+  80% {
+    top: 32px;
+    left: 32px;
+  }
+  90% {
+    top: 32px;
+    left: 32px;
+  }
+  100% {
+    top: 32px;
+    left: 16px;
+  }
+}
+@-webkit-keyframes rubixcube2 {
+  30% {
+    left: 16px;
+  }
+  40% {
+    left: 32px;
+  }
+  50% {
+    left: 32px;
+  }
+  60% {
+    left: 32px;
+  }
+  70% {
+    left: 32px;
+  }
+  80% {
+    left: 32px;
+  }
+  90% {
+    left: 32px;
+  }
+  100% {
+    left: 32px;
+  }
+}
+@keyframes rubixcube2 {
+  30% {
+    left: 16px;
+  }
+  40% {
+    left: 32px;
+  }
+  50% {
+    left: 32px;
+  }
+  60% {
+    left: 32px;
+  }
+  70% {
+    left: 32px;
+  }
+  80% {
+    left: 32px;
+  }
+  90% {
+    left: 32px;
+  }
+  100% {
+    left: 32px;
+  }
+}
+
+@-webkit-keyframes rubixcube3 {
+  30% {
+    top: 0px;
+  }
+  40% {
+    top: 0px;
+  }
+  50% {
+    top: 16px;
+  }
+  60% {
+    top: 16px;
+  }
+  70% {
+    top: 16px;
+  }
+  80% {
+    top: 16px;
+  }
+  90% {
+    top: 16px;
+  }
+  100% {
+    top: 16px;
+  }
+}
+
+@keyframes rubixcube3 {
+  30% {
+    top: 0px;
+  }
+  40% {
+    top: 0px;
+  }
+  50% {
+    top: 16px;
+  }
+  60% {
+    top: 16px;
+  }
+  70% {
+    top: 16px;
+  }
+  80% {
+    top: 16px;
+  }
+  90% {
+    top: 16px;
+  }
+  100% {
+    top: 16px;
+  }
+}
+@-webkit-keyframes rubixcube4 {
+  50% {
+    left: 0px;
+  }
+  60% {
+    left: 16px;
+  }
+  70% {
+    left: 16px;
+  }
+  80% {
+    left: 16px;
+  }
+  90% {
+    left: 16px;
+  }
+  100% {
+    left: 16px;
+  }
+}
+@keyframes rubixcube4 {
+  50% {
+    left: 0px;
+  }
+  60% {
+    left: 16px;
+  }
+  70% {
+    left: 16px;
+  }
+  80% {
+    left: 16px;
+  }
+  90% {
+    left: 16px;
+  }
+  100% {
+    left: 16px;
+  }
+}
+@-webkit-keyframes rubixcube5 {
+  60% {
+    top: 16px;
+  }
+  70% {
+    top: 0px;
+  }
+  80% {
+    top: 0px;
+  }
+  90% {
+    top: 0px;
+  }
+  100% {
+    top: 0px;
+  }
+}
+@keyframes rubixcube5 {
+  60% {
+    top: 16px;
+  }
+  70% {
+    top: 0px;
+  }
+  80% {
+    top: 0px;
+  }
+  90% {
+    top: 0px;
+  }
+  100% {
+    top: 0px;
+  }
+}
+@-webkit-keyframes rubixcube6 {
+  70% {
+    top: 32px;
+  }
+  80% {
+    top: 16px;
+  }
+  90% {
+    top: 16px;
+  }
+  100% {
+    top: 16px;
+  }
+}
+@keyframes rubixcube6 {
+  70% {
+    top: 32px;
+  }
+  80% {
+    top: 16px;
+  }
+  90% {
+    top: 16px;
+  }
+  100% {
+    top: 16px;
+  }
+}
+@-webkit-keyframes rubixcube7 {
+  80% {
+    left: 16px;
+  }
+  90% {
+    left: 0px;
+  }
+  100% {
+    left: 0px;
+  }
+}
+@keyframes rubixcube7 {
+  80% {
+    left: 16px;
+  }
+  90% {
+    left: 0px;
+  }
+  100% {
+    left: 0px;
+  }
+}
+
+  </style>
 </head>
 
 <body>
+<div id="preloader" class="preloader">
+  <div class="loader rubix-cube">
+    <div class="layer layer-1"></div>
+    <div class="layer layer-2"></div>
+    <div class="layer layer-3 color-1"></div>
+    <div class="layer layer-4"></div>
+    <div class="layer layer-5"></div>
+    <div class="layer layer-6"></div>
+    <div class="layer layer-7"></div>
+    <div class="layer layer-8"></div>
+  </div>
+</div>
+
   <?php include "popup-notice.php";?>
   <nav class="header">
     <div class="container nav__container">
