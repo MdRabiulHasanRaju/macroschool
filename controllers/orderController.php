@@ -74,6 +74,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
                 setcookie('offer_price', '', -1, '/'); 
                 setcookie('offer_price_id', '', -1, '/'); 
                 setcookie('coupon_code', '', -1, '/'); 
+                setcookie('discount_price', '', -1, '/'); 
             }
 
             $order_sql = "insert into `order`(user_id,course_id,course_title,course_sub_title,mobile,email,regular_price, offer_price, status,drive_access,coupon_code) values(?,?,?,?,?,?,?,?,?,?,?)";

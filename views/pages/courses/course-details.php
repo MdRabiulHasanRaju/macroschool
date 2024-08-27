@@ -242,40 +242,119 @@ if (mysqli_stmt_execute($stmt)) {
                             </div>
                         </div>
                         <div class="price-box">
-                        <?php if ($offer_price && !(isset($_COOKIE['offer_price_id']) && $course_id == $_COOKIE['offer_price_id'])) { ?>
-                            <form style="margin-bottom:10px" id="coupon_form" action="" method="post">
-                                <div style="display:flex;justify-content:center;gap:5px;" class="coupon-code">
-                                    <input id="coupon_course_id" class="input-form" type="hidden" name="coupon_course_id" value="<?=$course_id;?>">
+                            <?php if ($offer_price && !(isset($_COOKIE['offer_price_id']) && $course_id == $_COOKIE['offer_price_id'])) { ?>
+                                <form style="margin-bottom:10px" id="coupon_form" action="" method="post">
+                                    <div style="display:flex;justify-content:center;gap:5px;" class="coupon-code">
+                                        <input id="coupon_course_id" class="input-form" type="hidden" name="coupon_course_id" value="<?= $course_id; ?>">
 
-                                    <input id="coupon_code" name="coupon_code" class="input-form" style="border:1px solid #dbdbdb;width:80%;border-radius:5px" type="text" placeholder="Enter Coupon Code"/>
+                                        <input id="coupon_code" name="coupon_code" class="input-form" style="border:1px solid #dbdbdb;width:80%;border-radius:5px" type="text" placeholder="Enter Coupon Code" />
 
-                                    <button type="submit" id="coupon_submit" name="submit" class="my-btn blue" style="padding:5px 10px">Apply</button>
-                                </div>
-                            </form>
-                            <span id="alertMessage"></span>
-                            
+                                        <button type="submit" id="coupon_submit" name="submit" class="my-btn blue" style="padding:5px 10px">Apply</button>
+                                    </div>
+                                </form>
+                                <span id="alertMessage"></span>
+                                <style>
+                                    .coupon-remove-btn {
+                                        padding: 5px 8px;
+                                        background: red;
+                                        color: white;
+                                        font-weight: bold;
+                                        border-radius: 5px;
+                                        display: none;
+                                        margin: 0 auto;
+                                        margin-bottom: 8px;
+                                    }
+
+                                    .coupon-remove-btn:hover {
+                                        color: red;
+                                        background-color: white;
+                                        border: 1px solid red;
+                                    }
+                                </style>
+                                <button id="couponRemoveBtn1" class="coupon-remove-btn">Remove Coupon Code</button>
+
                             <?php } ?>
                             <?php if ($offer_price) { ?>
                                 <?php
-                                if(isset($_COOKIE['offer_price_id']) && $course_id == $_COOKIE['offer_price_id']){
-                                    echo "<span style='color:blue;'>Coupon Code Already Applied</span>";
-                                }
-                            ?>
-                                <h3 style="margin-bottom: 15px;">Price: <del style="color:red"><?= $regular_price; ?>৳</del> 
-                                <span style="color:green">
-                                    <span id="offer_price">
-                                        <?php
-                                            if(isset($_COOKIE['offer_price_id']) && $course_id == $_COOKIE['offer_price_id']){
+                                if (isset($_COOKIE['offer_price_id']) && $course_id == $_COOKIE['offer_price_id']) {
+                                    echo "<span id='coupon_applied' style='color:blue;'>Coupon Code Already Applied</span>"; ?>
+                                    <br>
+                                    <style>
+                                        .coupon-remove-btn {
+                                            padding: 5px 8px;
+                                            background: red;
+                                            color: white;
+                                            font-weight: bold;
+                                            border-radius: 5px;
+                                            margin-bottom: 8px;
+                                        }
+
+                                        .coupon-remove-btn:hover {
+                                            color: red;
+                                            background-color: white;
+                                            border: 1px solid red;
+                                        }
+                                    </style>
+                                    <button id="couponRemoveBtn2" class="coupon-remove-btn">Remove Coupon Code</button>
+                                <?php }
+                                ?>
+                                <h3 style="margin-bottom: 15px;">Price: <del style="color:red"><?= $regular_price; ?>৳</del>
+                                    <span style="color:green">
+                                        <span id="offer_price">
+                                            <?php
+                                            if (isset($_COOKIE['offer_price_id']) && $course_id == $_COOKIE['offer_price_id']) {
                                                 echo $_COOKIE['offer_price'];
-                                            }else{
+                                            } else {
                                                 echo $offer_price;
                                             }
-                                        ?>
+                                            ?>
                                         </span>৳
-                                </span></h3>
+                                    </span>
+                                </h3>
                             <?php } else { ?>
                                 <h3 style="margin-bottom: 15px;">Price: <span style="color:green"><?= $regular_price; ?>৳</span></h3>
                             <?php } ?>
+                            <script>
+                                function getCookie(cookieName) {
+                                    let cookies = document.cookie;
+                                    let cookieArray = cookies.split("; ");
+
+                                    for (let i = 0; i < cookieArray.length; i++) {
+                                        let cookie = cookieArray[i];
+                                        let [name, value] = cookie.split("=");
+
+                                        if (name === cookieName) {
+                                            return decodeURIComponent(value);
+                                        }
+                                    }
+
+                                    return null;
+                                }
+                                let removeCoupon1 = document.getElementById("couponRemoveBtn1");
+                                let removeCoupon2 = document.getElementById("couponRemoveBtn2");
+                                let coupon_form1 = document.getElementById("coupon_form");
+                                let alertMessage1 = document.getElementById("alertMessage");
+                                let offer_price1 = document.getElementById("offer_price");
+                                let coupon_applied = document.getElementById("coupon_applied");
+
+                                const couponRemoveHandler = (e) => {
+                                    let change_offer_price = Number(offer_price1.childNodes[0].data) + Number(getCookie("discount_price"));
+                                    offer_price1.innerHTML = change_offer_price;
+                                    document.cookie = `offer_price=; max-age=-1; path=/`;
+                                    document.cookie = `offer_price_id=; max-age=-1; path=/`;
+                                    document.cookie = `coupon_code=; max-age=-1; path=/`;
+                                    document.cookie = `discount_price=; max-age=-1; path=/`;
+
+                                    if (removeCoupon1) removeCoupon1.style.display = "none";
+                                    if (removeCoupon2) removeCoupon2.style.display = "none";
+                                    if (coupon_applied) coupon_applied.style.display = "none";
+                                    if (alertMessage1) alertMessage1.innerHTML = "";
+                                    if (coupon_form1) coupon_form1.style.display = "block";
+
+                                }
+                                if (removeCoupon1) removeCoupon1.addEventListener("click", couponRemoveHandler);
+                                if (removeCoupon2) removeCoupon2.addEventListener("click", couponRemoveHandler);
+                            </script>
                             <script src="<?= LINK; ?>views/pages/courses/coupon.js"></script>
                             <div class="course-box-bottom">
                                 <?php

@@ -5,6 +5,7 @@ let alertMessage = GetID("alertMessage");
 let offer_price = GetID("offer_price");
 let coupon_submit = GetID("coupon_submit");
 let coupon_form = GetID("coupon_form");
+let couponRemoveBtn1 = GetID("couponRemoveBtn1");
 let all_input = [...(document.getElementsByClassName('input-form'))];
 
 
@@ -39,6 +40,8 @@ const  couponFormHandler = (e) => {
             document.cookie = `offer_price=${change_offer_price}; max-age=86400; path=/`;
             document.cookie = `offer_price_id=${coupon_course_id}; max-age=86400; path=/`;
             document.cookie = `coupon_code=${coupon_code}; max-age=86400; path=/`;
+            document.cookie = `discount_price=${obj.discount}; max-age=86400; path=/`;
+            couponRemoveBtn1.style.display="block";
         }
         if(ajax.status==403){
             console.log(this.responseText)
@@ -59,4 +62,4 @@ const  couponFormHandler = (e) => {
  
 };
   
-coupon_form.addEventListener("submit", couponFormHandler);
+if(coupon_form) coupon_form.addEventListener("submit", couponFormHandler);

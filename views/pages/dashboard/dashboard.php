@@ -125,38 +125,45 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
                   <h3><i class="fa-solid fa-book"></i> <?= $course_title; ?> - <?= $course_sub_title; ?> - <strong><?= $offer_price ? $offer_price : $regular_price; ?>৳</strong></h3>
 
                   <table class="bkash-ref">
-                    <tr>
+                    <!-- <tr>
                       <?php
-                      $sql = "select bkash_pay from course_utility";
-                      $stmt = mysqli_prepare($connection, $sql);
-                      if (mysqli_stmt_execute($stmt)) {
-                        mysqli_stmt_store_result($stmt);
-                        if (mysqli_stmt_num_rows($stmt) == 0) {
-                          header("location: " . LINK . "404");
-                          die();
-                        } else {
-                          mysqli_stmt_bind_result(
-                            $stmt,
-                            $bkash_pay
-                          );
-                          if (mysqli_stmt_fetch($stmt)) { ?>
-                            <td>Bkash Personal Number: </td>
-                            <td><input type="text" value="<?= $bkash_pay; ?>" id="Bkash_number" disabled></td>
-                            <td><button id="copyBtn" onclick="copyBkash()">Copy Number</button></td>
-                      <?php   }
-                        }
-                      } ?>
-                    </tr>
+                      // $sql = "select bkash_pay from course_utility";
+                      // $stmt = mysqli_prepare($connection, $sql);
+                      // if (mysqli_stmt_execute($stmt)) {
+                      //   mysqli_stmt_store_result($stmt);
+                      //   if (mysqli_stmt_num_rows($stmt) == 0) {
+                      //     header("location: " . LINK . "404");
+                      //     die();
+                      //   } else {
+                      //     mysqli_stmt_bind_result(
+                      //       $stmt,
+                      //       $bkash_pay
+                      //     );
+                      //     if (mysqli_stmt_fetch($stmt)) { ?>
+                      //       <td>Bkash Personal Number: </td>
+                      //       <td><input type="text" value="<? //$bkash_pay; ?>" id="Bkash_number" disabled></td>
+                      //       <td><button id="copyBtn" onclick="copyBkash()">Copy Number</button></td>
+                      // <?php  // }
+                      //   }
+                      // } ?>
+                    </tr> -->
                     <tr>
-                      <td>Reference ID: </td>
-                      <td><input type="text" value="<?= $order_id; ?>" id="ref_id" disabled></td>
+                      <td>Order ID: </td>
+                      <td><input type="text" value="CRS<?= $order_id; ?>" id="ref_id" disabled></td>
                       <td><button id="copyBtn_ref" onclick="ref_id()">Copy ID</button></td>
                     </tr>
                   </table>
                 </div>
                 <div class="payment-footer">
-                  <p>উপরে দেওয়া নাম্বারটিতে বিকাশ একাউন্টে গিয়ে সেন্ড মানি অপশন থেকে টাকা পাঠাবেন এবং রেফারেন্স এ উপরে দেওয়া রেফারেন্স ID টি দিয়ে দিবেন। </p>
-                  <p>উপরে দেওয়া নাম্বারটিতে কল দিয়ে ভেরিফাই করে নিতে পারেন। </p>
+                  <!-- <p>উপরে দেওয়া নাম্বারটিতে বিকাশ একাউন্টে গিয়ে সেন্ড মানি অপশন থেকে টাকা পাঠাবেন এবং রেফারেন্স এ উপরে দেওয়া রেফারেন্স ID টি দিয়ে দিবেন। </p>
+                  <p>উপরে দেওয়া নাম্বারটিতে কল দিয়ে ভেরিফাই করে নিতে পারেন। </p> -->
+                  <form style="display:grid;" action="<?=LINK;?>controllers/bkashPayController.php" method="post">
+                    <input name="user_id" type="hidden" value="<?= $_SESSION['id']; ?>">
+                    <input name="course_id" type="hidden" value="CRS<?= $course_id; ?>">
+                    <input name="order_id" type="hidden" value="CRS<?= $order_id; ?>">
+                    <input name="amount" type="hidden" value="<?= $offer_price ? $offer_price : $regular_price; ?>">
+                    <button name="submit" style="display: flex; justify-content:center;align-items:center;gap:5px; border:1px solid #dc555b;padding:5px 10px;font-weight:bold;cursor:pointer;" >Pay With<img style="width:70px;" src="<?=LINK;?>/public/images/icon/bkash.png" alt="Bkash Icon"></button>
+                  </form>
                 </div>
               </div>
             </div>

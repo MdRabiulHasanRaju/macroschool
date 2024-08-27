@@ -1028,8 +1028,8 @@ li.myactive > a {
 
 .payment-footer {
   text-align: center;
-  background: #df5555;
-  color: white;
+  /* background: #df5555;
+  color: white; */
   padding: 10px;
 }
 
@@ -1040,7 +1040,7 @@ li.myactive > a {
   position: fixed;
   top: 0;
   left: 0;
-  transform: translate(50%, 30%);
+  transform: translate(50%, 50%);
 }
 
 input#Bkash_number {
