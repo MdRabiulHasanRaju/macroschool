@@ -11,8 +11,6 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 
     require_once('bkashPay/vendor/autoload.php');
 
-    $callbackURL = LINK . 'controllers/bkashPayExecuteController.php';
-
     $app_key = '0vWQuCRGiUX7EPVjQDr0EUAYtc';
     $app_secret = 'jcUNPBgbcqEDedNKdvE4G1cAK7D3hCjmJccNPZZBq96QIxxwAMEx';
     $username = '01770618567';
@@ -33,8 +31,8 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
             ],
             'body' =>
             '{
-                "app_key" : "0vWQuCRGiUX7EPVjQDr0EUAYtc", 
-                "app_secret" : "jcUNPBgbcqEDedNKdvE4G1cAK7D3hCjmJccNPZZBq96QIxxwAMEx"
+                "app_key" : "'.$app_key.'", 
+                "app_secret" : "'.$app_secret.'"
                 }',
         ]
     );
@@ -65,6 +63,9 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
         $resultdata = curl_exec($url);
         curl_close($url);
         $obj = json_decode($resultdata);
+        
+        // print_r($obj);
+        // die();
 
         $customerMsisdn = $obj->customerMsisdn;
         $paymentID = $obj->paymentID;
@@ -75,8 +76,6 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
         $amount = $obj->amount;
         $statusMessage = $obj->statusMessage;
 
-        //print_r($obj);
-        //die();
 
         $order_sql = "insert into `payment_transaction`(user_id,customerNumber,paymentID,trxID,InvoiceNumber, transactionStatus, amount,statusMessage,time) values(?,?,?,?,?,?,?,?,?)";
         $order_stmt = mysqli_prepare($connection, $order_sql);
@@ -106,13 +105,24 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 
         if (mysqli_stmt_execute($order_stmt)) {
             // echo "success";
-
-            $insert_sql = "UPDATE `order` SET status=? WHERE id=?";
-            $insert_stmt = mysqli_prepare($connection, $insert_sql);
-            mysqli_stmt_bind_param($insert_stmt, "ii", $param_status, $param_id);
-            $param_status = '2';
-            $param_id = (substr($merchantInvoiceNumber, 3));
-            mysqli_stmt_execute($insert_stmt);
+            if($statusMessage == "Successful"){
+                if(substr($merchantInvoiceNumber, 0, 3)=="CRS"){
+                    $insert_sql = "UPDATE `order` SET status=? WHERE id=?";
+                    $insert_stmt = mysqli_prepare($connection, $insert_sql);
+                    mysqli_stmt_bind_param($insert_stmt, "ii", $param_status, $param_id);
+                    $param_status = '2';
+                    $param_id = (substr($merchantInvoiceNumber, 3));
+                    mysqli_stmt_execute($insert_stmt);
+                }
+                else if(substr($merchantInvoiceNumber, 0, 3)=="SHT"){
+                    $insert_sql = "UPDATE `sheet_order` SET status=? WHERE id=?";
+                    $insert_stmt = mysqli_prepare($connection, $insert_sql);
+                    mysqli_stmt_bind_param($insert_stmt, "ii", $param_status, $param_id);
+                    $param_status = '2';
+                    $param_id = (substr($merchantInvoiceNumber, 3));
+                    mysqli_stmt_execute($insert_stmt);
+                }
+            }
 
             header("location: " . LINK . "dashboard");
         }

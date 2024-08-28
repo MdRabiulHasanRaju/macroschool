@@ -18,7 +18,6 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
     $amount = validate($_POST['amount']);
     $order_id = validate($_POST['order_id']);
     $user_id = validate($_POST['user_id']);
-    $course_id = validate($_POST['course_id']);
 
     $amount_err = $order_id_err = $user_id = $course_id = "";
 
@@ -39,13 +38,6 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
     if (empty(trim($_POST["user_id"]))) {
         $user_id_err = "User cannot be blank";
         $_SESSION["user_id_err"] = $user_id_err;
-        header("location: " . LINK . "dashboard");
-        die();
-    }
-
-    if (empty(trim($_POST["course_id"]))) {
-        $course_id_err = "Course cannot be blank";
-        $_SESSION["course_id_err"] = $course_id_err;
         header("location: " . LINK . "dashboard");
         die();
     }
@@ -75,7 +67,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
             ],
             'body' =>
             '{
-                "app_key" : "0vWQuCRGiUX7EPVjQDr0EUAYtc", 
+                "app_key" : "'.$app_key.'", 
                 "app_secret" : "jcUNPBgbcqEDedNKdvE4G1cAK7D3hCjmJccNPZZBq96QIxxwAMEx"
                 }',
         ]
