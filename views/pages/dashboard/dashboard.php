@@ -52,6 +52,23 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
       <a class="my-btn" href="<?= LINK; ?>logout">LOGOUT</a>
     </div>
   </div>
+  <div style="text-align:center;padding:5px 0;" id="bkash_payment_notice">
+    <?php
+      if(isset($_SESSION['bkash_payment_fail'])){
+        echo '<p style="text-align:center;background:#ffd600;padding:10px 10px;font-size: 15px;" >'.$_SESSION["bkash_payment_fail"].' <button onclick="bkashNoticeCloseFunc()" id="bkash_pay_notice_close" style="padding:7px 8px;font-weight:400;" class="my-btn">X Close Notice</button></p>';
+        unset($_SESSION['bkash_payment_fail']);
+      }else if(isset($_SESSION['bkash_payment_success'])){
+        echo '<p style="text-align:center;border: 1px solid green;padding:10px 10px;font-size: 15px;" >Hey, it’s MACRO School. This is a confirmation message that we’ve received your payment. Best wishes <button onclick="bkashNoticeCloseFunc()" id="bkash_pay_notice_close" style="padding:7px 8px;font-weight:400;" class="my-btn">X Close Notice</button></p>';
+        unset($_SESSION['bkash_payment_success']);
+      }
+    ?>
+  </div>
+  <script>
+    let bkashPaymentNotice = document.getElementById("bkash_payment_notice");
+    function bkashNoticeCloseFunc(){
+      bkashPaymentNotice && bkashPaymentNotice.remove();
+    }
+  </script>
   <div class="dashboard-menu">
     <div style="margin-bottom: 0;padding: 20px 0;text-align: center;background: white;border-radius: 10px;">
       <p id="view-courses-btn" style="margin-bottom:10px;display:block;" class='my-btn green'>View Your Ordered Courses <i class="fa-solid fa-circle-chevron-down"></i></p>
@@ -89,6 +106,18 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
         while (mysqli_stmt_fetch($course_stmt)) { ?>
 
           <div class="course-ordered-box">
+            <style>
+              .red {
+                  background-color: red;
+                }
+                .red:hover {
+                  color: red;
+                  border: 1px solid red;
+                }
+            </style>
+              <button data-orderid="<?=$order_id;?>" class="<?=$status==1?'course_delete':'';?> my-btn <?=$status==1?'red':'green';?>">
+                <?=$status==1?'X Remove Course':'(Paid) Order ID: CRS'.$order_id.'';?>
+              </button>
             <div class="course-ordered-box-body">
               <img src="<?= LINK; ?>public/images/<?= $image; ?>" alt="">
               <div class="course-ordered-box-body-content">
@@ -174,6 +203,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
     ?>
 
   </div>
+  <script src="<?= LINK; ?>views/pages/dashboard/order_delete.js"></script>
 
   <style>
     .courses {

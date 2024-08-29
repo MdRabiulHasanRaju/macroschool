@@ -64,8 +64,8 @@ let facebook_btn = document.querySelectorAll(".facebook-pay-btn");
 let Paymentmodalfunction = (btn) => {
   btn.forEach((e) => {
     e.addEventListener("click", () => {
-      payment_popup = e.parentNode.parentNode.parentNode.childNodes[5];
-      closebtn = e.parentNode.parentNode.parentNode.childNodes[5];
+      payment_popup = e.parentNode.parentNode.parentNode.childNodes[9];
+      closebtn = e.parentNode.parentNode.parentNode.childNodes[9];
       closebtn =
         closebtn.childNodes[1].childNodes[1].childNodes[1].childNodes[1];
       payment_popup.style.display = "block";

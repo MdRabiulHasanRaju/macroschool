@@ -1,7 +1,8 @@
 <?php
-header('Expires: '.gmdate('D, d M Y H:i:s \G\M\T', time() + (60)));
-header("Cache-Control: no-cache");
-header("Pragma: no-cache");
+//header('Expires: '.gmdate('D, d M Y H:i:s \G\M\T', time() + (60)));
+//header("Cache-Control: no-cache");
+//header("Pragma: no-cache");
+header_remove('x-powered-by');
 
 if (!isset($connection)) {
   include $_SERVER['DOCUMENT_ROOT'] . "/macroschool/lib/Database.php";

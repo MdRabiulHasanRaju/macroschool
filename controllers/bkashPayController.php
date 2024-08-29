@@ -1,4 +1,5 @@
 <?php
+ob_start();
 include $_SERVER['DOCUMENT_ROOT'] . "/macroschool/utility/Baseurl.php";
 $baseurl = new Baseurl;
 define("LINK", "{$baseurl->url()}/macroschool/");
@@ -74,6 +75,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
     );
     $response = json_decode($response->getBody());
     $id_token = $response->id_token;
+    $_SESSION['id_token'] = $response->id_token;
     // End Grant Token
 
 
@@ -109,6 +111,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
     $obj = json_decode($resultdata);
     header("Location: " . $obj->{'bkashURL'});
     // End Create Payment
+    ob_end_flush();
 
 } else {
     header("location: " . LINK . "login");

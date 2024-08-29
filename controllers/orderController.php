@@ -67,6 +67,9 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
             }
             if(isset($_COOKIE['offer_price']) && isset($_COOKIE['offer_price_id']) && $_COOKIE['offer_price_id']==$course_id) {
                 $offer_price = $_COOKIE['offer_price'];
+                if($offer_price==0){
+                    $status = 2;
+                }
                 $coupon_code = $_COOKIE['coupon_code'];
                 unset($_COOKIE['offer_price']);
                 unset($_COOKIE['offer_price_id']);

@@ -107,14 +107,14 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
         die();
     }
 
-    $ssql = "select otp from verification where email = '$email'";
+    if(isset($email)) {$ssql = "select otp from verification where email = '$email'";
     $femail = mysqli_query($connection, $ssql);
     $otp = mysqli_fetch_assoc($femail);
     $del_otp = $otp['otp'];
     if ($otp['otp']) {
         $delsql = "delete from verification where otp = '$del_otp'";
         $del = $connection->query($delsql);
-    }
+    }}
 
     $name_err  = $phone_err  = "";
     if (isset($_SESSION["name_err"])) {

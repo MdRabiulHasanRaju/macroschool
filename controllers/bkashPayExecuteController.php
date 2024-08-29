@@ -17,34 +17,11 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
     $password = 'D7DaC<*E*eG';
     $base_url = 'https://tokenized.sandbox.bka.sh';
 
-    // Start Grant Token
-    $client = new \GuzzleHttp\Client();
-    $response = $client->request(
-        'POST',
-        $base_url . '/v1.2.0-beta/tokenized/checkout/token/grant',
-        [
-            'headers' => [
-                'accept' => 'application/json',
-                'content-type' => 'application/json',
-                'password' => $password,
-                'username' => $username,
-            ],
-            'body' =>
-            '{
-                "app_key" : "'.$app_key.'", 
-                "app_secret" : "'.$app_secret.'"
-                }',
-        ]
-    );
-    $response = json_decode($response->getBody());
-    $id_token = $response->id_token;
-    // End Grant Token
-
 
     // execute payment
     if (isset($_GET['paymentID'], $_GET['status']) && $_GET['status'] == 'success') {
         $paymentID = $_GET['paymentID'];
-        $auth = $id_token;
+        $auth = $_SESSION['id_token'];
         $post_token = array('paymentID' => $paymentID);
         $url = curl_init($base_url . '/v1.2.0-beta/tokenized/checkout/execute');
         $posttoken = json_encode($post_token);
@@ -63,10 +40,14 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
         $resultdata = curl_exec($url);
         curl_close($url);
         $obj = json_decode($resultdata);
-        
-        // print_r($obj);
-        // die();
 
+        if($obj->statusCode!="0000"){
+            $_SESSION['bkash_payment_fail'] = "There are invalid or missing information for this payment. Please re-check the data fields and Try Again! <br>
+            ".$obj->statusCode." Msg - ".$obj->statusMessage;
+
+            header("location: " . LINK . "dashboard");
+            die();
+        }
         $customerMsisdn = $obj->customerMsisdn;
         $paymentID = $obj->paymentID;
         $trxID = $obj->trxID;
@@ -123,6 +104,9 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
                     mysqli_stmt_execute($insert_stmt);
                 }
             }
+            $_SESSION['bkash_payment_success'] = "Hey, it’s MACRO School. This is a confirmation message that we’ve received your payment. Best wishes";
+
+            unset($_SESSION['id_token']);
 
             header("location: " . LINK . "dashboard");
         }
