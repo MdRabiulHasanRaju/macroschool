@@ -3,6 +3,17 @@
 //header("Cache-Control: no-cache");
 //header("Pragma: no-cache");
 header_remove('x-powered-by');
+if(isset($_COOKIE["mobile"])){
+  $_SESSION["username"] = $_COOKIE["username"];
+  $_SESSION["id"] = $_COOKIE["id"];
+  $_SESSION["loggedin"] = true;
+  $_SESSION['name'] = $_COOKIE["name"];
+  $_SESSION['mobile'] = $_COOKIE["mobile"];
+  if(isset($_COOKIE["google-image"])){
+      $_SESSION['google-image'] = $_COOKIE["google-image"];
+  }
+  $_SESSION['image'] = $_COOKIE["image"];
+}
 
 if (!isset($connection)) {
   include $_SERVER['DOCUMENT_ROOT'] . "/macroschool/lib/Database.php";
@@ -29,6 +40,16 @@ $format = new Format;
                                     }; ?>">
   <meta name="keywords" content="<?= $meta_keywords; ?>">
   <meta name="title" content="<?=$title;?>">
+
+  <meta property="og:title" content="MACRO School"/>
+  <meta property="og:image" content="<?=LINK;?>public/images/ogImage.png"/>
+  <meta data-n-head="ssr" data-hid="og:image:type" property="og:image:type" content="image/png">
+  <meta property="og:image:alt" content="Official Logo of MACRO School" />
+  <meta property="og:type" content="article"/>
+  <meta property="og:description" content="Macroschool is an online store for a prominent online platform. Bangladeshi students are studying and upgrading their abilities using this online education platform."/>
+  <meta property="og:url" content="https://macroschoolbd.com"/>
+  <meta property="fb:app_id" content="879316245899337"/>
+
   <title><?= $title; ?></title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
   <script src="https://kit.fontawesome.com/8a0fad0de8.js" crossorigin="anonymous"></script>

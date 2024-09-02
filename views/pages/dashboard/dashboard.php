@@ -115,8 +115,8 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
                   border: 1px solid red;
                 }
             </style>
-              <button data-orderid="<?=$order_id;?>" class="<?=$status==1?'course_delete':'';?> my-btn <?=$status==1?'red':'green';?>">
-                <?=$status==1?'X Remove Course':'(Paid) Order ID: CRS'.$order_id.'';?>
+              <button data-orderid="<?=$order_id;?>" class="<?=$status==1?'course_delete':'';?> my-btn <?=$status==1?'red':'green';?>" style="<?=$status==2?'border:1px solid green;color:green;background:white!important':'border:1px solid red;color:red;background:white!important';?>">
+                <?=$status==1?'X Remove Course':'( '.$offer_price.'৳ Paid ) Order ID: CRS'.$order_id.'';?>
               </button>
             <div class="course-ordered-box-body">
               <img src="<?= LINK; ?>public/images/<?= $image; ?>" alt="">

@@ -28,6 +28,8 @@ if (isset($_GET['code'])) {
     $_SESSION["google-image"] = $image;
     $_SESSION["google-name"] = $name;
 
+    setcookie("google-image", $image, time() + (86400 * 7), "/");
+
     $account_loggedin = null;
 
         $sql = "select id from users where email = ?";
@@ -46,6 +48,10 @@ if (isset($_GET['code'])) {
                         $_SESSION["id"] = $id;
                         $_SESSION["loggedin"] = true;
 
+                        setcookie("username", $email, time() + (86400 * 7), "/");
+                        setcookie("id", $id, time() + (86400 * 7), "/");
+                        setcookie("loggedin", true, time() + (86400 * 7), "/");
+
                         $login_userInfo_sql = "select name,mobile,image from users_info where user_id = ?";
                         $login_userInfo_stmt = mysqli_prepare($connection, $login_userInfo_sql);
                         mysqli_stmt_bind_param($login_userInfo_stmt, "i", $param_userInfo_id);
@@ -59,6 +65,9 @@ if (isset($_GET['code'])) {
                                     $_SESSION['name'] = $name;
                                     $_SESSION['mobile'] = $mobile;
                                     $_SESSION['image'] = $image;
+                                    setcookie("name", $name, time() + (86400 * 7), "/");
+                                    setcookie("mobile", $mobile, time() + (86400 * 7), "/");
+                                    setcookie("image", $image, time() + (86400 * 7), "/");
                                     header("location: " . LINK . "dashboard");
                                     die();
                                 }
@@ -91,6 +100,9 @@ if (isset($_GET['code'])) {
                 $_SESSION['loggedin'] = true;
                 $_SESSION["id"] = $id;
                 $_SESSION["username"] = $email;
+                setcookie("username", $email, time() + (86400 * 7), "/");
+                setcookie("id", $id, time() + (86400 * 7), "/");
+                setcookie("loggedin", true, time() + (86400 * 7), "/");
             }
         }
     }
