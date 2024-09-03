@@ -43,7 +43,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         if($my_coupon_code==$coupon_code){
                             http_response_code(200);
                             $message = "Coupon Code Applied";
-                            echo json_encode(array('success' => $message,'discount'=> $discount));
+                            echo json_encode(array(
+								'success' => $message,
+								'discount'=> $discount, 
+								'coupon_id'=> $id
+							));
                             die();
                         }
                     }

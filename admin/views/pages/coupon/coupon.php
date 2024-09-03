@@ -69,7 +69,7 @@ table.all-order-table>tbody>tr>th {
                                         <td><?= $discount; ?></td>
                                         <td>
                                             <?php
-                                                 $Sql_coupon = "select coupon_code from `order` where coupon_code='$coupon_code' and status=2";
+                                                 $Sql_coupon = "select coupon_code from `order` where coupon_code='$coupon_id' and status=2";
                                                  $Stmt_coupon = fetch_data($connection, $Sql_coupon);
                                                  if (mysqli_stmt_num_rows($Stmt_coupon) == 0) {
                                                     echo 0;

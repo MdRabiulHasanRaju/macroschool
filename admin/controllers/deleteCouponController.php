@@ -21,6 +21,18 @@ if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin'] == true) {
                 return $data;
             }
             $id = validate($_POST['id']);
+			$get_order_sql = "select id,status from `order` where coupon_code='$id'";
+			$get_order_stmt = fetch_data($connection,$get_order_sql);
+			if(mysqli_stmt_num_rows($get_order_stmt)!=0){
+			mysqli_stmt_bind_result($get_order_stmt,$order_id,$order_status);
+				while(mysqli_stmt_fetch($get_order_stmt)){
+					if($order_status == 1){
+						$del_order_sql = "DELETE FROM `order` WHERE id='$order_id'";
+						$del_order_stmt = mysqli_prepare($connection, $del_order_sql);
+						mysqli_stmt_execute($del_order_stmt);
+					}
+				}
+			}
 		
 			$sql = "DELETE FROM `coupon` WHERE id=?";
 			$stmt = mysqli_prepare($connection, $sql);

@@ -39,7 +39,7 @@ const  couponFormHandler = (e) => {
             coupon_form.style.display = "none"
             document.cookie = `offer_price=${change_offer_price}; max-age=86400; path=/`;
             document.cookie = `offer_price_id=${coupon_course_id}; max-age=86400; path=/`;
-            document.cookie = `coupon_code=${coupon_code}; max-age=86400; path=/`;
+            document.cookie = `coupon_code=${obj.coupon_id}; max-age=86400; path=/`;
             document.cookie = `discount_price=${obj.discount}; max-age=86400; path=/`;
             couponRemoveBtn1.style.display="block";
         }
