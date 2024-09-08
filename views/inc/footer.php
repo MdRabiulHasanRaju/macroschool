@@ -15,6 +15,12 @@
         <div class="footer__2">
             <h4>Permalinks</h4>
             <ul class="permalinks">
+                <li style="text-decoration:none!important;">
+                    <a style="display:flex;align-items:center;justify-content:center;" href="<?= LINK; ?>public/app/MACRO School.apk" class="my-btn" Download>
+                        <img style="width: 29px;border-radius: 50%;" src="<?= LINK; ?>public/images/icon/apps.png" alt="app icon">
+                        Download Android App
+                    </a>
+                </li>
                 <li><a href="<?= LINK; ?>">Home</a></li>
                 <li><a href="<?= LINK; ?>about">About</a></li>
                 <li><a href="<?= LINK; ?>course">Course</a></li>
@@ -34,12 +40,12 @@
         <div class="footer__4">
             <h4>Contact Us</h4>
             <div>
-                <p><?=$phone;?></p>
-                <p><?=$email;?></p>
+                <p><?= $phone; ?></p>
+                <p><?= $email; ?></p>
             </div>
             <ul class="footer__socials">
-                <li><a target="_blank" href="<?=$fb_link;?>"><i class="fa-brands fa-facebook"></i></a></li>
-                <li><a target="_blank" href="<?=$yt_link;?>"><i class="fa-brands fa-youtube"></i></a></li>
+                <li><a target="_blank" href="<?= $fb_link; ?>"><i class="fa-brands fa-facebook"></i></a></li>
+                <li><a target="_blank" href="<?= $yt_link; ?>"><i class="fa-brands fa-youtube"></i></a></li>
             </ul>
         </div>
 
@@ -51,20 +57,20 @@
     </div>
 </footer>
 <script>
-        document.onreadystatechange = function () {
-            if (document.readyState !== "complete") {
-                document.querySelector(
-                    "body").style.visibility = "hidden";
-                document.querySelector(
-                    "#preloader").style.visibility = "visible";
-            } else {
-                document.querySelector(
-                    "#preloader").style.display = "none";
-                document.querySelector(
-                    "body").style.visibility = "visible";
-            }
-        };
-    </script>
+    document.onreadystatechange = function() {
+        if (document.readyState !== "complete") {
+            document.querySelector(
+                "body").style.visibility = "hidden";
+            document.querySelector(
+                "#preloader").style.visibility = "visible";
+        } else {
+            document.querySelector(
+                "#preloader").style.display = "none";
+            document.querySelector(
+                "body").style.visibility = "visible";
+        }
+    };
+</script>
 <script>
     if (window.history.replaceState) {
         window.history.replaceState(null, null, window.location.href);

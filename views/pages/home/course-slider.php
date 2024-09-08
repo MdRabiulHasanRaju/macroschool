@@ -54,7 +54,7 @@
 
             .course__image>img {
                 width: 200px;
-                height: 200px
+                min-height: 100px
             }
 
             .course__image {

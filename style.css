@@ -405,7 +405,7 @@ header {
 }
 
 .team__member {
-  background: #b5b7ceaf;
+  /* background: #fdfdfdaf; */
   padding: 2rem;
   border: 1px solid transparent;
   transition: all 400ms ease;
@@ -631,10 +631,12 @@ img#faculti-image {
 }
 .faculti-member {
   text-align: center;
+  display: grid;
+  place-items: center;
+  gap: 10px;
 }
 .teacher-department {
   color: #df525a;
-  margin-top: 10px;
 }
 .icon {
   width: 25px;

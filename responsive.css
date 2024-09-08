@@ -399,6 +399,7 @@ section.courses>h2 {
 }
 .team__member-image img {
   padding: 15px;
+  min-height: 135px;
 }
 .team__member-info>h4 {
   font-size: 15px;
