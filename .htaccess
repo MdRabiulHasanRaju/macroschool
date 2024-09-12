@@ -3,8 +3,11 @@ RewriteEngine ON
 ErrorDocument 404 /views/error/404.php
 
 RewriteRule ^home?$ index.php 
+
 RewriteRule ^courses?$ views/pages/courses/courses.php
 RewriteRule ^course-details/([0-9]+)/([a-z0-9A-Z]+) views/pages/courses/course-details.php?id=$1&course_name=$2
+
+RewriteRule ^notice?$ views/pages/notice/notice.php
 RewriteRule ^about?$ views/pages/about/about.php
 RewriteRule ^contact?$ views/pages/contact/contact.php
 
@@ -52,6 +55,9 @@ RewriteRule ^admin/add-sheet?$ admin/views/pages/add-sheet/add-sheet.php
 RewriteRule ^admin/edit-sheet/([0-9]+) admin/views/pages/edit-sheet/edit-sheet.php?id=$1
 RewriteRule ^admin/all-sheets?$ admin/views/pages/all-sheets/all-sheets.php
 RewriteRule ^admin/archive-sheets?$ admin/views/pages/archive/archive-sheet.php
+
+RewriteRule ^admin/add-notice?$ admin/views/pages/add-notice/add-notice.php
+RewriteRule ^admin/all-notice?$ admin/views/pages/all-notice/all-notice.php
 
 RewriteRule ^admin/add-teacher?$ admin/views/pages/add-teacher/add-teacher.php
 RewriteRule ^admin/edit-teacher/([0-9]+) admin/views/pages/edit-teacher/edit-teacher.php?id=$1

@@ -514,6 +514,11 @@ $format = new Format;
             } ?>><a href="<?= LINK; ?>sheets"><i class="fa-solid fa-sheet-plastic"></i>Sheets</a></li>
 
         <li <?php
+            if (isset($header_active) && $header_active == "Notice") {
+              echo "class='myactive'";
+            } ?>><a href="<?= LINK; ?>notice"><i class="fa-solid fa-bullhorn"></i>Notice</a></li>
+
+        <li <?php
             if (isset($header_active) && $header_active == "About") {
               echo "class='myactive'";
             } ?>><a href="<?= LINK; ?>about"><i class="fa-solid fa-circle-info"></i>About</a></li>

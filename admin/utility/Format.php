@@ -1,7 +1,7 @@
 <?php
     class Format{
         public function formatDate($date){
-            return $date = date("F j, Y, g:i a");
+            return date("F j, Y, g:i a",strtotime($date));
         }
         public function short_text($text, $limit=500){
             $text = substr($text,0,$limit);

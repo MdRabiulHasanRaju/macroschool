@@ -173,6 +173,28 @@ $format = new Format;
           </li>
 
           <li class="sidebar-header">
+            Manage Notice Board
+          </li>
+
+          <li class="sidebar-item <?php
+                    if (isset($header_active) && $header_active == "Notice") {
+                      echo 'myactive';
+                    }?>">
+            <a class="sidebar-link" href="<?=ADMIN_LINK;?>all-notice">
+              <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">All Notice</span>
+            </a>
+          </li>
+
+          <li class="sidebar-item <?php
+                    if (isset($header_active) && $header_active == "Add Notice") {
+                      echo 'myactive';
+                    }?>">
+            <a class="sidebar-link" href="<?=ADMIN_LINK;?>add-notice">
+              <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Add Notice</span>
+            </a>
+          </li>
+
+          <li class="sidebar-header">
             Manage Teachers
           </li>
 

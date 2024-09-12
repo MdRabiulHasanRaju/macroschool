@@ -14,6 +14,7 @@ include "views/pages/home/course.php";
 include "views/pages/home/sheet.php";
 include "views/pages/home/course-slider.php";
 include "views/pages/home/sheet-slider.php";
+include "views/pages/home/notice.php";
 ?>
 <?php
 include "views/pages/home/team.php";
