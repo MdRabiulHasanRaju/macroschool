@@ -230,6 +230,15 @@ $format = new Format;
           </li>
 
           <li class="sidebar-item <?php
+                    if (isset($header_active) && $header_active == "popup") {
+                      echo 'myactive';
+                    }?>">
+            <a class="sidebar-link" href="<?=ADMIN_LINK;?>popup">
+              <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Pop Up Notification</span>
+            </a>
+          </li>
+
+          <li class="sidebar-item <?php
                     if (isset($header_active) && $header_active == "Banner") {
                       echo 'myactive';
                     }?>">

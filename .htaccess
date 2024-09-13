@@ -73,6 +73,7 @@ RewriteRule ^admin/contact?$ admin/views/pages/contact/contact.php
 
 RewriteRule ^admin/coupon?$ admin/views/pages/coupon/coupon.php
 RewriteRule ^admin/live?$ admin/views/pages/live/live.php
+RewriteRule ^admin/popup?$ admin/views/pages/popup/popup.php
 
 
 <IfModule mod_expires.c>

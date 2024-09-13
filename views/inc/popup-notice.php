@@ -29,14 +29,23 @@
 }
 </style>
 <?php
-if (!isset($_COOKIE["user"])) {
-    setcookie("user", "usersetcookie", time() + 604800, "/");
+$pop_upSql = "SELECT `image`,`current_cookie` FROM `pop_up`";
+$pop_upStmt = fetch_data($connection, $pop_upSql);
+if ($pop_upStmt) {
+    if (mysqli_stmt_num_rows($pop_upStmt) != 0) {
+        mysqli_stmt_bind_result($pop_upStmt, $image, $current_cookie);
+        mysqli_stmt_fetch($pop_upStmt);
+
+if (!isset($_COOKIE[$current_cookie])) {
+    setcookie($current_cookie, "pop_up_on", time() + 604800, "/");
 ?>
+
+
     <div class="payment-popup-outside wholepopup">
         <div class="payment-popup popup-noticebox">
             <div class="pop-img">
                 <i class="fa-solid fa-rectangle-xmark close-btn cross"></i>
-                <img style="width:90%;" src="<?= LINK; ?>public/images/popup-notice.jpg" alt="popup-notice">
+                <img style="width:90%;" src="<?= LINK; ?>public/images/<?=$image;?>" alt="popup-notice">
             </div>
         </div>
 
@@ -59,4 +68,4 @@ if (!isset($_COOKIE["user"])) {
             }
         }
     </script>
-<?php  }  ?>
+<?php  } }} ?>
