@@ -10,6 +10,7 @@ include "views/inc/header.php";
 include "views/inc/slider/slider.php";
 ?>
 <?php
+include "views/pages/home/live.php";
 include "views/pages/home/course.php";
 include "views/pages/home/sheet.php";
 include "views/pages/home/course-slider.php";

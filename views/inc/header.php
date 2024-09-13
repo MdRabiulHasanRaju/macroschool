@@ -3,6 +3,7 @@
 //header("Cache-Control: no-cache");
 //header("Pragma: no-cache");
 header_remove('x-powered-by');
+ob_start();
 if(isset($_COOKIE["mobile"])){
   $_SESSION["username"] = $_COOKIE["username"];
   $_SESSION["id"] = $_COOKIE["id"];
@@ -466,8 +467,7 @@ $format = new Format;
     <div class="layer layer-8"></div>
   </div>
 </div>
-
-  <?php include "popup-notice.php";?>
+<?php include "popup-notice.php";?>
   <nav class="header">
     <div class="container nav__container">
       <a href="<?= LINK; ?>"><img src="<?= LINK; ?>public/images/logo-removebg-preview.png" id="IMAGE"></a>

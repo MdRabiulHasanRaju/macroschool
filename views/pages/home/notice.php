@@ -60,8 +60,7 @@
 
         <div class="notice-box">
             <img style="width: 30px;min-height: 20px;margin-bottom: 8px;" src="<?=LINK;?>public/images/icon/pin.png" alt="notice-board-pin-image">
-            <h3>ICT - ক্লাস নোটিশ (HSC - 25)
-            </h3>
+            <h3><?=$title;?></h3>
             <h6><?=$format->formatDate($date);?> <br/> Posted By <span style="color:#dc555b;font-size:14px"><?=$author;?></span></h6>
             <p style="border-top:1px solid #ededed"><?=$des;?></p>
         </div>

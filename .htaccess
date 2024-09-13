@@ -8,6 +8,7 @@ RewriteRule ^courses?$ views/pages/courses/courses.php
 RewriteRule ^course-details/([0-9]+)/([a-z0-9A-Z]+) views/pages/courses/course-details.php?id=$1&course_name=$2
 
 RewriteRule ^notice?$ views/pages/notice/notice.php
+RewriteRule ^live?$ views/pages/live/live.php
 RewriteRule ^about?$ views/pages/about/about.php
 RewriteRule ^contact?$ views/pages/contact/contact.php
 
@@ -71,6 +72,7 @@ RewriteRule ^admin/registered-users?$ admin/views/pages/registered-users/registe
 RewriteRule ^admin/contact?$ admin/views/pages/contact/contact.php
 
 RewriteRule ^admin/coupon?$ admin/views/pages/coupon/coupon.php
+RewriteRule ^admin/live?$ admin/views/pages/live/live.php
 
 
 <IfModule mod_expires.c>
