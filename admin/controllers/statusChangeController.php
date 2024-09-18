@@ -39,7 +39,11 @@ if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin'] == true) {
 				if($sheet_order==true){
 					header("location: " . ADMIN_LINK."all-sheet-order");
 				}else{
-					header("location: " . ADMIN_LINK);
+					if(isset($_GET['specific_course'])){
+						header("location: " . ADMIN_LINK."specific-course-order/".$_GET['specific_course']);
+					}else{
+						header("location: " . ADMIN_LINK);
+					}
 				}
 			}
 		} else {

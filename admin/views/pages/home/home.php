@@ -11,6 +11,25 @@
                         <input type="text" name="search" placeholder="Search with Ref ID / Phone" required>
                         <input type="submit" name="submit" value="Search">
                     </form>
+                    <div style="padding-top:10px;" class="filter-course">
+                        <form action="<?= ADMIN_LINK; ?>specific-course-order" method="post">
+                            <select style="padding:10px;border: 1px solid #ebebeb;" name="courseName" id="courseName" required>
+                            <option value="" selected disabled>Select Course</option>
+                                <?php
+                                $courseSql = "select id,course_title from `courses`";
+                                $courseStmt = fetch_data($connection, $courseSql);
+                                if (mysqli_stmt_num_rows($courseStmt) > 0) {
+                                    mysqli_stmt_bind_result($courseStmt,$c_id,$c_name);
+                                    while(mysqli_stmt_fetch($courseStmt)){?>
+                                        <option value="<?=$c_id;?>"><?=$c_name;?></option>
+                                  <?php  }
+                                }
+                                ?>
+
+                            </select>
+                            <input style="padding:10px;border: 1px solid #ebebeb;" type="submit" name="submit" value="Choose Course">
+                        </form>
+                    </div>
                 </div>
                 <div class="card-body all-order">
                     <table class="all-order-table">

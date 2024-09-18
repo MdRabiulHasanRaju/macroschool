@@ -43,6 +43,10 @@ RewriteRule ^admin?$ admin/index.php
 RewriteRule ^admin/paid-order?$ admin/views/pages/paid-order/paid-order.php
 RewriteRule ^admin/unpaid-order?$ admin/views/pages/unpaid-order/unpaid-order.php
 
+RewriteRule ^admin/specific-course-order?$ admin/views/pages/specific-course-order/specific-course-order.php
+RewriteRule ^admin/specific-course-order/([0-9]+) admin/views/pages/specific-course-order/specific-course-order.php?courseID=$1
+
+
 RewriteRule ^admin/all-sheet-order?$ admin/views/pages/all-sheet-order/all-sheet-order.php
 
 RewriteRule ^admin/add-course?$ admin/views/pages/add-course/add-course.php
