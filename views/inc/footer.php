@@ -56,7 +56,7 @@
     </div>
     </div>
 </footer>
-<script>
+<!-- <script>
     document.onreadystatechange = function() {
         if (document.readyState !== "complete") {
             document.querySelector(
@@ -70,7 +70,7 @@
                 "body").style.visibility = "visible";
         }
     };
-</script>
+</script> -->
 <script>
     if (window.history.replaceState) {
         window.history.replaceState(null, null, window.location.href);
