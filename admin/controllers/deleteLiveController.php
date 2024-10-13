@@ -28,6 +28,8 @@ if (isset($_SESSION['admin_loggedin']) && $_SESSION['admin_loggedin'] == true) {
 			$param_id = $id;
 
 			if (mysqli_stmt_execute($stmt)) {
+				$commentSql = "DELETE FROM `comment`";
+				$result = mysqli_query($connection, $commentSql);
 				header("location: " . ADMIN_LINK."live");
 			}
 		} else {

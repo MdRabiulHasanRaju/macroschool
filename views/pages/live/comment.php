@@ -9,7 +9,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 
     include_once $_SERVER['DOCUMENT_ROOT'] . "/macroschool/lib/Database.php";
     isset($_SESSION['id']) ? $userID = $_SESSION['id']:$userID = 0;
-    $commentSql = "SELECT * FROM comment WHERE user_id='$userID' order by id desc";
+    $commentSql = "SELECT * FROM comment WHERE user_id='$userID' order by id asc";
     $result = mysqli_query($connection, $commentSql);
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {

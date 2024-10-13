@@ -1,12 +1,9 @@
 <?php
-
-use Google\Service\CloudSearch\Resource\Query;
-
 ob_start();
 session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . "/macroschool/lib/Database.php";
 $title = "Macro School - Live Class";
-$meta_description = "$title - macro school Call 880 1563 4668 21";
+$meta_description = "$title - macro school";
 $meta_keywords = "$title, Macro School, macroschool,macro,schoolmacro,macro";
 $header_active = "live";
 
@@ -28,7 +25,7 @@ include("../../inc/header.php");
 
     .comment {
         width: 30%;
-        margin:10px 0;
+        margin: 10px 0;
         height: 100%;
     }
 
@@ -53,7 +50,7 @@ include("../../inc/header.php");
 
         .facebook-live-link {
             width: 100%;
-            height: 250px;
+            height: 210px;
         }
     }
 
@@ -139,10 +136,12 @@ include("../../inc/header.php");
             border: 1px solid #777777;
             background: black;
         }
+
         .comment {
-            background: black!important;
+            background: black !important;
             color: #a9a9a9;
         }
+
         input#comment {
             background: #a9a9a9;
         }
@@ -165,16 +164,13 @@ if ($liveStmt) {
                 <iframe class="facebook-live-link" src="<?= $link; ?>" width="" height="" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
             </div>
             <div class="comment" style="background:#f6f6f6;">
+                <div id="viewComments" style="margin:10px;border:1px solid #cfcfcf;height: 250px;overflow: hidden;overflow-y: scroll;"></div>
                 <form id="commentForm" style="margin:10px 20px;padding:20px 0" action="">
                     <label for="comment">Ask Question</label>
-                    <input <?= ((isset($_SESSION['loggedin'])) ? '' : 'readonly'); ?> style="margin: 10px 0;" name="comment" id="comment" height="40px" required/>
+                    <input <?= ((isset($_SESSION['loggedin'])) ? '' : 'readonly'); ?> style="margin: 10px 0;" name="comment" id="comment" height="40px" required />
                     <div id="showtyping"></div>
                     <input <?= ((isset($_SESSION['loggedin'])) ? '' : 'disabled'); ?> id="commentSubmit" type="submit" value="Sent" class="my-btn">
                 </form>
-
-                <div id="viewComments" style="margin:10px;border:1px solid #cfcfcf;">
-
-                </div>
             </div>
         </section>
 
@@ -195,16 +191,30 @@ include("../../inc/footer.php");
             $("#viewComments").load("<?= LINK; ?>views/pages/live/comment.php");
         }, 1000)
 
+        setTimeout(function() {
+            $('#viewComments').scrollTop($('#viewComments')[0].scrollHeight);
+        }, 1100)
+
+        setInterval(function() {
+            $('#viewComments').scrollTop($('#viewComments')[0].scrollHeight);
+        }, 5000)
+
+
 
         $("#commentForm").submit(function(event) {
             event.preventDefault();
             let msg = $("#comment").val();
             $.ajax({
-                url:"/macroschool/controllers/postCommentController.php",
-                type:"POST",
-                data:{data:msg},
-                success:function(data){
+                url: "/macroschool/controllers/postCommentController.php",
+                type: "POST",
+                data: {
+                    data: msg
+                },
+                success: function(data) {
                     $("#comment").val('')
+                    setTimeout(function() {
+                        $('#viewComments').scrollTop($('#viewComments')[0].scrollHeight);
+                    }, 1100)
                 }
             })
         })
